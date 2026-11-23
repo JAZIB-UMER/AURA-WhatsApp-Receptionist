@@ -21,24 +21,24 @@ You don't need Python or the source code.
 1. Put these files in one folder:
    - `docker-compose.yml`
    - `.env`, a copy of `.env.example` with your own `ADMIN_PASSWORD`
-2. Get the AURA image, in one of three ways:
-   - From a file: `docker load -i aura.tar`
-   - From Docker Hub: set `AURA_IMAGE=<name>/aura:1.0` in `.env`
-   - Build it from the source: `docker build -t aura:latest .`
-3. Start it:
+2. Start it:
    ```
    docker compose up -d
    ```
-   The first start takes about 1–2 minutes while the models load.
-4. Open the dashboard at **http://localhost:8501** and log in as `admin` with your `ADMIN_PASSWORD`.
-5. In **Admin → Platform settings**, set up the shared accounts. Each section has a check button.
+   - The first start downloads the AURA image from GitHub (`ghcr.io/jazib-umer/aura`, about 2–2.5 GB).
+     Later starts download nothing.
+   - Then wait about 1–2 minutes while the models load.
+   - To use an image you built yourself instead (`docker build -t aura:latest .`), set
+     `AURA_IMAGE=aura:latest` in `.env`.
+3. Open the dashboard at **http://localhost:8501** and log in as `admin` with your `ADMIN_PASSWORD`.
+4. In **Admin → Platform settings**, set up the shared accounts. Each section has a check button.
    - WaAPI token
    - Gemini key
    - Groq key
    - Google service-account key (.json)
    - Email server
    - Your own admin password
-6. In **Admin → Businesses**, add a business with its WaAPI instance ID, Google Calendar and owner contacts.
+5. In **Admin → Businesses**, add a business with its WaAPI instance ID, Google Calendar and owner contacts.
    - Share that calendar with the service-account email shown in Platform settings.
 
 WhatsApp works on its own after that. AURA starts a free Cloudflare tunnel for a public address and

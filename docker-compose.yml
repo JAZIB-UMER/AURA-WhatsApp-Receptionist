@@ -9,7 +9,7 @@
 name: aura
 
 x-aura: &aura
-  image: ${AURA_IMAGE:-aura:latest}
+  image: ${AURA_IMAGE:-ghcr.io/jazib-umer/aura:latest}   # downloaded from GitHub on the first start
   env_file:
     - path: .env
       required: false

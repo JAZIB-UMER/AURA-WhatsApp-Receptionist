@@ -45,6 +45,10 @@ FROM ${LIBS_FROM} AS libs
 # ------------------------------------------------------------------ 2. runtime
 FROM ${PYTHON_IMAGE} AS runtime
 
+LABEL org.opencontainers.image.title="AURA" \
+      org.opencontainers.image.description="AI WhatsApp receptionist for small businesses (server + dashboard + models)" \
+      org.opencontainers.image.source="https://github.com/JAZIB-UMER/AURA-WhatsApp-Receptionist"
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH=/opt/venv/bin:$PATH \
