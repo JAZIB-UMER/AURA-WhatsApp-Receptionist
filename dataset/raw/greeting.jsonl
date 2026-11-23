@@ -1,0 +1,90 @@
+{"text": "aoa", "intent": "greeting", "entities": []}
+{"text": "salam bhai", "intent": "greeting", "entities": []}
+{"text": "assalamualaikum", "intent": "greeting", "entities": []}
+{"text": "hello", "intent": "greeting", "entities": []}
+{"text": "hi sir", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum bhai", "intent": "greeting", "entities": []}
+{"text": "salam janab kaise hain aap", "intent": "greeting", "entities": []}
+{"text": "good morning", "intent": "greeting", "entities": []}
+{"text": "hey", "intent": "greeting", "entities": []}
+{"text": "aoa kya haal hain", "intent": "greeting", "entities": []}
+{"text": "salam alaikum sir", "intent": "greeting", "entities": []}
+{"text": "hello bhai jan", "intent": "greeting", "entities": []}
+{"text": "hi there", "intent": "greeting", "entities": []}
+{"text": "good afternoon sir", "intent": "greeting", "entities": []}
+{"text": "walaikum assalam ki jagah salam", "intent": "greeting", "entities": []}
+{"text": "Aoa", "intent": "greeting", "entities": []}
+{"text": "Salam bhai", "intent": "greeting", "entities": []}
+{"text": "Hello", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum", "intent": "greeting", "entities": []}
+{"text": "Hi sir", "intent": "greeting", "entities": []}
+{"text": "Salam, kaisay hain aap?", "intent": "greeting", "entities": []}
+{"text": "Hey bro", "intent": "greeting", "entities": []}
+{"text": "Good morning sir", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum bhai jaan", "intent": "greeting", "entities": []}
+{"text": "Hello there", "intent": "greeting", "entities": []}
+{"text": "Aoa sir g", "intent": "greeting", "entities": []}
+{"text": "Salam brother", "intent": "greeting", "entities": []}
+{"text": "Hi good evening", "intent": "greeting", "entities": []}
+{"text": "Wsalam bhai", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum kaisay hain?", "intent": "greeting", "entities": []}
+{"text": "aoa", "intent": "greeting", "entities": []}
+{"text": "salam bhai", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum", "intent": "greeting", "entities": []}
+{"text": "hello sir kaise hain?", "intent": "greeting", "entities": []}
+{"text": "hi", "intent": "greeting", "entities": []}
+{"text": "salam janab", "intent": "greeting", "entities": []}
+{"text": "assalamualaikum bro", "intent": "greeting", "entities": []}
+{"text": "good morning sir", "intent": "greeting", "entities": []}
+{"text": "aoa kia hal hai?", "intent": "greeting", "entities": []}
+{"text": "hey there", "intent": "greeting", "entities": []}
+{"text": "salam bhai, umeed hai theek hongay", "intent": "greeting", "entities": []}
+{"text": "hello, good afternoon", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum sir", "intent": "greeting", "entities": []}
+{"text": "hi brother kaise ho", "intent": "greeting", "entities": []}
+{"text": "aoa sir g", "intent": "greeting", "entities": []}
+{"text": "aoa", "intent": "greeting", "entities": []}
+{"text": "salam bhai", "intent": "greeting", "entities": []}
+{"text": "hello", "intent": "greeting", "entities": []}
+{"text": "assalamualaikum", "intent": "greeting", "entities": []}
+{"text": "hi sir", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum bhai jaan", "intent": "greeting", "entities": []}
+{"text": "hey salam", "intent": "greeting", "entities": []}
+{"text": "good morning sir", "intent": "greeting", "entities": []}
+{"text": "aoa kaisay hain aap?", "intent": "greeting", "entities": []}
+{"text": "salam janab", "intent": "greeting", "entities": []}
+{"text": "hello brother", "intent": "greeting", "entities": []}
+{"text": "hi, how are you?", "intent": "greeting", "entities": []}
+{"text": "salam u alaikum", "intent": "greeting", "entities": []}
+{"text": "aoa sir", "intent": "greeting", "entities": []}
+{"text": "hey bro, salam", "intent": "greeting", "entities": []}
+{"text": "Aoa", "intent": "greeting", "entities": []}
+{"text": "Salam bhai", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum", "intent": "greeting", "entities": []}
+{"text": "Hello, good morning", "intent": "greeting", "entities": []}
+{"text": "Hi sir, kaisay hain?", "intent": "greeting", "entities": []}
+{"text": "Salam janab", "intent": "greeting", "entities": []}
+{"text": "Hey bro", "intent": "greeting", "entities": []}
+{"text": "Assalam u alaikum bhai jaan", "intent": "greeting", "entities": []}
+{"text": "Hello sir", "intent": "greeting", "entities": []}
+{"text": "Aoa, umeed hai aap khariat se honge", "intent": "greeting", "entities": []}
+{"text": "Salam", "intent": "greeting", "entities": []}
+{"text": "Good evening bhai", "intent": "greeting", "entities": []}
+{"text": "Hi there!", "intent": "greeting", "entities": []}
+{"text": "Assalamu alaikum wr wb", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum sir jee", "intent": "greeting", "entities": []}
+{"text": "Aoa", "intent": "greeting", "entities": []}
+{"text": "Salam bhai", "intent": "greeting", "entities": []}
+{"text": "Hello, good morning", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum sir", "intent": "greeting", "entities": []}
+{"text": "Hi there", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum, kaise hain aap?", "intent": "greeting", "entities": []}
+{"text": "Hey brother", "intent": "greeting", "entities": []}
+{"text": "Aoa bro", "intent": "greeting", "entities": []}
+{"text": "Good afternoon sir", "intent": "greeting", "entities": []}
+{"text": "Salam janab", "intent": "greeting", "entities": []}
+{"text": "Hello bhai", "intent": "greeting", "entities": []}
+{"text": "Hi, hope you are doing well", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum", "intent": "greeting", "entities": []}
+{"text": "Hey, salam", "intent": "greeting", "entities": []}
+{"text": "Aoa sir, kaisay hain?", "intent": "greeting", "entities": []}

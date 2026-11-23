@@ -1,0 +1,30 @@
+# AURA dependencies (versions pinned to the ones AURA is tested with)
+# Install:  pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+#           pip install -r requirements.txt
+# (installing CPU-only torch first avoids a ~2 GB GPU download; the Dockerfile does the same)
+
+# Web server + WhatsApp
+fastapi==0.162.4
+uvicorn==0.54.0
+requests==2.34.2
+python-dotenv==1.2.4
+
+# State, reminders
+redis==8.1.0
+APScheduler==3.11.3            # v4 has a different API
+
+# Google Calendar
+google-api-python-client==2.202.0
+google-auth==2.62.2
+
+# NLU: trained intent + entity models, Gemini backup
+torch==2.15.0
+transformers==5.22.2           # the models were saved with transformers 5.x
+tokenizers==0.23.3
+safetensors==0.8.0
+google-genai==3.1.0
+
+# Dashboard
+streamlit==1.67.0
+pandas==3.1.1
+altair==6.3.0

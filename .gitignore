@@ -1,0 +1,18 @@
+aura_env/
+__pycache__/
+*.pyc
+credentials.json
+.env
+models/
+storage/
+.streamlit/secrets.toml
+
+# Private: your Google key (see docker-compose.yml) and any copied database file
+secrets/
+*.db
+
+# Local tools and training leftovers (not part of AURA)
+.vscode/
+.claude/
+.agents/
+training/**/checkpoints*/

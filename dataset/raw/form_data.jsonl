@@ -1,0 +1,148 @@
+{"text": "Han mujhe appointment book karwaani hai", "intent": "book_appointment", "entities": []}
+{"text": "Yes obv", "intent": "check_availability", "entities": []}
+{"text": "Yess I want to know...", "intent": "price_query", "entities": []}
+{"text": "Heyyyyy", "intent": "greeting", "entities": []}
+{"text": "Hi Mujhe 9 bje ki appointment book krane ha", "intent": "book_appointment", "entities": []}
+{"text": "Mujhe apni appointment cancel krne hai q ke me aj busy hun", "intent": "cancel_booking", "entities": []}
+{"text": "Kya aj doctor available hain I want to book an appointment", "intent": "check_availability", "entities": []}
+{"text": "Is salon me nail extension ki Kia prices hain ap share kr den", "intent": "price_query", "entities": []}
+{"text": "Hello can I get some help", "intent": "greeting", "entities": []}
+{"text": "Jo appointment mera Tuesday ko ha Kia ap wo Wednesday ko reschedule kr skte", "intent": "reschedule", "entities": []}
+{"text": "Mje AJ 11 bje ki appointment chaye.kia AJ possible ha.", "intent": "book_appointment", "entities": []}
+{"text": "Sorry me AJ nae a sakti to plz mje kl same time  ki appointment ml sakti ha.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalamualaikum.mje confirm karna tha k kia AJ Dr ha", "intent": "check_availability", "entities": []}
+{"text": "Assalamualaikum  kia AP mje bta sakte hn k Dr ki fee kitni ha.", "intent": "price_query", "entities": []}
+{"text": "Assalamualaikum", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum sorry me AJ b nae a sakti to Meri appointment next Friday kr den shukriya", "intent": "reschedule", "entities": []}
+{"text": "Assalmualaikum aj parlour khula ha. Mujhe cutting krwani ha", "intent": "book_appointment", "entities": []}
+{"text": "Me aj nai a skti koi kam ha", "intent": "cancel_booking", "entities": []}
+{"text": "Aj kis time baithy gy doctor", "intent": "check_availability", "entities": []}
+{"text": "Is makeup ki price kya ha", "intent": "price_query", "entities": []}
+{"text": "Aoa hm ap ki kya madad kr skty hn", "intent": "greeting", "entities": []}
+{"text": "Me aj available ni hu kal isi time ap a skty hn", "intent": "reschedule", "entities": []}
+{"text": "Clinic main", "intent": "book_appointment", "entities": []}
+{"text": "Gee", "intent": "cancel_booking", "entities": []}
+{"text": "Nahi", "intent": "check_availability", "entities": []}
+{"text": "Gee", "intent": "price_query", "entities": []}
+{"text": "Nahi", "intent": "greeting", "entities": []}
+{"text": "Nahi", "intent": "reschedule", "entities": []}
+{"text": "Hi... I just wanna get an appointment at your place.. Lemme know", "intent": "book_appointment", "entities": []}
+{"text": "Umm... I had previously booked an appointment at your clinic but I'm now cancelling it cause' I have some other pending stuff to do :)", "intent": "cancel_booking", "entities": []}
+{"text": "Hey could you please confirm if the doctor is available at this particular time (..)", "intent": "check_availability", "entities": []}
+{"text": "So what would be the charges for this treatment??", "intent": "price_query", "entities": []}
+{"text": "Salam. I hope you're doing great..I have just heard about your business from one of my colleagues..I wanna know about it...and wanted to appointment a slot if there is any?? Regards", "intent": "greeting", "entities": []}
+{"text": "Hey...I hope you're doing well. So we've planned our meeting at 4pm today but due to certain reasons I cannot make it so how about we shift it to the next Friday!?", "intent": "reschedule", "entities": []}
+{"text": "Hello! I would like to book an appointment for mani pedi", "intent": "book_appointment", "entities": []}
+{"text": "Due to some reasons mn apni appointment cancel karana chahti hun.", "intent": "cancel_booking", "entities": []}
+{"text": "Can you please scehdule my appointment agr Koi slot ha. Do let me know as soon as possible.", "intent": "check_availability", "entities": []}
+{"text": "Hello! Prices ka bare mn guide kar den. Can you please tell me the charges of a hair cut.", "intent": "price_query", "entities": []}
+{"text": "Hi! Thanks for messaging [online bake and cake]", "intent": "greeting", "entities": []}
+{"text": "Hello? I wanted to reschedule my appointment because of some reasons. Kindly ap check kar len or bta den meri appointment  date and time. Thanks", "intent": "reschedule", "entities": []}
+{"text": "Hey! Mujhe ap k salon se keratin karwana ha. Kia ap available hyn", "intent": "book_appointment", "entities": []}
+{"text": "Sorry main aj nhi a skti aik emergency agai thi kindly meri appointment reschedule kr den.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam u alikum!! Kia 8 bje doctor saleem available hon gay", "intent": "check_availability", "entities": []}
+{"text": "Ap k party makeup k kia charges hain?", "intent": "price_query", "entities": []}
+{"text": "Assalam u alikum umeed ha ap kheriyat se hon gay", "intent": "greeting", "entities": []}
+{"text": "Hey! Please aj ki meri appointment reschedule kr de aj ma nhi a skti", "intent": "reschedule", "entities": []}
+{"text": "Aoa mujy appointment book karwani hay apni skin related issues Kay Liya AP kindly mujy number and fee payment method share kar dein", "intent": "book_appointment", "entities": []}
+{"text": "Mujy aik emergency ke wajha say apni appointment cancel karwani hay agar possibility hay to isko Kisi next day par shift kar dein kindly", "intent": "cancel_booking", "entities": []}
+{"text": "Mein janan chahti Hun ky doctor Monday ko 11 bajy available hoty Hein Kiya AP kindly Bata dein", "intent": "check_availability", "entities": []}
+{"text": "Mujy skincare services Leni hay AP kindly mujy sab details share kar dein with price", "intent": "price_query", "entities": []}
+{"text": "Hii .its me nayab fida hope you're doing well", "intent": "greeting", "entities": []}
+{"text": "I have previously cancelled my appointment with doc agar AP ky Liya possible ho to usko rescheduled kar dein on Friday at 12", "intent": "reschedule", "entities": []}
+{"text": "Assalam o Alaikum! Mujhe appointment book karwani hai. Kya aap bata sakte hain ke kis din aur kis waqt appointment available hai? Shukriya.", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o Alaikum! Maine pehle appointment book karwai thi, lekin ab mujhe cancel karwani hai. Barah-e-karam meri appointment cancel kar dein. Shukriya.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o Alaikum! Kya aaj doctor available hain? Agar hain to please appointment ka time bata dein. Shukriya.", "intent": "check_availability", "entities": []}
+{"text": "Assalam o Alaikum! Mujhe aapki service ke charges maloom karne hain. Barah-e-karam price bata dein. Shukriya.", "intent": "price_query", "entities": []}
+{"text": "Assalam o Alaikum! Umeed hai aap khairiyat se honge. Mujhe aapki services ke baare mein maloomat chahiye thi. Shukriya!", "intent": "greeting", "entities": []}
+{"text": "Assalam o Alaikum! Maine pehle appointment book karwai thi, lekin ab main uska time change karwana chahta hoon. Kya aap kisi aur waqt ki appointment de sakte hain? Shukriya!", "intent": "reschedule", "entities": []}
+{"text": "Aoa! I need an appointment", "intent": "book_appointment", "entities": []}
+{"text": "I have an appointment today but want to cancel it due to an emergency", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa! I wanted to know if the Doctor is available today", "intent": "check_availability", "entities": []}
+{"text": "What will be the charges?", "intent": "price_query", "entities": []}
+{"text": "Aoa! Hope you’re doing well.. I wanted to know about the prices of items you sell", "intent": "greeting", "entities": []}
+{"text": "I’m not available can you shift my appointment to some other day", "intent": "reschedule", "entities": []}
+{"text": "Asslam alaikum ! I want to book an appointment at your clinic for your viral hydrafacial.", "intent": "book_appointment", "entities": []}
+{"text": "I apologise for cancelling my appointment cause i got an urgent work , so better next time.", "intent": "cancel_booking", "entities": []}
+{"text": "Hi, i wanna know if the doctor available on friday?", "intent": "check_availability", "entities": []}
+{"text": "Kindly let me know about your charges for hydrafacial ?", "intent": "price_query", "entities": []}
+{"text": "Hello!! Hope you're doing well.", "intent": "greeting", "entities": []}
+{"text": "The appointment which i cancelled , can you please rescheduled it on coming friday?", "intent": "reschedule", "entities": []}
+{"text": "Mujhy aik appointment chaye", "intent": "book_appointment", "entities": []}
+{"text": "Mujhy booking cancel karni hy", "intent": "cancel_booking", "entities": []}
+{"text": "Dr kis time available Hy...", "intent": "check_availability", "entities": []}
+{"text": "Kia fee hy", "intent": "price_query", "entities": []}
+{"text": "Hello This is Your bot from XYZ Services....How many I help you", "intent": "greeting", "entities": []}
+{"text": "Mujhy appointments time change Karna Hy...", "intent": "reschedule", "entities": []}
+{"text": "Hey. Kia ap apne salon ki service details share kr skte hain. Main appointment book karana chahti hoon.", "intent": "book_appointment", "entities": []}
+{"text": "Hey. Maine apko apni appointment ke silsilay main message kia hai. Main apni appointment cancel krna chahti hoon. Please help me with the cancellation", "intent": "cancel_booking", "entities": []}
+{"text": "Hey. Kia ap mujhe bata sakte hain ke hair services ka koi slot khaali hai jisko mai book kar sakun.", "intent": "check_availability", "entities": []}
+{"text": "Hey. Kia ap mujhe bata sakte hain ke hair services ka kia charge lete hain aap.", "intent": "price_query", "entities": []}
+{"text": "Hey. Main apne business ke baray mai details chahti hoon.", "intent": "greeting", "entities": []}
+{"text": "Hey. Kia ap meri 4 baje wali appointment ko 6 baje pr shift kr sakte hain?", "intent": "reschedule", "entities": []}
+{"text": "Hey! I wanted to book an appointment at your salon for a haircut next week. If possible let me know.", "intent": "book_appointment", "entities": []}
+{"text": "Hi! I need to cancel my appointment scheduled for Tuesday, can you reschedule it for me on Wednesday?", "intent": "cancel_booking", "entities": []}
+{"text": "I need to know if the doctor has any appointment today. If not let me know.", "intent": "check_availability", "entities": []}
+{"text": "I wanted to buy your product could you please tell me the prices.", "intent": "price_query", "entities": []}
+{"text": "Hey! How can we help you today.", "intent": "greeting", "entities": []}
+{"text": "Hey! Can we move today's appointment to next week. It won't be convenient for me today.Thank you", "intent": "reschedule", "entities": []}
+{"text": "Assalam o alaikum. Mein ne din 3 bje ki slot ki appointment book krwani thi to kia isky baary mein malumaat jaan skta hun mein? Shukria!", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o alaikum. Mein aaj shaam ki appointment cancel krna chahta hun. Kuch zaroori kaam aagya hai jiski wajah sy mein aaj nahi aa paunga. Shukira!", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o alaikum. Kia aaj shaam 5 bje ki slot available hai appointment k liye?", "intent": "check_availability", "entities": []}
+{"text": "Assalam o alaikum, mein apky prp session k rates k bary mein janna chahta hun. Kia aap mujhe usky charges bta skty hain?", "intent": "price_query", "entities": []}
+{"text": "Assalam o alaikum.", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum. Mein apni appointment kal shaam 5 bje resechdule krna chahta hun kunky aaj mujhe aik zaroori kaam agya hai jiski wajah sy mein aaj nahi askunga. Shukria.", "intent": "reschedule", "entities": []}
+{"text": "Assalamualaikum mujhe kal 9 bjy ki appointment book krwani", "intent": "book_appointment", "entities": []}
+{"text": "Assalamualaikum Mujhe apni existing appointment cancel karwani hai plz meri appointment cancel kar dein. Shukria.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalamualaikum Kya aap ke paas appointment ke liye koi slot available hai? Aur kya doctor available hain?", "intent": "check_availability", "entities": []}
+{"text": "Assalamualaikum! Mujhe aap ki service ke charges pata karne hain.kindly price bata dein.", "intent": "price_query", "entities": []}
+{"text": "Assalamualaikum i hope aap thk  honge. Mujhe aap ki services ke baare mein kuch details chahiye. Kya aap mujhe details provide kr skhty?.", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum Meri pehle se appointment book hai, lekin main us ka time change karwana chahti hoon. Kya aap mujhe kisi doosre time ka slot de sakte hain? Kindly bata dein.Thanku .", "intent": "reschedule", "entities": []}
+{"text": "mena salon ma appointment book krwani ha", "intent": "book_appointment", "entities": []}
+{"text": "mujhe apni appointment cancel krwani ha ap plz cancel kr den thanku", "intent": "cancel_booking", "entities": []}
+{"text": "Mujhe appointment leni hai. Kya koi slot available hai aur doctor kab available honge?", "intent": "check_availability", "entities": []}
+{"text": "Hi mujhe apki service ki price aur charges ke bary mein pochna tha Plz details bata dein.", "intent": "price_query", "entities": []}
+{"text": "Hi Hope you are doing well. Mujhe apki services ky bary ma kuch information chahiye thi", "intent": "greeting", "entities": []}
+{"text": "Hi mujhe apni appointment ka time change karwana hai Kya ap plz koi aur date ya time bata sakte hain?", "intent": "reschedule", "entities": []}
+{"text": "Aoa i want to book an appointment at your salon. What are timings that you will be available.", "intent": "book_appointment", "entities": []}
+{"text": "Sorry for the inconvenience but i would like to cancel my current appointment. Kindly cancel it ASAP.", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa i want to ask if morning time till 12pm appointments are available at your salon?", "intent": "check_availability", "entities": []}
+{"text": "What are the charges for the haircut and keratin treatment at your salon?", "intent": "price_query", "entities": []}
+{"text": "Aoa Thankyou for visiting our business chat. How can we help you?", "intent": "greeting", "entities": []}
+{"text": "Can you shift my appointment from 12pm to 4 pm in the evening. I cant come early.", "intent": "reschedule", "entities": []}
+{"text": "Asalamualikm, mujha kl 3 bje ka appointment chahiye tha clinic ma, Kya slot available ha? Please confirm kar den", "intent": "book_appointment", "entities": []}
+{"text": "Asalamualikm, jo mera appointment aj 5 baje ka tha wo please cancel kr den emergency ki wajah se nhi aa sakta Sorry", "intent": "cancel_booking", "entities": []}
+{"text": "Hello Dr. Salar kl available honge? Agr hain to 11 bje ka koi slot ha?", "intent": "check_availability", "entities": []}
+{"text": "Asalamualikm, haircut + beard ka kia charge ha apke pas? Or facial k charges b bata dan", "intent": "price_query", "entities": []}
+{"text": "Asalamualikm, kia ap open hain? Mujhe apki services k bare me thori info chahiye thi", "intent": "greeting", "entities": []}
+{"text": "Asalamualikm, mera jo appointment aj 4 baje ka tha kya usko kl 11 baje reschedule kr sakte hain? Please bta den", "intent": "reschedule", "entities": []}
+{"text": "MN nay hair cutting krani ha. Kindly AJ sham 5 bjy ki booking kr ln", "intent": "book_appointment", "entities": []}
+{"text": "AJ sham MN masroof hu nai a Sakta please booking cancel kr dn", "intent": "cancel_booking", "entities": []}
+{"text": "Kia AJ Raat ki appointment mky mil sakti ha", "intent": "check_availability", "entities": []}
+{"text": "Kia AP bta skty ha k AP Kay Kia service charges hn", "intent": "price_query", "entities": []}
+{"text": "Hi I am Mr Jehangir. Happy to join Whatsapp chat with you. Batein Hoti Rahe ge", "intent": "greeting", "entities": []}
+{"text": "Kal MN free hu. Sham 5 bjy ki appointment de dain", "intent": "reschedule", "entities": []}
+{"text": "Assalam o alikum! I hope you’re doing well. Muja appointment book krwani ha. Kindly muja available dates our timings bata dein. Also please share the charges. Thank you.", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o alikum! I’m sorry, but muja apni existing appointment cancel krwani ha due to some personal reason. Sorry for the inconvenience. Thankyou for the understanding!", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o alikum! I wanted to ask ka kya doctor available han our koi appointment slot available han? Kindly muja available timings bata dy. Thank you.", "intent": "check_availability", "entities": []}
+{"text": "Assalam o alikum! I wanted to ask ka apki services ka charges kitne han? Kindly muja prices details our services and kya kya included ha bata dain. Thank you.", "intent": "price_query", "entities": []}
+{"text": "Assalam o alikum! I hope you are doing well. Muja apki services ka baray ma kuch information chahiya the. Kindly guide me. Thank you", "intent": "greeting", "entities": []}
+{"text": "Assalam o alikum! I have existing appointment, but muja uska time change krwna ha due to some personal reasons. Kya ap kindly muja kesi our time slot ma adjust kr sakta han? Please let me know the available timings. Thank you", "intent": "reschedule", "entities": []}
+{"text": "Aslamikum, Mujey apkay clinic ma appointment book karna tha", "intent": "book_appointment", "entities": []}
+{"text": "Aslamikum, ma chahti ho Ka appointment cancel kar do", "intent": "cancel_booking", "entities": []}
+{"text": "Kya slot available hay, doctor sa milna Ka liye", "intent": "check_availability", "entities": []}
+{"text": "Aslamikum,is ki price kitni hay", "intent": "price_query", "entities": []}
+{"text": "Aslamikum, mujay apki servant ma interest hay", "intent": "greeting", "entities": []}
+{"text": "Aslamikum,ya appointment Kisi or din rakh lay", "intent": "reschedule", "entities": []}
+{"text": "Can I visit you for my checkup?", "intent": "book_appointment", "entities": []}
+{"text": "Sorry I can come today as I have to go somewhere else due to an emergency condition.", "intent": "cancel_booking", "entities": []}
+{"text": "Are u availability today for my checkup  I Wana come to show u.", "intent": "check_availability", "entities": []}
+{"text": "May I get to know about fee charges please.", "intent": "price_query", "entities": []}
+{"text": "Didn't get it", "intent": "greeting", "entities": []}
+{"text": "Can I meet u any other day as today I'm not available", "intent": "reschedule", "entities": []}
+{"text": "Mujhe persoon ki appointment book karani hai", "intent": "book_appointment", "entities": []}
+{"text": "Kal ki Joo appointment mene book karaii tho woh cancel kernii hai", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa kia AJ sham koi slots available hai", "intent": "check_availability", "entities": []}
+{"text": "Mujhe kindly charges Bata deinn apni services k", "intent": "price_query", "entities": []}
+{"text": "Assalam mujhe haircut ki appointment book karani hai", "intent": "greeting", "entities": []}
+{"text": "Aoa mujhe apnii appointment reschedule Karwani hai meinn Kal available ni Hun", "intent": "reschedule", "entities": []}

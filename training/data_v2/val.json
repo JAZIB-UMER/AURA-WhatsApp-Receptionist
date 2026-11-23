@@ -1,0 +1,602 @@
+[
+ {
+  "text": "Plz cancel my facial booking for Monday",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Assalam o alaikum, laptop servicing ka slot cancel kr dein please.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Assalam o alaikum Dr Tariq k sath kal ki appointment cancel kr dein please",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Nahi aa sakta mein aj, booking cancel kr dein please.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Salam bhai, me nhi pohanch sakun ga, booking cancel krdein.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Sir Usman kal sham 6 baje ki physics tuition class cancel karni hai",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Mera salon ka slot cancel kr dein 4 baje wala",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Car wash booking for Ali cancel kr dein please at 11 am",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Sir physics tuition cancel kr dein today 5pm wali, Usman nahi aayega.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Bhai AC repair wali appointment cancel krdo, hum out of city ja rhe hain.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Nhi aa sakta slot free kr dein, appointment khatam kr dein please.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Emergency aa gayi hai, kal 2:00 PM wali booking cancel kar dain.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Salam, kal ki dentist appointment cancel kr dein please.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Bhai laptop repair appointment cancel kar dein me kal out of city ja raha hon",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Hi, please cancel my car repair booking for Monday.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Kal 11 am wala ultrasound slot free kar dain, patient cannot travel",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Nhi aa sakta slot free kr dein appointment khatam kr dein",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Sir Usman, maths class for today at 6pm cancel kardo.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "I apologise for cancelling my appointment cause i got an urgent work , so better next time.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Bhai mobile repair wali appointment khatam kr dein.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Sorry me AJ nae a sakti to plz mje kl same time  ki appointment ml sakti ha.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Plz cancel the checkup booking for Hamza, we can't make it today.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Assalam o alaikum. Mein aaj shaam ki appointment cancel krna chahta hun. Kuch zaroori kaam aagya hai jiski wajah sy mein aaj nahi aa paunga. Shukira!",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Hi Mujhe 9 bje ki appointment book krane ha",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "AOA, please confirm my appointment for bridal makeup on Saturday at 3 pm for Ayesha.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "sunday slot confirm kr dein mera blowdry ka",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Bike service k lye mera slot rakh lein Sunday 10 bje",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Hi... I just wanna get an appointment at your place.. Lemme know",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sir math class k lye Sunday 6:00 pm ka time confirm kr dain.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Assalamualaikum mujhe kal 9 bjy ki appointment book krwani",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "bhai facial ke liye kal subah 11 baje ka time reserve kar dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Assalam o alaikum car service ke liye kal dopahar 2 baje ka slot rakh lein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "AC service k liye Monday ko 2 baje slot fix kar dain.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Bhai kal mera AC repair ka slot confirm kr dein 2 baje",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sunday slot confirm kr dein for facial",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Consultation k liye aj sham 7 baje ka slot confirm kar dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mera car AC repair ka slot confirm kr dein for tomorrow 3 pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "AOA, please mera hydra facial confirm kr dein Sunday 2 baje",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mobile screen replacement k lye kal 6 bje mera slot rakh lein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sir please confirm my slot for chemistry class on Tuesday at 4:30 pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Kal 5 bje haircut book kr dain please",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mobile repair karwana hai, Sunday 12 bje ka slot lock kr dein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sunday slot confirm kr dein car oil change k liye",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Plz book appointment for facial tomorrow evening 7pm for Ayesha",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Bhai car oil change k liye kal 11 bje booking kr dein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sir maths demo class ke liye kal 4 baje ka slot rakh dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Bhai mera AC repair karwana hai, kal subah 11 bje ka slot rakh lein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mera bridal makeup ka slot reserve kr dain 15th March ko",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Parso dopahar 3 baje mani pedi appointment lock kr dein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Generator repair karwana hai, parson 2 pm book kr dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Sir physics tuition k liye mera slot confirm kr dein Saturday ko.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mera beard trim ka slot confirm kr dain aaj raat 8 baje",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "mena salon ma appointment book krwani ha",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Hello Dr. Salar kl available honge? Agr hain to 11 bje ka koi slot ha?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Sir Ahmed physics tuition k liye 5 pm pe slot available hai kya?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Kal 12 baje manicure pedicure k liye space hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Assalam o Alaikum! Kya aaj doctor available hain? Agar hain to please appointment ka time bata dein. Shukriya.",
+  "intent": "check_availability"
+ },
+ {
+  "text": "I need to know if the doctor has any appointment today. If not let me know.",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Kya aj doctor available hain I want to book an appointment",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Kal 3 bje bridal makeup k lye slot khali h?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Aoa, manicure k liye aaj sham 6 bje slot hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Aoa, Friday ko facial k liye booking open hai ya full hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Kia aaj space hai facial ke liye?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dr sahab available hain aj shaam ko?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kal sham ko manicure pedicure k lye koi slot free h?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Kia AJ Raat ki appointment mky mil sakti ha",
+  "intent": "check_availability"
+ },
+ {
+  "text": "AC service ke liye banda kab tak free hoga?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "AC service ke liye banda mil sakta hai aaj dopahar?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Miss Ayesha is there any free time today at 5 pm?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dr sahab available hain abhi clinic pe?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "AoA, Dr. Imran kal shaam ko available hain checkup k liye?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Yes obv",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Hi, i wanna know if the doctor available on friday?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Assalam o alaikum Dr Tariq aaj sham 6 bje clinic me available hain?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dr. Ayesha ki appointment mil sakti hai tomorrow 4:00 PM pe?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Are u availability today for my checkup  I Wana come to show u.",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Generator oil change kitnay main hoga?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Haircut and beard trim k kitne charges hain?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Math tuition k kitnay charges letay hain Sir Usman?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Ultrasound ki fee kitni hai clinic per?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Maths tuition ki per month fee kitni hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Kindly let me know about your charges for hydrafacial ?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Ac service k kitnay letay hain ap?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Aslamikum,is ki price kitni hay",
+  "intent": "price_query"
+ },
+ {
+  "text": "Keratin treatment ka package rate bata den please",
+  "intent": "price_query"
+ },
+ {
+  "text": "Bridal makeup k charges kia hain Sunday k liye?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Sir Hamza O levels Physics tuition ki monthly fee kya hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "O level chemistry tuition ka kitna charge karte hain?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Hydra facial k kya charges hain?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Sir O levels physics tuition ki monthly fees kitni hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Sir maths coaching ki fees kitni hy?",
+  "intent": "price_query"
+ },
+ {
+  "text": "bike tuning kitny ki hogi brother?",
+  "intent": "price_query"
+ },
+ {
+  "text": "O level Physics tuition ki per month fee kia hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Class 9 chemistry home tuition k kia charges hain?",
+  "intent": "price_query"
+ },
+ {
+  "text": "aoa",
+  "intent": "greeting"
+ },
+ {
+  "text": "Hello can I get some help",
+  "intent": "greeting"
+ },
+ {
+  "text": "hey",
+  "intent": "greeting"
+ },
+ {
+  "text": "hi sir",
+  "intent": "greeting"
+ },
+ {
+  "text": "Aoa Thankyou for visiting our business chat. How can we help you?",
+  "intent": "greeting"
+ },
+ {
+  "text": "hey bro, salam",
+  "intent": "greeting"
+ },
+ {
+  "text": "hi, how are you?",
+  "intent": "greeting"
+ },
+ {
+  "text": "assalam o alaikum bhai",
+  "intent": "greeting"
+ },
+ {
+  "text": "Assalamualaikum sir",
+  "intent": "greeting"
+ },
+ {
+  "text": "Salam alaikum sir jee",
+  "intent": "greeting"
+ },
+ {
+  "text": "Salam, kaisay hain aap?",
+  "intent": "greeting"
+ },
+ {
+  "text": "Hi good evening",
+  "intent": "greeting"
+ },
+ {
+  "text": "Laptop repair ka time change kr k Wednesday afternoon kr dein please",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Mera checkup kal tha 2 pm, please usko parson 2 pm pe reschedule kr dein.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "I’m not available can you shift my appointment to some other day",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AOA bridal makeup trial ki date change karni thi, 15th October ko shift kar dain.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AOA, mera facial ka slot 5 baje se 7 baje shift ho sakta hai?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Aoa, hair cut ki booking kal k bajaye parson kr dein please.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Dr Asif k sath appointment kal k bajaye parson shift kr dein please",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AC service timing badal dein aur Tuesday dopahar 2 baje ka time de dein.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Hey! Please aj ki meri appointment reschedule kr de aj ma nhi a skti",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Bhai car service kal nahi ho sakegi, Monday ko 11 am pe rakh lein",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Salam, Dr Fatima ki checkup appointment Monday ko shift ho sakti hai?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Salam doctor sahib, mera kal ka checkup Friday ko shift kr skty hain?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Hi mujhe apni appointment ka time change karwana hai Kya ap plz koi aur date ya time bata sakte hain?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Dr Sara dental checkup appointment shift krna tha next week Tuesday ko",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Dental cleaning appointment aagy shift krna tha, Friday available hai?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Can we move my dental checkup from Monday to Wednesday?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Generator repair ka slot parson 2 pm pe change kar dein",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Salam Dr Asim meri appointment kal k bajaye parson 5 pm pe shift kar dein.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Dr Asif k sath meri appointment kal k bajaye parson kr dein please",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AC repair k liye technician ko kal subah 11 am bhej dein aaj busy hoon",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Assalam o alaikum. Mein apni appointment kal shaam 5 bje resechdule krna chahta hun kunky aaj mujhe aik zaroori kaam agya hai jiski wajah sy mein aaj nahi askunga. Shukria.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "thank you sir",
+  "intent": "other"
+ },
+ {
+  "text": "JazakAllah",
+  "intent": "other"
+ },
+ {
+  "text": "thank u so much",
+  "intent": "other"
+ },
+ {
+  "text": "Khuda hafiz",
+  "intent": "other"
+ },
+ {
+  "text": "perfect",
+  "intent": "other"
+ },
+ {
+  "text": "👍",
+  "intent": "other"
+ },
+ {
+  "text": "sahi",
+  "intent": "other"
+ },
+ {
+  "text": "accha theek hai",
+  "intent": "other"
+ },
+ {
+  "text": "03001234567",
+  "intent": "other"
+ },
+ {
+  "text": "0300-1234567",
+  "intent": "other"
+ },
+ {
+  "text": "pata nahi",
+  "intent": "other"
+ },
+ {
+  "text": "25 saal",
+  "intent": "other"
+ },
+ {
+  "text": "Islamabad",
+  "intent": "other"
+ },
+ {
+  "text": "bachon ke liye bhi hai?",
+  "intent": "other"
+ },
+ {
+  "text": "kya ladies staff hai?",
+  "intent": "other"
+ },
+ {
+  "text": "phone pe baat ho sakti hai?",
+  "intent": "other"
+ },
+ {
+  "text": "location kahan hai?",
+  "intent": "other"
+ },
+ {
+  "text": "bill bhej dein",
+  "intent": "other"
+ },
+ {
+  "text": "koi discount hai?",
+  "intent": "other"
+ },
+ {
+  "text": "test",
+  "intent": "other"
+ },
+ {
+  "text": "😊",
+  "intent": "other"
+ },
+ {
+  "text": "suno",
+  "intent": "other"
+ },
+ {
+  "text": "😂",
+  "intent": "other"
+ }
+]

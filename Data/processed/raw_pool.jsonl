@@ -1,0 +1,867 @@
+{"text": "Salam doctor sahab, kal ki booking cancel kr dein meri tabiyat theek nahi", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "Aoa, please cancel my haircut appointment for tomorrow at 5pm.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Bhai mera car inspection ka time cancel kardo, mai nahi aa paonga", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "car inspection"}]}
+{"text": "Sir main kal tuition nahi parh sakunga, meri class cancel kr dain please - Usman", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "tuition"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Dr. Ahmed k sath 3pm ka appointment cancel kar dain", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr. Ahmed"}, {"entity": "time", "value": "3pm"}]}
+{"text": "Mera salon ka slot cancel kr dein 4 baje wala", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "salon"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "AC repair ki booking cancel karni hai, emergency aagai hai", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}]}
+{"text": "Please cancel the dental checkup booked under Ali for Friday.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "name", "value": "Ali"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Aaj sham 7 baje physics class cancel karni thi", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Aaj"}, {"entity": "time", "value": "7 baje"}, {"entity": "service", "value": "physics class"}]}
+{"text": "Mobile repairing ki booking khatam kr dein, I got it fixed somewhere else.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Mobile repairing"}]}
+{"text": "Plz cancel my facial booking for Monday", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Kal 11 am wala ultrasound slot free kar dain, patient cannot travel", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "11 am"}, {"entity": "service", "value": "ultrasound"}]}
+{"text": "Bhai laptop repair appointment cancel kar dein me kal out of city ja raha hon", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "laptop repair"}, {"entity": "date", "value": "kal"}]}
+{"text": "Nhi aa sakta slot free kr dein appointment khatam kr dein", "intent": "cancel_booking", "entities": []}
+{"text": "Zainab here, please cancel my bridal makeup appointment on 15th March.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Zainab"}, {"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th March"}]}
+{"text": "Assalam o alaikum Dr Tariq k sath kal ki appointment cancel kr dein please", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "kal"}]}
+{"text": "Kal 4 pm wala facial cancel kar do mera", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "4 pm"}, {"entity": "service", "value": "facial"}]}
+{"text": "Bhai laptop repair ki booking thi aj sham 6 baje wo cancel kr dein", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "laptop repair"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "sham 6 baje"}]}
+{"text": "Sir Hamza physics tuition cancel krni hai aj", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "aj"}]}
+{"text": "Mai nahi aa sakta Dr Sarah k pas slot free kr dein", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Sarah"}]}
+{"text": "Please cancel my haircut appointment for tomorrow", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Aoa car wash ki booking cancel kr dein 3 baje wali", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "car wash"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Maths tuition cancel kr dain Monday ki", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Maths tuition"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Zainab ki dental checkup wali booking cancel kr dein", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Zainab"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Emergency agayi hai bridal makeup cancel karain", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "bridal makeup"}]}
+{"text": "Mobile screen replacement cancel krwana hai mujhe", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Mobile screen replacement"}]}
+{"text": "Meri booking khatam kr dein aj 5 baje ki", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "aj"}, {"entity": "time", "value": "5 baje"}]}
+{"text": "Kal subah 10 baje wali home tuition cancel kar dein Sir Bilal", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "subah 10 baje"}, {"entity": "service", "value": "home tuition"}, {"entity": "name", "value": "Sir Bilal"}]}
+{"text": "Salam kal nahi aa sakti mani pedi booking cancel kar den", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "mani pedi"}]}
+{"text": "Please cancel Ali appointment for tomorrow 2 pm", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Ali"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Salam doctor sahab, kal ki booking cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "AOA, please cancel my facial appointment for tomorrow 4pm.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4pm"}]}
+{"text": "Bhai bike tuning ka slot cancel kar do aj ka, emergency agayi hai.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "bike tuning"}, {"entity": "date", "value": "aj"}]}
+{"text": "Sir physics tuition cancel kr dein today 5pm wali, Usman nahi aayega.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "5pm"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Mera haircut cancel kar dein 3pm wala, me nahi aa sakta.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "time", "value": "3pm"}]}
+{"text": "Doctor Asif ki appointment cancel kar den Friday ki.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Doctor Asif"}, {"entity": "date", "value": "Friday"}]}
+{"text": "AC repair ki booking cancel karni hai, slot free kr dein.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}]}
+{"text": "Pls cancel my dental checkup scheduled for Monday.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Madam kal ka home tuition cancel kr dein, hum shehar se bahar ja rahe hain.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "home tuition"}]}
+{"text": "Bhai mobile repair wali appointment khatam kr dein.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "mobile repair"}]}
+{"text": "AoA, Zainab ka makeup slot cancel kr dein 15th November ka.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Zainab"}, {"entity": "service", "value": "makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "Sir kal 7 pm ka slot cancel kar dain, cannot make it.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Car wash booking cancel kardo bhai, mausam kharab hai.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Car wash"}]}
+{"text": "Dr Sarah se appointment cancel karni hai, tabiyat behtar hai ab.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Sarah"}]}
+{"text": "Nhi aa sakta slot free kr dein, appointment khatam kr dein please.", "intent": "cancel_booking", "entities": []}
+{"text": "Salam, kal ki dentist appointment cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "dentist"}]}
+{"text": "nhi aa sakta slot free kr dein", "intent": "cancel_booking", "entities": []}
+{"text": "AOA, Doctor Tariq k sath meri aj 5 pm ki appointment cancel kar dein.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Doctor Tariq"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Hi, please cancel my car repair booking for Monday.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "car repair"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Sir kal maths tuition ki class cancel karni hai, emergency agayi hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "maths tuition"}]}
+{"text": "Mera facial ka slot cancel kr dein 4 baje wala.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Kindly cancel appointment for Ali, cannot make it today.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Ali"}, {"entity": "date", "value": "today"}]}
+{"text": "Bhai AC servicing wali booking cancel kardo.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC servicing"}]}
+{"text": "Assalam o alaikum, meri kal 3:00 PM ki appointment khatam kr dein.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3:00 PM"}]}
+{"text": "Please cancel my haircut appointment tomorrow.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Dr Usman ke sath kal 10 am ka checkup cancel krna hai.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Usman"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 am"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Mobile screen replacement ki booking cancel kr den, phone bech diya hai.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Mobile screen replacement"}]}
+{"text": "Urgent: please cancel physics class scheduled for 6pm today.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "physics class"}, {"entity": "time", "value": "6pm"}, {"entity": "date", "value": "today"}]}
+{"text": "Salam bhai, me nhi pohanch sakun ga, booking cancel krdein.", "intent": "cancel_booking", "entities": []}
+{"text": "Hamna ki bridal makeup booking cancel karni hai Sunday wali.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Hamna"}, {"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Salam doctor sahab, meri kal dental checkup cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Aoa, please cancel my appointment for tomorrow at 5pm.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Bhai mera AC repair wala slot cancel kar dain aj 3 baje ka.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Sir I will not be able to attend physics tuition today, please cancel it.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "today"}]}
+{"text": "Kal 11 baje wali booking cancel kardo Ali k name pe.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "11 baje"}, {"entity": "name", "value": "Ali"}]}
+{"text": "Mera haircut ka appointment cancel kar dein slot free kar dein.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}]}
+{"text": "Sir tuition cancel karni thi aj 6 baje ki.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "tuition"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "6 baje"}]}
+{"text": "Aoa Usman here, kindly cancel my booking for mobile repair today.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Usman"}, {"entity": "service", "value": "mobile repair"}, {"entity": "date", "value": "today"}]}
+{"text": "Nahi aa sakta mein aj, booking cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "aj"}]}
+{"text": "Bhai facial ki booking cancel kar do Friday wali.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Dr Fatima se 4:30 pm ka checkup cancel krwana hai.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "time", "value": "4:30 pm"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Kal car tuning nahi krwani, cancel my slot.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "car tuning"}]}
+{"text": "Emergency agayi hai, maths class cancel kardo.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "maths class"}]}
+{"text": "Salam, Ahmed here. Please cancel my oil change appointment tomorrow.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Ahmed"}, {"entity": "service", "value": "oil change"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Sir kal 2 pm wala slot cancel kr dein nhi aa sakta.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Salam doctor sahab, kal ki appointment cancel kr dein please. Patient ka name Bilal hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "AOA, meri haircut ki booking thi aaj 4 baje, cancel kar dein me nahi aa sakti.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Bhai AC repair wali appointment cancel krdo, hum out of city ja rhe hain.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}]}
+{"text": "Sir kal 5 pm ki physics tuition cancel kar dein, Ali bimar hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 pm"}, {"entity": "service", "value": "physics tuition"}, {"entity": "name", "value": "Ali"}]}
+{"text": "Dr Asif k sath appointment thi kal, kindly cancel kr dein.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "date", "value": "kal"}]}
+{"text": "Plz cancel my facial booking for tomorrow 3pm under name Sana.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3pm"}, {"entity": "name", "value": "Sana"}]}
+{"text": "Bike tuning ka slot cancel kr dain aaj ka, emergency agayi hai.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Mam aj ki class cancel kr dein please, net issue hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "aj"}, {"entity": "service", "value": "class"}]}
+{"text": "Dentist appointment cancel karni thi Wednesday 11am wali.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Dentist"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "11am"}]}
+{"text": "Bhai mera kal ka bridal makeup cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "Laptop repair ka time diya tha 2 baje ka, please slot cancel kr dein me shop nahi asakta.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Laptop repair"}, {"entity": "time", "value": "2 baje"}]}
+{"text": "Sir Usman, maths class for today at 6pm cancel kardo.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Usman"}, {"entity": "service", "value": "maths class"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "6pm"}]}
+{"text": "Plz cancel the checkup booking for Hamza, we can't make it today.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "checkup"}, {"entity": "name", "value": "Hamza"}, {"entity": "date", "value": "today"}]}
+{"text": "Hi, meri mani pedi ki appointment cancel kar den Friday ko jo thi.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "mani pedi"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Generator repair ki visit cancel kr dein, issue khud theek hogya.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Generator repair"}]}
+{"text": "Dr Asim k sath meri kal ki appointment cancel kr dein", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "date", "value": "kal"}]}
+{"text": "Aoa, meri bridal makeup ki booking cancel kar dain Sunday wali.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Bhai AC repair wali appointment cancel kardo aj nahi karwana", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "aj"}]}
+{"text": "Sir Usman kal sham 6 baje ki physics tuition class cancel karni hai", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 6 baje"}, {"entity": "service", "value": "physics tuition"}]}
+{"text": "Dentist appointment at 5pm cancel karni hai Ahmed ki", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Dentist"}, {"entity": "time", "value": "5pm"}, {"entity": "name", "value": "Ahmed"}]}
+{"text": "Hi, please cancel my haircut booking for tomorrow 3:00 PM", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3:00 PM"}]}
+{"text": "Mobile repair ka slot cancel kar dein aj ka", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Mobile repair"}, {"entity": "date", "value": "aj"}]}
+{"text": "Kal ki class cancel kr dein maths ki tabiyat theek nhi hai", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "maths"}]}
+{"text": "Please cancel my ultrasound appointment for Monday morning", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "ultrasound"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "morning"}]}
+{"text": "Sana ki facial booking cancel kr dain 4 baje wali", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Sana"}, {"entity": "service", "value": "facial"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Generator service cancel kr dein kal nahi ho sakega", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Generator service"}, {"entity": "date", "value": "kal"}]}
+{"text": "Sir kal 2 pm ka tuition slot cancel kar dain", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "2 pm"}, {"entity": "service", "value": "tuition"}]}
+{"text": "Mera manicure cancel kar dain please aj sham ka", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "sham"}]}
+{"text": "Car wash booking for Ali cancel kr dein please at 11 am", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Car wash"}, {"entity": "name", "value": "Ali"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Salam doctor sahab, kal ki appointment cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "AOA, Fatima here. Please cancel my facial booking for 4 PM today.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Fatima"}, {"entity": "service", "value": "facial"}, {"entity": "time", "value": "4 PM"}, {"entity": "date", "value": "today"}]}
+{"text": "Bhai bike repair ka slot cancel kardo, me nahi aa sakta.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "bike repair"}]}
+{"text": "Sir kal 5 baje wali tuition class cancel kar dein, me out of city hoon.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 baje"}, {"entity": "service", "value": "tuition class"}]}
+{"text": "Pls cancel my dental checkup scheduled for Friday.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Meri kal 2pm ki haircut ki booking cancel kar dain.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "2pm"}, {"entity": "service", "value": "haircut"}]}
+{"text": "AC servicing wali booking cancel kr dein aj ki.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC servicing"}, {"entity": "date", "value": "aj"}]}
+{"text": "Aslam o alaikum Dr Tariq, aj 7 baje ka appointment cancel karden.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "7 baje"}]}
+{"text": "Mam physics class cancel karni hai Monday ki.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "physics class"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Mera slot cancel kr dein me nahi aa sakti appointment khatam kr dein.", "intent": "cancel_booking", "entities": []}
+{"text": "Phone repair ka appointment cancel kr dein Usman ke name pe hai.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Phone repair"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Please cancel Bilal appointment for tomorrow 11 am.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Bilal"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Kal 6 baje ka bridal makeup cancel kr dain emergency agayi hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "6 baje"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "Sir maths tuition cancel karden please aj nahi le sakunga.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "aj"}]}
+{"text": "Car oil change ki booking cancel kardo 3 baje ki.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Car oil change"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "AOA, Mariam here. Kal mera haircut ka slot cancel kar dein.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Mariam"}, {"entity": "date", "value": "Kal"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Bhai mobile repair wali booking cancel kardo, kal nahi aa sakta.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "mobile repair"}, {"entity": "date", "value": "kal"}]}
+{"text": "Sir today 5 bje ki math tuition cancel kar den, tabiyat theek nahi hai.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "today"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "math tuition"}]}
+{"text": "Dr Tariq ke sath consultation cancel karwani hai Monday ki.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Tariq"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Plz cancel my facial booking for tomorrow 3pm.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3pm"}]}
+{"text": "Assalam o alaikum, laptop servicing ka slot cancel kr dein please.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "laptop servicing"}]}
+{"text": "Physics class cancel kr dein aj sham 6:00 baje wali.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Physics class"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "6:00 baje"}]}
+{"text": "Mujhe dental checkup ki booking cancel karni hai, slot free kr dein.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "dental checkup"}]}
+{"text": "Mehwish speaking, kindly cancel my appointment for Saturday.", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Mehwish"}, {"entity": "date", "value": "Saturday"}]}
+{"text": "Bike tuning ka time cancel kr dein, mai out of city ja raha hon.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Bike tuning"}]}
+{"text": "Dr Sahab kal ka appointment cancel kr dein Usman ka.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Sir chemistry lecture cancel karden kal subah 10 am ka.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "chemistry lecture"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Hair color wali booking cancel kardo 4:30 pm ki.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Hair color"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Emergency aa gayi hai, kal 2:00 PM wali booking cancel kar dain.", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "2:00 PM"}]}
+{"text": "Nhi aa sakta bhai meri booking cancel kr ke slot free kr dein.", "intent": "cancel_booking", "entities": []}
+{"text": "Han mujhe appointment book karwaani hai", "intent": "book_appointment", "entities": []}
+{"text": "Yes obv", "intent": "check_availability", "entities": []}
+{"text": "Yess I want to know...", "intent": "price_query", "entities": []}
+{"text": "Heyyyyy", "intent": "greeting", "entities": []}
+{"text": "Hi Mujhe 9 bje ki appointment book krane ha", "intent": "book_appointment", "entities": []}
+{"text": "Mujhe apni appointment cancel krne hai q ke me aj busy hun", "intent": "cancel_booking", "entities": []}
+{"text": "Kya aj doctor available hain I want to book an appointment", "intent": "check_availability", "entities": []}
+{"text": "Is salon me nail extension ki Kia prices hain ap share kr den", "intent": "price_query", "entities": []}
+{"text": "Hello can I get some help", "intent": "greeting", "entities": []}
+{"text": "Jo appointment mera Tuesday ko ha Kia ap wo Wednesday ko reschedule kr skte", "intent": "reschedule", "entities": []}
+{"text": "Mje AJ 11 bje ki appointment chaye.kia AJ possible ha.", "intent": "book_appointment", "entities": []}
+{"text": "Sorry me AJ nae a sakti to plz mje kl same time  ki appointment ml sakti ha.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalamualaikum.mje confirm karna tha k kia AJ Dr ha", "intent": "check_availability", "entities": []}
+{"text": "Assalamualaikum  kia AP mje bta sakte hn k Dr ki fee kitni ha.", "intent": "price_query", "entities": []}
+{"text": "Assalamualaikum", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum sorry me AJ b nae a sakti to Meri appointment next Friday kr den shukriya", "intent": "reschedule", "entities": []}
+{"text": "Assalmualaikum aj parlour khula ha. Mujhe cutting krwani ha", "intent": "book_appointment", "entities": []}
+{"text": "Me aj nai a skti koi kam ha", "intent": "cancel_booking", "entities": []}
+{"text": "Aj kis time baithy gy doctor", "intent": "check_availability", "entities": []}
+{"text": "Is makeup ki price kya ha", "intent": "price_query", "entities": []}
+{"text": "Aoa hm ap ki kya madad kr skty hn", "intent": "greeting", "entities": []}
+{"text": "Me aj available ni hu kal isi time ap a skty hn", "intent": "reschedule", "entities": []}
+{"text": "Clinic main", "intent": "book_appointment", "entities": []}
+{"text": "Gee", "intent": "cancel_booking", "entities": []}
+{"text": "Nahi", "intent": "check_availability", "entities": []}
+{"text": "Hi... I just wanna get an appointment at your place.. Lemme know", "intent": "book_appointment", "entities": []}
+{"text": "Umm... I had previously booked an appointment at your clinic but I'm now cancelling it cause' I have some other pending stuff to do :)", "intent": "cancel_booking", "entities": []}
+{"text": "Hey could you please confirm if the doctor is available at this particular time (..)", "intent": "check_availability", "entities": []}
+{"text": "So what would be the charges for this treatment??", "intent": "price_query", "entities": []}
+{"text": "Salam. I hope you're doing great..I have just heard about your business from one of my colleagues..I wanna know about it...and wanted to appointment a slot if there is any?? Regards", "intent": "greeting", "entities": []}
+{"text": "Hey...I hope you're doing well. So we've planned our meeting at 4pm today but due to certain reasons I cannot make it so how about we shift it to the next Friday!?", "intent": "reschedule", "entities": []}
+{"text": "Hello! I would like to book an appointment for mani pedi", "intent": "book_appointment", "entities": []}
+{"text": "Due to some reasons mn apni appointment cancel karana chahti hun.", "intent": "cancel_booking", "entities": []}
+{"text": "Can you please scehdule my appointment agr Koi slot ha. Do let me know as soon as possible.", "intent": "check_availability", "entities": []}
+{"text": "Hello! Prices ka bare mn guide kar den. Can you please tell me the charges of a hair cut.", "intent": "price_query", "entities": []}
+{"text": "Hi! Thanks for messaging [online bake and cake]", "intent": "greeting", "entities": []}
+{"text": "Hello? I wanted to reschedule my appointment because of some reasons. Kindly ap check kar len or bta den meri appointment  date and time. Thanks", "intent": "reschedule", "entities": []}
+{"text": "Hey! Mujhe ap k salon se keratin karwana ha. Kia ap available hyn", "intent": "book_appointment", "entities": []}
+{"text": "Sorry main aj nhi a skti aik emergency agai thi kindly meri appointment reschedule kr den.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam u alikum!! Kia 8 bje doctor saleem available hon gay", "intent": "check_availability", "entities": []}
+{"text": "Ap k party makeup k kia charges hain?", "intent": "price_query", "entities": []}
+{"text": "Assalam u alikum umeed ha ap kheriyat se hon gay", "intent": "greeting", "entities": []}
+{"text": "Hey! Please aj ki meri appointment reschedule kr de aj ma nhi a skti", "intent": "reschedule", "entities": []}
+{"text": "Aoa mujy appointment book karwani hay apni skin related issues Kay Liya AP kindly mujy number and fee payment method share kar dein", "intent": "book_appointment", "entities": []}
+{"text": "Mujy aik emergency ke wajha say apni appointment cancel karwani hay agar possibility hay to isko Kisi next day par shift kar dein kindly", "intent": "cancel_booking", "entities": []}
+{"text": "Mein janan chahti Hun ky doctor Monday ko 11 bajy available hoty Hein Kiya AP kindly Bata dein", "intent": "check_availability", "entities": []}
+{"text": "Mujy skincare services Leni hay AP kindly mujy sab details share kar dein with price", "intent": "price_query", "entities": []}
+{"text": "Hii .its me nayab fida hope you're doing well", "intent": "greeting", "entities": []}
+{"text": "I have previously cancelled my appointment with doc agar AP ky Liya possible ho to usko rescheduled kar dein on Friday at 12", "intent": "reschedule", "entities": []}
+{"text": "Assalam o Alaikum! Mujhe appointment book karwani hai. Kya aap bata sakte hain ke kis din aur kis waqt appointment available hai? Shukriya.", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o Alaikum! Maine pehle appointment book karwai thi, lekin ab mujhe cancel karwani hai. Barah-e-karam meri appointment cancel kar dein. Shukriya.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o Alaikum! Kya aaj doctor available hain? Agar hain to please appointment ka time bata dein. Shukriya.", "intent": "check_availability", "entities": []}
+{"text": "Assalam o Alaikum! Mujhe aapki service ke charges maloom karne hain. Barah-e-karam price bata dein. Shukriya.", "intent": "price_query", "entities": []}
+{"text": "Assalam o Alaikum! Umeed hai aap khairiyat se honge. Mujhe aapki services ke baare mein maloomat chahiye thi. Shukriya!", "intent": "greeting", "entities": []}
+{"text": "Assalam o Alaikum! Maine pehle appointment book karwai thi, lekin ab main uska time change karwana chahta hoon. Kya aap kisi aur waqt ki appointment de sakte hain? Shukriya!", "intent": "reschedule", "entities": []}
+{"text": "Aoa! I need an appointment", "intent": "book_appointment", "entities": []}
+{"text": "I have an appointment today but want to cancel it due to an emergency", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa! I wanted to know if the Doctor is available today", "intent": "check_availability", "entities": []}
+{"text": "What will be the charges?", "intent": "price_query", "entities": []}
+{"text": "Aoa! Hope you’re doing well.. I wanted to know about the prices of items you sell", "intent": "greeting", "entities": []}
+{"text": "I’m not available can you shift my appointment to some other day", "intent": "reschedule", "entities": []}
+{"text": "Asslam alaikum ! I want to book an appointment at your clinic for your viral hydrafacial.", "intent": "book_appointment", "entities": []}
+{"text": "I apologise for cancelling my appointment cause i got an urgent work , so better next time.", "intent": "cancel_booking", "entities": []}
+{"text": "Hi, i wanna know if the doctor available on friday?", "intent": "check_availability", "entities": []}
+{"text": "Kindly let me know about your charges for hydrafacial ?", "intent": "price_query", "entities": []}
+{"text": "Hello!! Hope you're doing well.", "intent": "greeting", "entities": []}
+{"text": "The appointment which i cancelled , can you please rescheduled it on coming friday?", "intent": "reschedule", "entities": []}
+{"text": "Mujhy aik appointment chaye", "intent": "book_appointment", "entities": []}
+{"text": "Mujhy booking cancel karni hy", "intent": "cancel_booking", "entities": []}
+{"text": "Dr kis time available Hy...", "intent": "check_availability", "entities": []}
+{"text": "Kia fee hy", "intent": "price_query", "entities": []}
+{"text": "Hello This is Your bot from XYZ Services....How many I help you", "intent": "greeting", "entities": []}
+{"text": "Mujhy appointments time change Karna Hy...", "intent": "reschedule", "entities": []}
+{"text": "Hey. Kia ap apne salon ki service details share kr skte hain. Main appointment book karana chahti hoon.", "intent": "book_appointment", "entities": []}
+{"text": "Hey. Maine apko apni appointment ke silsilay main message kia hai. Main apni appointment cancel krna chahti hoon. Please help me with the cancellation", "intent": "cancel_booking", "entities": []}
+{"text": "Hey. Kia ap mujhe bata sakte hain ke hair services ka koi slot khaali hai jisko mai book kar sakun.", "intent": "check_availability", "entities": []}
+{"text": "Hey. Kia ap mujhe bata sakte hain ke hair services ka kia charge lete hain aap.", "intent": "price_query", "entities": []}
+{"text": "Hey. Main apne business ke baray mai details chahti hoon.", "intent": "greeting", "entities": []}
+{"text": "Hey. Kia ap meri 4 baje wali appointment ko 6 baje pr shift kr sakte hain?", "intent": "reschedule", "entities": []}
+{"text": "Hey! I wanted to book an appointment at your salon for a haircut next week. If possible let me know.", "intent": "book_appointment", "entities": []}
+{"text": "Hi! I need to cancel my appointment scheduled for Tuesday, can you reschedule it for me on Wednesday?", "intent": "cancel_booking", "entities": []}
+{"text": "I need to know if the doctor has any appointment today. If not let me know.", "intent": "check_availability", "entities": []}
+{"text": "I wanted to buy your product could you please tell me the prices.", "intent": "price_query", "entities": []}
+{"text": "Hey! How can we help you today.", "intent": "greeting", "entities": []}
+{"text": "Hey! Can we move today's appointment to next week. It won't be convenient for me today.Thank you", "intent": "reschedule", "entities": []}
+{"text": "Assalam o alaikum. Mein ne din 3 bje ki slot ki appointment book krwani thi to kia isky baary mein malumaat jaan skta hun mein? Shukria!", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o alaikum. Mein aaj shaam ki appointment cancel krna chahta hun. Kuch zaroori kaam aagya hai jiski wajah sy mein aaj nahi aa paunga. Shukira!", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o alaikum. Kia aaj shaam 5 bje ki slot available hai appointment k liye?", "intent": "check_availability", "entities": []}
+{"text": "Assalam o alaikum, mein apky prp session k rates k bary mein janna chahta hun. Kia aap mujhe usky charges bta skty hain?", "intent": "price_query", "entities": []}
+{"text": "Assalam o alaikum.", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum. Mein apni appointment kal shaam 5 bje resechdule krna chahta hun kunky aaj mujhe aik zaroori kaam agya hai jiski wajah sy mein aaj nahi askunga. Shukria.", "intent": "reschedule", "entities": []}
+{"text": "Assalamualaikum mujhe kal 9 bjy ki appointment book krwani", "intent": "book_appointment", "entities": []}
+{"text": "Assalamualaikum Mujhe apni existing appointment cancel karwani hai plz meri appointment cancel kar dein. Shukria.", "intent": "cancel_booking", "entities": []}
+{"text": "Assalamualaikum Kya aap ke paas appointment ke liye koi slot available hai? Aur kya doctor available hain?", "intent": "check_availability", "entities": []}
+{"text": "Assalamualaikum! Mujhe aap ki service ke charges pata karne hain.kindly price bata dein.", "intent": "price_query", "entities": []}
+{"text": "Assalamualaikum i hope aap thk  honge. Mujhe aap ki services ke baare mein kuch details chahiye. Kya aap mujhe details provide kr skhty?.", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum Meri pehle se appointment book hai, lekin main us ka time change karwana chahti hoon. Kya aap mujhe kisi doosre time ka slot de sakte hain? Kindly bata dein.Thanku .", "intent": "reschedule", "entities": []}
+{"text": "mena salon ma appointment book krwani ha", "intent": "book_appointment", "entities": []}
+{"text": "mujhe apni appointment cancel krwani ha ap plz cancel kr den thanku", "intent": "cancel_booking", "entities": []}
+{"text": "Mujhe appointment leni hai. Kya koi slot available hai aur doctor kab available honge?", "intent": "check_availability", "entities": []}
+{"text": "Hi mujhe apki service ki price aur charges ke bary mein pochna tha Plz details bata dein.", "intent": "price_query", "entities": []}
+{"text": "Hi Hope you are doing well. Mujhe apki services ky bary ma kuch information chahiye thi", "intent": "greeting", "entities": []}
+{"text": "Hi mujhe apni appointment ka time change karwana hai Kya ap plz koi aur date ya time bata sakte hain?", "intent": "reschedule", "entities": []}
+{"text": "Aoa i want to book an appointment at your salon. What are timings that you will be available.", "intent": "book_appointment", "entities": []}
+{"text": "Sorry for the inconvenience but i would like to cancel my current appointment. Kindly cancel it ASAP.", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa i want to ask if morning time till 12pm appointments are available at your salon?", "intent": "check_availability", "entities": []}
+{"text": "What are the charges for the haircut and keratin treatment at your salon?", "intent": "price_query", "entities": []}
+{"text": "Aoa Thankyou for visiting our business chat. How can we help you?", "intent": "greeting", "entities": []}
+{"text": "Can you shift my appointment from 12pm to 4 pm in the evening. I cant come early.", "intent": "reschedule", "entities": []}
+{"text": "Asalamualikm, mujha kl 3 bje ka appointment chahiye tha clinic ma, Kya slot available ha? Please confirm kar den", "intent": "book_appointment", "entities": []}
+{"text": "Asalamualikm, jo mera appointment aj 5 baje ka tha wo please cancel kr den emergency ki wajah se nhi aa sakta Sorry", "intent": "cancel_booking", "entities": []}
+{"text": "Hello Dr. Salar kl available honge? Agr hain to 11 bje ka koi slot ha?", "intent": "check_availability", "entities": []}
+{"text": "Asalamualikm, haircut + beard ka kia charge ha apke pas? Or facial k charges b bata dan", "intent": "price_query", "entities": []}
+{"text": "Asalamualikm, kia ap open hain? Mujhe apki services k bare me thori info chahiye thi", "intent": "greeting", "entities": []}
+{"text": "Asalamualikm, mera jo appointment aj 4 baje ka tha kya usko kl 11 baje reschedule kr sakte hain? Please bta den", "intent": "reschedule", "entities": []}
+{"text": "MN nay hair cutting krani ha. Kindly AJ sham 5 bjy ki booking kr ln", "intent": "book_appointment", "entities": []}
+{"text": "AJ sham MN masroof hu nai a Sakta please booking cancel kr dn", "intent": "cancel_booking", "entities": []}
+{"text": "Kia AJ Raat ki appointment mky mil sakti ha", "intent": "check_availability", "entities": []}
+{"text": "Kia AP bta skty ha k AP Kay Kia service charges hn", "intent": "price_query", "entities": []}
+{"text": "Hi I am Mr Jehangir. Happy to join Whatsapp chat with you. Batein Hoti Rahe ge", "intent": "greeting", "entities": []}
+{"text": "Kal MN free hu. Sham 5 bjy ki appointment de dain", "intent": "reschedule", "entities": []}
+{"text": "Assalam o alikum! I hope you’re doing well. Muja appointment book krwani ha. Kindly muja available dates our timings bata dein. Also please share the charges. Thank you.", "intent": "book_appointment", "entities": []}
+{"text": "Assalam o alikum! I’m sorry, but muja apni existing appointment cancel krwani ha due to some personal reason. Sorry for the inconvenience. Thankyou for the understanding!", "intent": "cancel_booking", "entities": []}
+{"text": "Assalam o alikum! I wanted to ask ka kya doctor available han our koi appointment slot available han? Kindly muja available timings bata dy. Thank you.", "intent": "check_availability", "entities": []}
+{"text": "Assalam o alikum! I wanted to ask ka apki services ka charges kitne han? Kindly muja prices details our services and kya kya included ha bata dain. Thank you.", "intent": "price_query", "entities": []}
+{"text": "Assalam o alikum! I hope you are doing well. Muja apki services ka baray ma kuch information chahiya the. Kindly guide me. Thank you", "intent": "greeting", "entities": []}
+{"text": "Assalam o alikum! I have existing appointment, but muja uska time change krwna ha due to some personal reasons. Kya ap kindly muja kesi our time slot ma adjust kr sakta han? Please let me know the available timings. Thank you", "intent": "reschedule", "entities": []}
+{"text": "Aslamikum, Mujey apkay clinic ma appointment book karna tha", "intent": "book_appointment", "entities": []}
+{"text": "Aslamikum, ma chahti ho Ka appointment cancel kar do", "intent": "cancel_booking", "entities": []}
+{"text": "Kya slot available hay, doctor sa milna Ka liye", "intent": "check_availability", "entities": []}
+{"text": "Aslamikum,is ki price kitni hay", "intent": "price_query", "entities": []}
+{"text": "Aslamikum, mujay apki servant ma interest hay", "intent": "greeting", "entities": []}
+{"text": "Aslamikum,ya appointment Kisi or din rakh lay", "intent": "reschedule", "entities": []}
+{"text": "Can I visit you for my checkup?", "intent": "book_appointment", "entities": []}
+{"text": "Sorry I can come today as I have to go somewhere else due to an emergency condition.", "intent": "cancel_booking", "entities": []}
+{"text": "Are u availability today for my checkup  I Wana come to show u.", "intent": "check_availability", "entities": []}
+{"text": "May I get to know about fee charges please.", "intent": "price_query", "entities": []}
+{"text": "Didn't get it", "intent": "greeting", "entities": []}
+{"text": "Can I meet u any other day as today I'm not available", "intent": "reschedule", "entities": []}
+{"text": "Mujhe persoon ki appointment book karani hai", "intent": "book_appointment", "entities": []}
+{"text": "Kal ki Joo appointment mene book karaii tho woh cancel kernii hai", "intent": "cancel_booking", "entities": []}
+{"text": "Aoa kia AJ sham koi slots available hai", "intent": "check_availability", "entities": []}
+{"text": "Mujhe kindly charges Bata deinn apni services k", "intent": "price_query", "entities": []}
+{"text": "Assalam mujhe haircut ki appointment book karani hai", "intent": "greeting", "entities": []}
+{"text": "Aoa mujhe apnii appointment reschedule Karwani hai meinn Kal available ni Hun", "intent": "reschedule", "entities": []}
+{"text": "Kal 3 bje slot khali h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Dr Usman available hain aaj sham ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Usman"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}]}
+{"text": "kia aaj haircut k liye space hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Sir Ahmed maths tuition k liye slots free hain is weekend pe?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Ahmed"}, {"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "is weekend"}]}
+{"text": "Aoa, phone repair k liye kal subah koi slot available hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "phone repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah"}]}
+{"text": "Is dentist available today around 5pm?", "intent": "check_availability", "entities": [{"entity": "service", "value": "dentist"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Bhai laptop screen change karwani hai, aaj time mil sakay ga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "laptop screen change"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Are you free for physics class tomorrow at 6 pm?", "intent": "check_availability", "entities": [{"entity": "service", "value": "physics class"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "6 pm"}]}
+{"text": "Dr sahab available hain abhi clinic pe?", "intent": "check_availability", "entities": []}
+{"text": "Hydra facial karwana tha, Saturday ko koi appointment free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Hydra facial"}, {"entity": "date", "value": "Saturday"}]}
+{"text": "AC servicing k liye kal dopahar 2 baje banda mil sakta hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC servicing"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 2 baje"}]}
+{"text": "Salam, Miss Sara home tuition k liye available hain?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Sara"}, {"entity": "service", "value": "home tuition"}]}
+{"text": "Kal sham 7 baje car tuning ho sakti hai? Any slot free?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "sham 7 baje"}, {"entity": "service", "value": "car tuning"}]}
+{"text": "Any slot vacant for bridal makeup on 15th November?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "Salam, can I visit today at 4:30 pm for teeth cleaning?", "intent": "check_availability", "entities": [{"entity": "date", "value": "today"}, {"entity": "time", "value": "4:30 pm"}, {"entity": "service", "value": "teeth cleaning"}]}
+{"text": "Salam, kal 3 bje slot khali h clinic me?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Dr Asim aaj available hain sham ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}]}
+{"text": "Kia Sunday ko physics tuition ka slot free hai Sir Bilal k paas?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "physics tuition"}, {"entity": "name", "value": "Sir Bilal"}]}
+{"text": "Aoa, car AC repair k liye koi slot available hai aaj?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car AC repair"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Hey, is any slot open for haircut tomorrow at 5pm?", "intent": "check_availability", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Dr Sahab kal 11 am clinic pe mil jaingay?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Ustad ji mobile screen repair k liye time mil jaye ga abhi?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen repair"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Aoa Miss Hira, maths class k liye Monday ko space hai?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Hira"}, {"entity": "service", "value": "maths class"}, {"entity": "date", "value": "Monday"}]}
+{"text": "facial krwana tha, kya Saturday 4 baje space hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "bhai bike tuning k liye kal dopahar ko a skta hu?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bike tuning"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar"}]}
+{"text": "Salam, Dr Tariq available hain kya aaj?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Any opening for bridal makeup on 15th October?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th October"}]}
+{"text": "Kia aaj space hai laptop repair k liye?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "laptop repair"}]}
+{"text": "Sir Usman chemistry crash course k liye slot khali hai weekend pe?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "chemistry crash course"}, {"entity": "date", "value": "weekend"}]}
+{"text": "Aoa, manicure k liye aaj sham 6 bje slot hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham 6 bje"}]}
+{"text": "Assalam o alaikum, kal 3 bje slot khali h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Dr sahab available hain aj shaam ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr sahab"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "shaam"}]}
+{"text": "kia aaj space hai for haircut?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Sir Ali available hain kal physics tuition k liye?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Ali"}, {"entity": "date", "value": "kal"}, {"entity": "service", "value": "physics tuition"}]}
+{"text": "AoA, is there any slot free tomorrow at 5pm for oil change?", "intent": "check_availability", "entities": [{"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}, {"entity": "service", "value": "oil change"}]}
+{"text": "Bhai mobile screen repair k liye abhi time mil jaye ga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen repair"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Dr Ayesha clinic me kab available hongi?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Ayesha"}]}
+{"text": "Kal subah 11 baje facial ka slot available hai kia?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "subah 11 baje"}, {"entity": "service", "value": "facial"}]}
+{"text": "Kia maths tutor free hain Monday ko?", "intent": "check_availability", "entities": [{"entity": "service", "value": "maths tutor"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Bike tuning k lye sham 6 bje slot mil sakti h?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "time", "value": "sham 6 bje"}]}
+{"text": "Salam, is Dr Tariq available today?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "today"}]}
+{"text": "Aj raat 8 baje car wash k liye jagah khali hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Aj"}, {"entity": "time", "value": "raat 8 baje"}, {"entity": "service", "value": "car wash"}]}
+{"text": "Any slot open for bridal makeup on Sunday?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Parso evening me chemistry class k liye space free he?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Parso"}, {"entity": "time", "value": "evening"}, {"entity": "service", "value": "chemistry class"}]}
+{"text": "Bhai laptop check karwana tha, kia ap kal available hain?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "Assalam o alaikum Dr Tariq aaj sham 6 bje clinic me available hain?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham 6 bje"}]}
+{"text": "Kal 3 bje bridal makeup k lye slot khali h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "3 bje"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "bhai aaj laptop repair k liye koi slot available hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "laptop repair"}]}
+{"text": "Sir Ahmed kal maths tuition k liye free hain?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Ahmed"}, {"entity": "date", "value": "kal"}, {"entity": "service", "value": "maths tuition"}]}
+{"text": "Kia aaj Dr Fatima available hain checkup k liye?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Haircut k lye aaj sham ko time mil sakta hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Haircut"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}]}
+{"text": "mobile screen replacement k lye kal subah 11 bje space hogi?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 bje"}]}
+{"text": "kia physics class k liye monday ko slot available hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "physics class"}, {"entity": "date", "value": "monday"}]}
+{"text": "Dr Sahab kal available honge?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "Any free slot tomorrow for facial?", "intent": "check_availability", "entities": [{"entity": "date", "value": "tomorrow"}, {"entity": "service", "value": "facial"}]}
+{"text": "Ustad ji car tuning k liye aaj dopehar 2 bje time milega?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "dopehar 2 bje"}]}
+{"text": "Miss Ayesha is there any free time today at 5 pm?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Ayesha"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "dental checkup k lye saturday ko slot khali hai kia?", "intent": "check_availability", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "saturday"}]}
+{"text": "mani pedi karwani hai aaj slot free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mani pedi"}, {"entity": "date", "value": "aaj"}]}
+{"text": "AC service k liye kal 4 bje koi banda free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 bje"}]}
+{"text": "AoA, Dr. Imran kal shaam ko available hain checkup k liye?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr. Imran"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "shaam"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Hi, kal 3 bje haircut k liye slot khali hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Bhai car tuning ke liye aaj koi time free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Sir Ahmed physics tuition k liye 5 pm pe slot available hai kya?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Ahmed"}, {"entity": "service", "value": "physics tuition"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Kia aaj dental scaling k liye space mil sakti hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "dental scaling"}]}
+{"text": "Aoa, Friday ko facial k liye booking open hai ya full hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Friday"}, {"entity": "service", "value": "facial"}]}
+{"text": "AC service k liye kal subah 11 bje koi technician available hoga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 bje"}]}
+{"text": "Assalam o alaikum, maths tuition k liye slot khali hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "maths tuition"}]}
+{"text": "Dr Asma aaj 7 bje clinic me hongi?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Asma"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "7 bje"}]}
+{"text": "kal sham ko manicure pedicure k lye koi slot free h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham"}, {"entity": "service", "value": "manicure pedicure"}]}
+{"text": "bhai mobile screen replacement k lye abhi time mil jaye ga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen replacement"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Is Miss Hina free for biology demo class tomorrow?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Hina"}, {"entity": "service", "value": "biology demo class"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Sunday ko ultrasound k liye slots open hain?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "ultrasound"}]}
+{"text": "laptop repair k liye aaj dopehar 2 bje aa sakte hain?", "intent": "check_availability", "entities": [{"entity": "service", "value": "laptop repair"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "dopehar 2 bje"}]}
+{"text": "Bridal makeup k liye 15th November ko date free hai aapke pas?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Bridal makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "AoA, Dr. Asim kal sham 6 baje clinic mein available hain?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr. Asim"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 6 baje"}]}
+{"text": "Salam, kal 3 bje haircut k liye slot khali hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Bhai mobile repair k liye aj koi time free hoga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile repair"}, {"entity": "date", "value": "aj"}]}
+{"text": "Sir Hamza, are you free on Monday 5 pm for physics tuition?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "5 pm"}, {"entity": "service", "value": "physics tuition"}]}
+{"text": "Dr sahab available hain abhi checkup k liye?", "intent": "check_availability", "entities": [{"entity": "time", "value": "abhi"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Kia aaj space hai facial karwane k liye?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "facial"}]}
+{"text": "AC service krwani thi, kal subah 11 baje banda mil jaye ga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 baje"}]}
+{"text": "Is any slot available this Saturday for maths class?", "intent": "check_availability", "entities": [{"entity": "date", "value": "this Saturday"}, {"entity": "service", "value": "maths class"}]}
+{"text": "Dr. Ayesha ki appointment mil sakti hai tomorrow 4:00 PM pe?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr. Ayesha"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4:00 PM"}]}
+{"text": "Sunain, bridal makeup k liye next Sunday slot available h kia?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "next Sunday"}]}
+{"text": "Laptop screen replacement k lye aj 2 bje aa skta hu?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Laptop screen replacement"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "2 bje"}]}
+{"text": "Miss Sana free hain aj sham ko demo lecture k liye?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Sana"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "sham"}, {"entity": "service", "value": "demo lecture"}]}
+{"text": "Dentist sahab kal afternoon mein baithenge?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "afternoon"}]}
+{"text": "Kal 12 baje manicure pedicure k liye space hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "12 baje"}, {"entity": "service", "value": "manicure pedicure"}]}
+{"text": "Car oil change k liye abhi koi slot free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Car oil change"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Dr Tariq sahab available hain aaj sham ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}]}
+{"text": "Kia aaj space hai haircut k liye around 5pm?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "haircut"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Is Sir Usman free for physics tuition tomorrow?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "AoA bhai mobile screen repair ke liye aaj time mil sakega?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen repair"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Dr Ayesha ki appointment mil sakti hai Saturday ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "date", "value": "Saturday"}]}
+{"text": "Any slot open for facial today afternoon?", "intent": "check_availability", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "afternoon"}]}
+{"text": "Sir maths ki demo class k liye kal free hain?", "intent": "check_availability", "entities": [{"entity": "service", "value": "maths ki demo class"}, {"entity": "date", "value": "kal"}]}
+{"text": "Bhai car oil change k lye abhi koi mechanic available hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car oil change"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Kal subah 11 baje dentist sahab clinic pe mojood honge?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "subah 11 baje"}]}
+{"text": "Kia bridal makeup k liye 15th November ko slot available h?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "Laptop repairing k liye shop kab khulegi aaj?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Laptop repairing"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Miss Hina available hain chemistry revision k lye?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Miss Hina"}, {"entity": "service", "value": "chemistry revision"}]}
+{"text": "AC service ke liye banda kab tak free hoga?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}]}
+{"text": "Hi, do you have any open slots this Sunday for manicure?", "intent": "check_availability", "entities": [{"entity": "date", "value": "this Sunday"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AOA, kal 3 bje slot khali h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Dr Tariq sahab available hain aaj sham?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}]}
+{"text": "Kia aaj space hai facial ke liye?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "facial"}]}
+{"text": "Bhai bike repair karni hai, abhi shop open hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "bike repair"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Is Sir Hamza free for physics tuition tomorrow at 5 PM?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5 PM"}]}
+{"text": "Salam, Sunday ko haircut ki koi slot available hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Dr Ayesha clinic me hain abhi?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "time", "value": "abhi"}]}
+{"text": "AC service ke liye banda mil sakta hai aaj dopahar?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "dopahar"}]}
+{"text": "Any slot free for math class this evening?", "intent": "check_availability", "entities": [{"entity": "service", "value": "math class"}, {"entity": "time", "value": "this evening"}]}
+{"text": "Mobile screen change karwani thi, timing kya hai aaj ki?", "intent": "check_availability", "entities": [{"entity": "service", "value": "Mobile screen change"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Kal subah 11 bje dentist checkup ke liye space hogi?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "subah 11 bje"}, {"entity": "service", "value": "dentist checkup"}]}
+{"text": "Ustad ji car tuning ke liye time mil jaye ga abhi?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Is there any appointment available on Friday with Dr Aslam?", "intent": "check_availability", "entities": [{"entity": "date", "value": "Friday"}, {"entity": "name", "value": "Dr Aslam"}]}
+{"text": "Kia kal bridal makeup ka time mil sakta h?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "Madam Saba free hain chemistry revision ke liye 6 bje?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Madam Saba"}, {"entity": "service", "value": "chemistry revision"}, {"entity": "time", "value": "6 bje"}]}
+{"text": "Salam Dr Tariq aaj sham available hain checkup k liye?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Aoa, kal 4 bje haircut k liye slot free hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Salam bhai, aaj laptop repair k lye banda mil jaye ga?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "laptop repair"}]}
+{"text": "Sir Usman free hain physics tuition k liye tomorrow?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Is there any slot available for facial today evening?", "intent": "check_availability", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "evening"}]}
+{"text": "Salam dr sahab kal available hongay clinic me?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "Kia car wash k liye abhi space hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "car wash"}, {"entity": "time", "value": "abhi"}]}
+{"text": "Sir Ahmed kal sham 5 bje maths class k liye available hain?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Sir Ahmed"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 5 bje"}, {"entity": "service", "value": "maths class"}]}
+{"text": "Salam, kal subah dental checkup ki slot khali hy?", "intent": "check_availability", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "aaj 3 bje bridal makeup ka slot khali hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "time", "value": "3 bje"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "mobile screen change k lye kal timing mil sakti hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "mobile screen change"}, {"entity": "date", "value": "kal"}]}
+{"text": "Dr Ayesha available hain sunday ko?", "intent": "check_availability", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "date", "value": "sunday"}]}
+{"text": "home tuition k liye kal koi slot vacant hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "home tuition"}, {"entity": "date", "value": "kal"}]}
+{"text": "aaj manicure k liye space mil sakti hai?", "intent": "check_availability", "entities": [{"entity": "date", "value": "aaj"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AC service k lye sunday morning slot free hai?", "intent": "check_availability", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "sunday"}, {"entity": "time", "value": "morning"}]}
+{"text": "Dr Asif ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Keratin treatment k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "Bike tuning kitny ki hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bike tuning"}]}
+{"text": "Sir Hamza O levels Physics tuition ki monthly fee kya hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "O levels Physics tuition"}]}
+{"text": "Teeth scaling ka total package rate kya hai clinic pe?", "intent": "price_query", "entities": [{"entity": "service", "value": "Teeth scaling"}]}
+{"text": "Aoa, party makeup aur hair style ke kitne paise lety hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "party makeup"}, {"entity": "service", "value": "hair style"}]}
+{"text": "Laptop screen replacement ka cost estimate bata dain please.", "intent": "price_query", "entities": [{"entity": "service", "value": "Laptop screen replacement"}]}
+{"text": "Maths tuition per subject rate kia h class 10 ke liye?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "Dr Sarah ka consultation charge kitna hy?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sarah"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Facial and manicure karwani hai, total rate list send kardein.", "intent": "price_query", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AC gas refill k kitne charge letay hain technician bhai?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC gas refill"}]}
+{"text": "Home tutor for chemistry fee per hour kitni mang rhy hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Home tutor for chemistry"}]}
+{"text": "Kal ultrasound karwana hai, charges kia hongy?", "intent": "price_query", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "ultrasound"}]}
+{"text": "Bridal package ka kya rate chal raha hai aaj kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bridal package"}]}
+{"text": "Mobile battery change karwane ke kitne paise lagte hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Mobile battery change"}]}
+{"text": "haircut ka kitna charge h?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}]}
+{"text": "AoA Dr Asif ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "checkup"}]}
+{"text": "bike tuning kitny ki hogi brother?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "Maths tuition k monthly charges kitne hein?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "facial aur manicure ka package rate bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "facial"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AC general service k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC general service"}]}
+{"text": "teeth whitening ka total kharcha kitna hoga clinic pe?", "intent": "price_query", "entities": [{"entity": "service", "value": "teeth whitening"}]}
+{"text": "Sir Hamza physics k per subject charges kitne lety hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Hamza"}, {"entity": "service", "value": "physics"}]}
+{"text": "oil change k kitny pesy lagen gy kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "oil change"}, {"entity": "date", "value": "kal"}]}
+{"text": "bridal makeup charges for next week Saturday please?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "next week Saturday"}]}
+{"text": "iPhone screen replacement ka cost kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "iPhone screen replacement"}]}
+{"text": "ultrasound test ki fee bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound test"}]}
+{"text": "O level chemistry tuition fees kya hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level chemistry tuition"}]}
+{"text": "Dr Sara consultation fee kitni leti hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "service", "value": "consultation"}]}
+{"text": "keratin treatment kitne mein ho jaye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "Dr. Asif ka consultation fee kitna hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr. Asif"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Bhai AC service k charges bta dain kal k liye", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}]}
+{"text": "Sir O levels physics tuition ki monthly fees kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "physics tuition"}]}
+{"text": "Hydra facial k kitnay charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "Dental scaling kitne me hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "Dental scaling"}]}
+{"text": "Sir maths coaching ki fees kitni hy?", "intent": "price_query", "entities": [{"entity": "service", "value": "maths coaching"}]}
+{"text": "Keratin treatment ka package rate bata den please", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "CBC blood test k charges kia hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "CBC blood test"}]}
+{"text": "Laptop screen replacement ka cost kitna aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Laptop screen replacement"}]}
+{"text": "Dr Hamza ka general checkup fee kitna hy?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Hamza"}, {"entity": "service", "value": "general checkup"}]}
+{"text": "Online tuition k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Online tuition"}]}
+{"text": "Bridal makeup k charges kia hain Sunday k liye?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Mobile screen change karwane k kitnay paise lagain gy?", "intent": "price_query", "entities": [{"entity": "service", "value": "screen change"}]}
+{"text": "AoA, bridal makeup k kia charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup"}]}
+{"text": "Dr Asim ki consultation fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "consultation"}]}
+{"text": "O level physics tuition fee per month kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level physics tuition"}]}
+{"text": "hair color karwana hai short hair ka rate bta den", "intent": "price_query", "entities": [{"entity": "service", "value": "hair color"}]}
+{"text": "AC general service k kitne paise lein ge?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC general service"}]}
+{"text": "Salam, root canal treatment ka total cost kitna paray ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "root canal treatment"}]}
+{"text": "Sir Usman maths class k kitne charge karte hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "maths class"}]}
+{"text": "hydra facial ka package price kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "hydra facial"}]}
+{"text": "laptop screen replacement ki cost kia hai Dell Inspiron ki?", "intent": "price_query", "entities": [{"entity": "service", "value": "laptop screen replacement"}]}
+{"text": "Dr Fatima ka checkup fee schedule kia hy for tomorrow?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Class 9 chemistry home tuition k kia charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "home tuition"}]}
+{"text": "haircut and beard trim ka package price bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Generator oil change kitnay main hoga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Generator oil change"}]}
+{"text": "Salam, ultrasound ka kitna charge hoga monday ko?", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound"}, {"entity": "date", "value": "monday"}]}
+{"text": "Haircut and beard trim k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Bike tuning aur oil change kitnay ka hoga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "service", "value": "oil change"}]}
+{"text": "O level Physics tuition ki per month fee kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Physics tuition"}]}
+{"text": "Ac service k kitnay letay hain ap?", "intent": "price_query", "entities": [{"entity": "service", "value": "Ac service"}]}
+{"text": "Dr Fatima say checkup karwane k charges kia hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}]}
+{"text": "iPhone screen replacement ka rate bata dain please", "intent": "price_query", "entities": [{"entity": "service", "value": "screen replacement"}]}
+{"text": "Hydra facial ke kya charges hain apke parlor mein?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "Teeth scaling ka kya kharcha aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Teeth scaling"}]}
+{"text": "Laptop motherboard repair ki cost kia hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "motherboard repair"}]}
+{"text": "Math tuition k kitnay charges letay hain Sir Usman?", "intent": "price_query", "entities": [{"entity": "service", "value": "Math tuition"}, {"entity": "name", "value": "Sir Usman"}]}
+{"text": "Keratin treatment ka total price kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "Generator service k kitnay charges hongay?", "intent": "price_query", "entities": [{"entity": "service", "value": "Generator service"}]}
+{"text": "Ultrasound ki fee kitni hai clinic per?", "intent": "price_query", "entities": [{"entity": "service", "value": "Ultrasound"}]}
+{"text": "Sir Bilal se chemistry class ki fee maloom karni hai", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Bilal"}, {"entity": "service", "value": "chemistry class"}]}
+{"text": "AoA, haircut aur beard trim k total kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Dr Asif ki consultation fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Hydra facial k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "dental scaling ke kitne paise honge kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "dental scaling"}, {"entity": "date", "value": "kal"}]}
+{"text": "AC service k charges bta den please", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}]}
+{"text": "class 10 maths tuition ki fees kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "class 10 maths tuition"}]}
+{"text": "ultrasound ka rate kia chal raha hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound"}]}
+{"text": "keratin treatment ki price bta dain", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "laptop screen replacement cost kitni aye gi?", "intent": "price_query", "entities": [{"entity": "service", "value": "laptop screen replacement"}]}
+{"text": "Dr Sara ka checkup fee kitna hai aaj?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "aaj"}]}
+{"text": "generator repair karne k kitne paise letay hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "generator repair"}]}
+{"text": "Sir Hamza chemistry class ke charges kitne lete hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "chemistry class"}]}
+{"text": "bridal makeup package price list mil sakti hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup package"}]}
+{"text": "Dr Asim ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Maths tuition ki per month fee kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "hydra facial ke charges bata dain please", "intent": "price_query", "entities": [{"entity": "service", "value": "hydra facial"}]}
+{"text": "AC service k kitne paise honge kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}]}
+{"text": "teeth scaling ka package rate bata dain", "intent": "price_query", "entities": [{"entity": "service", "value": "teeth scaling"}]}
+{"text": "oil change ka kitna lety hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "oil change"}]}
+{"text": "Sir Usman ki physics classes ki monthly fee kya hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "physics classes"}]}
+{"text": "keratin treatment ke charges bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "root canal treatment ki cost kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "root canal treatment"}]}
+{"text": "generator repair karne k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "generator repair"}]}
+{"text": "O level chemistry tuition ka kitna charge karte hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level chemistry tuition"}]}
+{"text": "Dr Ayesha ka consultation fee structure share kr den", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "service", "value": "consultation"}]}
+{"text": "mobile screen replacement ka kitna kharcha aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "mobile screen replacement"}]}
+{"text": "aoa", "intent": "greeting", "entities": []}
+{"text": "salam bhai", "intent": "greeting", "entities": []}
+{"text": "hello", "intent": "greeting", "entities": []}
+{"text": "hi sir", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum bhai", "intent": "greeting", "entities": []}
+{"text": "salam janab kaise hain aap", "intent": "greeting", "entities": []}
+{"text": "good morning", "intent": "greeting", "entities": []}
+{"text": "hey", "intent": "greeting", "entities": []}
+{"text": "aoa kya haal hain", "intent": "greeting", "entities": []}
+{"text": "salam alaikum sir", "intent": "greeting", "entities": []}
+{"text": "hello bhai jan", "intent": "greeting", "entities": []}
+{"text": "hi there", "intent": "greeting", "entities": []}
+{"text": "good afternoon sir", "intent": "greeting", "entities": []}
+{"text": "walaikum assalam ki jagah salam", "intent": "greeting", "entities": []}
+{"text": "Salam, kaisay hain aap?", "intent": "greeting", "entities": []}
+{"text": "Hey bro", "intent": "greeting", "entities": []}
+{"text": "Good morning sir", "intent": "greeting", "entities": []}
+{"text": "Assalam o alaikum bhai jaan", "intent": "greeting", "entities": []}
+{"text": "Hello there", "intent": "greeting", "entities": []}
+{"text": "Aoa sir g", "intent": "greeting", "entities": []}
+{"text": "Salam brother", "intent": "greeting", "entities": []}
+{"text": "Hi good evening", "intent": "greeting", "entities": []}
+{"text": "Wsalam bhai", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum kaisay hain?", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum", "intent": "greeting", "entities": []}
+{"text": "hello sir kaise hain?", "intent": "greeting", "entities": []}
+{"text": "hi", "intent": "greeting", "entities": []}
+{"text": "salam janab", "intent": "greeting", "entities": []}
+{"text": "assalamualaikum bro", "intent": "greeting", "entities": []}
+{"text": "aoa kia hal hai?", "intent": "greeting", "entities": []}
+{"text": "hey there", "intent": "greeting", "entities": []}
+{"text": "salam bhai, umeed hai theek hongay", "intent": "greeting", "entities": []}
+{"text": "hello, good afternoon", "intent": "greeting", "entities": []}
+{"text": "assalam o alaikum sir", "intent": "greeting", "entities": []}
+{"text": "hi brother kaise ho", "intent": "greeting", "entities": []}
+{"text": "hey salam", "intent": "greeting", "entities": []}
+{"text": "aoa kaisay hain aap?", "intent": "greeting", "entities": []}
+{"text": "hello brother", "intent": "greeting", "entities": []}
+{"text": "hi, how are you?", "intent": "greeting", "entities": []}
+{"text": "salam u alaikum", "intent": "greeting", "entities": []}
+{"text": "aoa sir", "intent": "greeting", "entities": []}
+{"text": "hey bro, salam", "intent": "greeting", "entities": []}
+{"text": "Hello, good morning", "intent": "greeting", "entities": []}
+{"text": "Hi sir, kaisay hain?", "intent": "greeting", "entities": []}
+{"text": "Assalam u alaikum bhai jaan", "intent": "greeting", "entities": []}
+{"text": "Hello sir", "intent": "greeting", "entities": []}
+{"text": "Aoa, umeed hai aap khariat se honge", "intent": "greeting", "entities": []}
+{"text": "Salam", "intent": "greeting", "entities": []}
+{"text": "Good evening bhai", "intent": "greeting", "entities": []}
+{"text": "Hi there!", "intent": "greeting", "entities": []}
+{"text": "Assalamu alaikum wr wb", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum sir jee", "intent": "greeting", "entities": []}
+{"text": "Assalamualaikum sir", "intent": "greeting", "entities": []}
+{"text": "Salam alaikum, kaise hain aap?", "intent": "greeting", "entities": []}
+{"text": "Hey brother", "intent": "greeting", "entities": []}
+{"text": "Aoa bro", "intent": "greeting", "entities": []}
+{"text": "Hello bhai", "intent": "greeting", "entities": []}
+{"text": "Hi, hope you are doing well", "intent": "greeting", "entities": []}
+{"text": "Hey, salam", "intent": "greeting", "entities": []}
+{"text": "Aoa sir, kaisay hain?", "intent": "greeting", "entities": []}
+{"text": "Salam, kal 5 bje haircut book kr dain please.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Doctor sahab se Sunday sham 6 baje checkup ki slot confirm kr dein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "sham 6 baje"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Mera car tuning ka slot Friday ko 3:00 PM rakh lein, name Usman.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "3:00 PM"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Can you book a demo class for maths tomorrow at 4 pm?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Parso subah 11 baje facial appointment book karni hai for Ayesha.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Parso"}, {"entity": "time", "value": "subah 11 baje"}, {"entity": "service", "value": "facial"}, {"entity": "name", "value": "Ayesha"}]}
+{"text": "AC service k liye Monday ko 2 baje slot fix kar dain.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "2 baje"}]}
+{"text": "Kal dental scaling karwani hai 7 pm ka time mil jaye ga? Booking confirm kar dain.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "dental scaling"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Sir physics tuition k liye mera slot confirm kr dein Saturday ko.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "Saturday"}]}
+{"text": "Mera slot rakh lein for oil change around 12:30 PM.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "oil change"}, {"entity": "time", "value": "12:30 PM"}]}
+{"text": "Please book an appointment for bridal makeup on 25th December.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "25th December"}]}
+{"text": "Bhai mobile screen replacement krwani hai, kal dopahar 1 baje slot lock kr dein.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 1 baje"}]}
+{"text": "Kindly confirm my consultation slot for Dr Tariq today at 8 pm.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "consultation"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "8 pm"}]}
+{"text": "Zainab k liye English class ka trial book karna hai Wednesday 5 baje.", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Zainab"}, {"entity": "service", "value": "English class"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "5 baje"}]}
+{"text": "Bhai kal sham ko mani pedi karwani hai Bilal k naam se book karein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham"}, {"entity": "service", "value": "mani pedi"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "Kal subah bike inspection k liye time reserve kr dain.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "subah"}, {"entity": "service", "value": "bike inspection"}]}
+{"text": "kal sham 6 bje haircut k liye slot confirm kr dain", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 6 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Doctor sahab se checkup k liye Monday ko 4 pm ka time book kr dein, name Usman ha", "intent": "book_appointment", "entities": [{"entity": "service", "value": "checkup"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "4 pm"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Bhai mera AC repair karwana hai, kal subah 11 bje ka slot rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 bje"}]}
+{"text": "Sir math tuition k liye Sunday 5:00 PM ka demo slot book krna hai", "intent": "book_appointment", "entities": [{"entity": "service", "value": "math tuition"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "5:00 PM"}]}
+{"text": "Aoa, please book facial appointment for tomorrow at 3 pm for Sana", "intent": "book_appointment", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3 pm"}, {"entity": "name", "value": "Sana"}]}
+{"text": "Dental scaling krwani hy, Friday 7 bje slot mil jaye ga kindly confirm kr dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Dental scaling"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "7 bje"}]}
+{"text": "Mera laptop screen repair k liye Saturday 4 pm ka time book kar lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "screen repair"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Physics class k liye kal shaam 6 bje ka time fix kr dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics class"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "shaam 6 bje"}]}
+{"text": "Sunday slot confirm kr dein meri hair styling k liye", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "hair styling"}]}
+{"text": "Dr Tariq k sath checkup appointment book kr dain aaj raat 8 bje", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "raat 8 bje"}]}
+{"text": "Car oil change k liye kal 10 am slot book kr den Bilal k name pe", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Car oil change"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 am"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "Sir please confirm my slot for chemistry class on Tuesday at 4:30 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "chemistry class"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Mera slot rakh lein kal 5 bje bridal makeup ka", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "Mujhe eye consultation k liye kal 3 bje ana hai kindly book kr dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "eye consultation"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Mobile repair karwana hai, Sunday 12 bje ka slot lock kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile repair"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "12 bje"}]}
+{"text": "kal 5 bje haircut book kr dain", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "AOA, please confirm my appointment for bridal makeup on Saturday at 3 pm for Ayesha.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "3 pm"}, {"entity": "name", "value": "Ayesha"}]}
+{"text": "bhai facial ke liye kal subah 11 baje ka time reserve kar dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 baje"}]}
+{"text": "sunday slot confirm kr dein mera blowdry ka", "intent": "book_appointment", "entities": [{"entity": "date", "value": "sunday"}, {"entity": "service", "value": "blowdry"}]}
+{"text": "Dr Tariq ke sath consultation book karni hai Monday 4pm par", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "4pm"}]}
+{"text": "Salam doctor sb kal sham 7 baje dental checkup ka slot de dein please", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 7 baje"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Can you book an appointment for ultrasound tomorrow at 10 am?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "ultrasound"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Hamza ka appointment confirm kar dain Wednesday ko 6:30 PM clinic visit ke liye", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Hamza"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "6:30 PM"}, {"entity": "service", "value": "clinic visit"}]}
+{"text": "Assalam o alaikum car service ke liye kal dopahar 2 baje ka slot rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "car service"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 2 baje"}]}
+{"text": "mera AC repair ka slot confirm kr dain for tomorrow at 5pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "bhai mobile screen replacement karni hai aj sham 6 bje book kr dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "mobile screen replacement"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "sham 6 bje"}]}
+{"text": "generator repair ke liye Friday 11:00 am slot final kar dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "generator repair"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "11:00 am"}]}
+{"text": "Sir maths demo class ke liye kal 4 baje ka slot rakh dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths demo class"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Please book chemistry tuition session for Usman on Tuesday at 5 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "chemistry tuition session"}, {"entity": "name", "value": "Usman"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "physics trial class confirm kr dein Saturday ko sham 4 baje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "physics trial class"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "sham 4 baje"}]}
+{"text": "Monday ko Dr Asim k sath dental checkup book kr dain", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Monday"}, {"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Bhai kal 2 baje AC repair k liye slot confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "2 baje"}, {"entity": "service", "value": "AC repair"}]}
+{"text": "Sir maths demo class k lye sunday 6 pm ka slot rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths demo class"}, {"entity": "date", "value": "sunday"}, {"entity": "time", "value": "6 pm"}]}
+{"text": "Mera bridal makeup ka slot confirm kar dein 15th November ko", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "Dr Fatima se routine checkup k liye appointment chahiye kal 11 baje", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "routine checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 baje"}]}
+{"text": "Laptop repair k liye aj 7 baje ka appointment lock kar dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Laptop repair"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "7 baje"}]}
+{"text": "AOA sir physics tuition k liye tomorrow 4:30 pm appointment book kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "facial k liye sunday 3 baje slot confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "sunday"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Skin whitening consultation k liye appointment book karni hai for Sarah on Friday", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Skin whitening consultation"}, {"entity": "name", "value": "Sarah"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Mobile screen replacement k lye kal 6 bje mera slot rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "6 bje"}]}
+{"text": "English speaking class k liye appointment final kar dain 10 am tuesday", "intent": "book_appointment", "entities": [{"entity": "service", "value": "English speaking class"}, {"entity": "time", "value": "10 am"}, {"entity": "date", "value": "tuesday"}]}
+{"text": "Dental checkup chahiye aj 5:00 pm Ahmed k liye", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Dental checkup"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "5:00 pm"}, {"entity": "name", "value": "Ahmed"}]}
+{"text": "Aoa party makeup book kr dain Saturday ko 4 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "party makeup"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Car tuning k liye booking confirm kr dein Monday 11 am", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Car tuning"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Dr Sahab k sath Monday 3 pm ka appointment fix kr dein, name Ali Raza hai.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Monday"}, {"entity": "time", "value": "3 pm"}, {"entity": "name", "value": "Ali Raza"}]}
+{"text": "Mera bike tuning k liye kal 10 am slot book kr dein.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bike tuning"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Sir math class k lye Sunday 6:00 pm ka time confirm kr dain.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "math class"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "6:00 pm"}]}
+{"text": "AOA Friday 4 baje bridal makeup slot book krna hai Ayesha k name pe.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4 baje"}, {"entity": "service", "value": "bridal makeup"}, {"entity": "name", "value": "Ayesha"}]}
+{"text": "Dentist checkup k liye tomorrow 11 am slot confirm kr dein.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Dentist checkup"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Bhai ac repair k liye aj 2 bje ka slot lock kr dain.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "ac repair"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "2 bje"}]}
+{"text": "Physics tuition k liye Saturday 4 pm ka slot book kr dain.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics tuition"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Sunday ko facial k liye mera slot rakh lein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "facial"}]}
+{"text": "Skin consultation book karwayen Thursday 7 pm pe.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Skin consultation"}, {"entity": "date", "value": "Thursday"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Laptop screen replacement k liye kal 3 bje slot confirm karden.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Laptop screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "IELTS coaching k liye Monday slot book kar dain Usman k liye.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "IELTS coaching"}, {"entity": "date", "value": "Monday"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Keratin treatment ka appointment book krna hy aj 6 bje.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Keratin treatment"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "6 bje"}]}
+{"text": "Saturday 12 pm eye checkup appointment confirm kr dein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "12 pm"}, {"entity": "service", "value": "eye checkup"}]}
+{"text": "Generator servicing k liye kal mera slot confirm kr dein please.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Generator servicing"}, {"entity": "date", "value": "kal"}]}
+{"text": "Salam, kal 5 bje haircut book kr dain Bilal k name pe", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "Dr Tariq k sath Monday 3 pm ka appointment fix kar dein please", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "3 pm"}]}
+{"text": "Bhai kal bike tuning k liye mera slot book karna hai", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "bike tuning"}]}
+{"text": "Sir Usman mujhe physics demo class k liye Saturday 4 bje ka slot de dein", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "physics demo class"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 bje"}]}
+{"text": "AOA, please mera hydra facial confirm kr dein Sunday 2 baje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "hydra facial"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "2 baje"}]}
+{"text": "Mujhe kal dental checkup karwana hai sham 6 bje", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "dental checkup"}, {"entity": "time", "value": "sham 6 bje"}]}
+{"text": "AC repair k liye Friday ka slot mil sakta hai around 11 am?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Kal 7 pm math tuition k liye book kr dein", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "7 pm"}, {"entity": "service", "value": "math tuition"}]}
+{"text": "Mera slot rakh lein parso 4 bje party makeup k wastey", "intent": "book_appointment", "entities": [{"entity": "date", "value": "parso"}, {"entity": "time", "value": "4 bje"}, {"entity": "service", "value": "party makeup"}]}
+{"text": "Dr Sarah ka appointment book kar dain kal 2:30 pm", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Sarah"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "2:30 pm"}]}
+{"text": "Sunday slot confirm kr dein car oil change k liye", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "car oil change"}]}
+{"text": "Hi, please book a mani pedi for Fatima at 5 pm tomorrow", "intent": "book_appointment", "entities": [{"entity": "service", "value": "mani pedi"}, {"entity": "name", "value": "Fatima"}, {"entity": "time", "value": "5 pm"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "English lecture k liye kal 3 bje ki timing confirm kr den", "intent": "book_appointment", "entities": [{"entity": "service", "value": "English lecture"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 bje"}]}
+{"text": "Washing machine repair appointment book kr dain kal 12 baje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Washing machine repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Consultation k liye aj sham 7 baje ka slot confirm kar dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Consultation"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "sham 7 baje"}]}
+{"text": "Kal sham 5 bje haircut ki appointment book kr dain please", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Dr. Asim k sath Monday ko 4 pm ka slot book kr dain for dental checkup", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr. Asim"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "4 pm"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Bhai kal mera AC repair ka slot confirm kr dein 2 baje", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "AC repair"}, {"entity": "time", "value": "2 baje"}]}
+{"text": "Sir maths demo class k liye Saturday 6:00 pm ka time rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths demo class"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "6:00 pm"}]}
+{"text": "AOA bridal facial k liye Sunday slot confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal facial"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Mera slot rakh lein kal subah 11 bje skin specialist k sath", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 bje"}, {"entity": "service", "value": "skin specialist"}]}
+{"text": "Can you please book an appointment for car oil change tomorrow at 3pm?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "car oil change"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3pm"}]}
+{"text": "Physics tuition k liye Monday 5 bje session fix kr dein, my name is Hamza", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics tuition"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "5 bje"}, {"entity": "name", "value": "Hamza"}]}
+{"text": "Parso dopahar 3 baje mani pedi appointment lock kr dein", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Parso"}, {"entity": "time", "value": "3 baje"}, {"entity": "service", "value": "mani pedi"}]}
+{"text": "Dr Sarah se checkup krwana hai kal raat 8 bje slot de dain", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Sarah"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "8 bje"}]}
+{"text": "Mobile screen replacement k liye aj sham 6 bje slot confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "6 bje"}]}
+{"text": "Please book chemistry class on Friday at 4:30 pm for Usman", "intent": "book_appointment", "entities": [{"entity": "service", "value": "chemistry class"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4:30 pm"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Keratin treatment k liye Sunday 12 baje mera time confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Keratin treatment"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Kal dopahar 2 pm appointment book kar dein", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Laptop cleaning k liye mera slot book kr dain Wednesday ko", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Laptop cleaning"}, {"entity": "date", "value": "Wednesday"}]}
+{"text": "Assalam o alaikum, kal 5 bje haircut book kr dain mera Ali name se", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}, {"entity": "name", "value": "Ali"}]}
+{"text": "Monday ko dental checkup appointment confirm kr dein sham 6 pm", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Monday"}, {"entity": "service", "value": "dental checkup"}, {"entity": "time", "value": "sham 6 pm"}]}
+{"text": "Bhai kal car tuning ke liye slot book krna hai subah 11 baje", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "car tuning"}, {"entity": "time", "value": "subah 11 baje"}]}
+{"text": "Sir maths tuition k liye kal slot rakh lein afternoon 3 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "afternoon 3 pm"}]}
+{"text": "Sunday slot confirm kr dein for facial", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "facial"}]}
+{"text": "Hamza k pass appointment book krni hai kal 4 baje", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Hamza"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "AC repair k liye Friday subah 10 am ka slot lock kar dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "subah 10 am"}]}
+{"text": "Physics demo class book krni hai tomorrow 5pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics demo class"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Mera beard trim ka slot confirm kr dain aaj raat 8 baje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "beard trim"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "raat 8 baje"}]}
+{"text": "Usman ka ultrasound test book kr dein Saturday ko 12 pm", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Usman"}, {"entity": "service", "value": "ultrasound test"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "12 pm"}]}
+{"text": "Mobile screen replacement k lye kal sham 7 baje ajaon? Booking confirm karein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 7 baje"}]}
+{"text": "Can you please book a trial class for chemistry on Tuesday at 4:30 pm?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "chemistry"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Mera bridal makeup ka slot reserve kr dain 15th March ko", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th March"}]}
+{"text": "Bike service k lye mera slot rakh lein Sunday 10 bje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Bike service"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "10 bje"}]}
+{"text": "Zainab k liye consultation slot book krwana hai today 6:00 pm", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Zainab"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "6:00 pm"}]}
+{"text": "Salam doctor sahab, kal 5 bje dr ayesha k sath appointment confirm kr dein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "name", "value": "ayesha"}]}
+{"text": "bhai kal dopahar 3 pm bike oil change k liye slot book karna hai.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 pm"}, {"entity": "service", "value": "oil change"}]}
+{"text": "Please book a slot for physics tuition tomorrow at 6:00 PM for Hamza.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "6:00 PM"}, {"entity": "name", "value": "Hamza"}]}
+{"text": "AOA, Friday ko 4 baje haircut aur beard trim ka time fix kar dain.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4 baje"}, {"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "sunday slot confirm kr dein mera dental checkup k liye.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "sunday"}, {"entity": "service", "value": "dental checkup"}]}
+{"text": "Mera slot rakh lein parso subah 11 baje car tuning k waste.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "parso"}, {"entity": "time", "value": "11 baje"}, {"entity": "service", "value": "car tuning"}]}
+{"text": "Kindly schedule an appointment for maths demo class on Monday 7pm.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "maths demo class"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "7pm"}]}
+{"text": "Saturday ko 2 baje facial book krwana hai, name is Sana.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "2 baje"}, {"entity": "service", "value": "facial"}, {"entity": "name", "value": "Sana"}]}
+{"text": "Sir kal sham 8 bje chemistry session book kar lein.", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "8 bje"}, {"entity": "service", "value": "chemistry session"}]}
+{"text": "AC servicing k liye appointment fix karein Tuesday 12pm pe.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC servicing"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "12pm"}]}
+{"text": "Salam, Dr Tariq se consultation book krni hai aaj raat 9 baje.", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Tariq"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "9 baje"}]}
+{"text": "mani bhai mera haircut kal 6pm confirm hai na? slot book kr dein.", "intent": "book_appointment", "entities": [{"entity": "name", "value": "mani"}, {"entity": "service", "value": "haircut"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "6pm"}]}
+{"text": "Mobile screen repair k liye appointment register kr dein for today 4:30 pm.", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile screen repair"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Mera slot rakh lein please.", "intent": "book_appointment", "entities": []}
+{"text": "Can you book a slot for bridal makeup on 25th December for Zainab?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "25th December"}, {"entity": "name", "value": "Zainab"}]}
+{"text": "Salam, kal 5 bje haircut book kr dain Bilal k name se", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "Checkup appointment confirm kr dein Friday 4 pm pr, patient name Sana hai", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Checkup"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4 pm"}, {"entity": "name", "value": "Sana"}]}
+{"text": "Mera AC service ka slot rakh lein kal 11 am", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Maths tuition k liye slot confirm kr dein Monday 6 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Maths tuition"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "6 pm"}]}
+{"text": "AOA, Sunday 3 bje bridal makeup ka slot book krna hai", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "3 bje"}, {"entity": "service", "value": "bridal makeup"}]}
+{"text": "Tuesday 5:30 pm dental checkup book kr lein Dr Ahmed se", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "5:30 pm"}, {"entity": "service", "value": "dental checkup"}, {"entity": "name", "value": "Dr Ahmed"}]}
+{"text": "Bike tuning k liye kal 6 pm slot book kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "6 pm"}]}
+{"text": "Physics class k liye Saturday 4 pm schedule kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics class"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Mani pedi k liye appointment chahiye today 7 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mani pedi"}, {"entity": "date", "value": "today"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Bhai mera checkup ka slot kal 12 bje fix kr dain, Farhan", "intent": "book_appointment", "entities": [{"entity": "service", "value": "checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "12 bje"}, {"entity": "name", "value": "Farhan"}]}
+{"text": "Generator repair karwana hai, parson 2 pm book kr dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Generator repair"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Ali k liye chemistry tuition ka slot Sunday 11 am confirm kar dein", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Ali"}, {"entity": "service", "value": "chemistry tuition"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Facial k lye kal 4 bje appointment confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 bje"}]}
+{"text": "Eye test k liye slot reserve kr dein tomorrow 10 am", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Eye test"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Car oil change k liye slot fix kr dain Sunday 3 pm Hamza", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Car oil change"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "3 pm"}, {"entity": "name", "value": "Hamza"}]}
+{"text": "Dr Asif k sath appointment confirm kr dain tomorrow 11 am", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Bhai mera laptop repair k liye kal dopahar 2 baje ka slot book kar dain", "intent": "book_appointment", "entities": [{"entity": "service", "value": "laptop repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 2 baje"}]}
+{"text": "Physics tuition k liye Monday ko 6 pm slot lock kr dein please - Bilal", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Physics tuition"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "6 pm"}, {"entity": "name", "value": "Bilal"}]}
+{"text": "AOA, Sunday 3pm hydra facial ka slot book krna hai mera", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "3pm"}, {"entity": "service", "value": "hydra facial"}]}
+{"text": "Dental checkup k liye appointment schedule kr dein Saturday 4 bje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Dental checkup"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "4 bje"}]}
+{"text": "AC service ki booking confirm karein for Friday 10 am", "intent": "book_appointment", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Maths demo class kal shaam 5 bje rakh lein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Maths demo class"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "shaam 5 bje"}]}
+{"text": "Can you please book a mani pedi slot for Sana tomorrow 4pm?", "intent": "book_appointment", "entities": [{"entity": "service", "value": "mani pedi"}, {"entity": "name", "value": "Sana"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4pm"}]}
+{"text": "Dr Fatima ka slot book kr dain aaj raat 8 baje", "intent": "book_appointment", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "raat 8 baje"}]}
+{"text": "Mobile screen replacement k liye slot rakh lein for Tuesday", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "Tuesday"}]}
+{"text": "Sir chemistry lecture k liye Sunday slot confirm kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "chemistry lecture"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Haircut k liye mera slot book kr dein at 7 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Haircut"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Skin consultation k liye booking chahiye for Wednesday 12:30 pm - Zainab", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Skin consultation"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "12:30 pm"}, {"entity": "name", "value": "Zainab"}]}
+{"text": "Bhai car oil change k liye kal 11 bje booking kr dein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "car oil change"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 bje"}]}
+{"text": "Kal 5 bje haircut book kr dain please", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "5 bje"}, {"entity": "service", "value": "haircut"}]}
+{"text": "Aoa doctor sb, kal subah 11 baje ka checkup slot mil sakta hai? Name is Hamza", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 baje"}, {"entity": "service", "value": "checkup"}, {"entity": "name", "value": "Hamza"}]}
+{"text": "Mera car AC repair ka slot confirm kr dein for tomorrow 3 pm", "intent": "book_appointment", "entities": [{"entity": "service", "value": "car AC repair"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "3 pm"}]}
+{"text": "Sunday ko physics tuition ki class schedule kar dain 4 baje", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "physics tuition"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Bhai mera slot rakh lein sham 6 baje oil change k liye", "intent": "book_appointment", "entities": [{"entity": "time", "value": "sham 6 baje"}, {"entity": "service", "value": "oil change"}]}
+{"text": "Plz book appointment for facial tomorrow evening 7pm for Ayesha", "intent": "book_appointment", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "evening 7pm"}, {"entity": "name", "value": "Ayesha"}]}
+{"text": "Dr Usman k sath dental scaling ki appointment fix kr dein aaj 6 bje", "intent": "book_appointment", "entities": [{"entity": "service", "value": "dental scaling"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "6 bje"}]}
+{"text": "Can you confirm my appointment on Friday at 2:30 pm?", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Friday"}, {"entity": "time", "value": "2:30 pm"}]}
+{"text": "Sunday slot confirm kr dein math demo k liye", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Sunday"}, {"entity": "service", "value": "math demo"}]}
+{"text": "Screen replacement karwani hai mobile ki, aaj 4 baje slot book kardein", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Screen replacement"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Please book slot for bridal makeup on 15th November", "intent": "book_appointment", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "15th November"}]}
+{"text": "Kal sham 5 baje tuition slot book karna hai for chemistry", "intent": "book_appointment", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "sham 5 baje"}, {"entity": "service", "value": "tuition slot"}, {"entity": "service", "value": "chemistry"}]}
+{"text": "Doctor saab kal ka appointment book kr dain mera name Bilal Tariq hai", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "name", "value": "Bilal Tariq"}]}
+{"text": "Generator servicing k liye banda bhej dain Saturday 10 am", "intent": "book_appointment", "entities": [{"entity": "service", "value": "Generator servicing"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Mera slot rakh lein kal dopahar 2 baje haircut aur beard trim k lye", "intent": "book_appointment", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 2 baje"}, {"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Salam Dr Ahmed, mera dental checkup kal k bajaye parson kr dein please.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Ahmed"}, {"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "Aoa, meri haircut appointment timing badal dein, kal 5 pm p shift kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Bhai mobile repair wali appointment aagy shift krna tha, aaj time nahi mil raha.", "intent": "reschedule", "entities": [{"entity": "service", "value": "mobile repair"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Sir Bilal, physics class aaj sham 6 baje k bajaye kal subah 10 baje rakh lein?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Bilal"}, {"entity": "service", "value": "physics class"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "6 baje"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 baje"}]}
+{"text": "Can I reschedule my appointment with Dr Sara to Monday?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Facial ka time change ho sakta hai? 4 baje k bajaye 7 baje kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "time", "value": "4 baje"}, {"entity": "time", "value": "7 baje"}]}
+{"text": "AC repair visit postpone kr k Friday ko shift kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Maths tuition kal afternoon mein shift ho sakti hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "Maths tuition"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "afternoon"}]}
+{"text": "Eye checkup kal subah 11 am pe kar dein, aaj nahi aa sakta.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Eye checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 am"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Mera bridal makeup ka slot aage move karna hai, 25th October ko available hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "25th October"}]}
+{"text": "Bhai laptop cleaning ka slot change krna hai, Saturday 3 pm free hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "laptop cleaning"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "3 pm"}]}
+{"text": "Miss Hina chemistry lecture ko Wednesday ko reschedule kar dein please.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Miss Hina"}, {"entity": "service", "value": "chemistry lecture"}, {"entity": "date", "value": "Wednesday"}]}
+{"text": "Dr Usman, appointment timing change kr k 8 baje kr dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Usman"}, {"entity": "time", "value": "8 baje"}]}
+{"text": "Baji kal wala manicure parso 4 pm pe move kr dain.", "intent": "reschedule", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "manicure"}, {"entity": "date", "value": "parso"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Car tuning appointment aglay Tuesday ko shift kar dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Car tuning"}, {"entity": "date", "value": "Tuesday"}]}
+{"text": "Salam Dr Asim meri appointment kal k bajaye parson 5 pm pe shift kar dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Hi Sara mera haircut ka time change kar k Friday 4 baje kar sakti hain?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sara"}, {"entity": "service", "value": "haircut"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Bhai car tuning ka time aage shift karna hai, Saturday subah 11 baje rakh lein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "subah 11 baje"}]}
+{"text": "Sir Usman maths class aaj nahi ho sakti, kal sham 6 baje rakh lein please.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "maths class"}, {"entity": "date", "value": "aaj"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 6 baje"}]}
+{"text": "AOA Dr Fatima, physiotherapy session Monday ko 3 baje reschedule kar dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "physiotherapy"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Facial ki booking thi kal ki, usay Sunday sham 7 baje move kar dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "sham 7 baje"}]}
+{"text": "AC service timing badal dein aur Tuesday dopahar 2 baje ka time de dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "dopahar 2 baje"}]}
+{"text": "Sir physics tuition parson 4 pm pe shift kar dein urgent kaam hai.", "intent": "reschedule", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Dr Bilal mera skin consultation kal subah 10 baje adjust kar dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Bilal"}, {"entity": "service", "value": "skin consultation"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 10 baje"}]}
+{"text": "AOA bridal makeup trial ki date change karni thi, 15th October ko shift kar dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup trial"}, {"entity": "date", "value": "15th October"}]}
+{"text": "Ustad Ji bike repair kal nahi karwani, Thursday subah 9 baje le kar aaoon ga.", "intent": "reschedule", "entities": [{"entity": "service", "value": "bike repair"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "Thursday"}, {"entity": "time", "value": "subah 9 baje"}]}
+{"text": "Miss Ayesha English class ka slot reschedule kar k Wednesday sham 5 baje kar dain.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Miss Ayesha"}, {"entity": "service", "value": "English class"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "sham 5 baje"}]}
+{"text": "Meri eye checkup aagy shift krna tha, Friday 7 pm possible hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "eye checkup"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Manicure pedicure Saturday dopahar 12 baje kar dain please.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Manicure pedicure"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "dopahar 12 baje"}]}
+{"text": "Generator maintenance ka schedule change kar k Monday subah 10 baje rakh dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Generator maintenance"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "subah 10 baje"}]}
+{"text": "Salam Dr Bilal, mera dental checkup ka appointment kal 4 baje tha, kia parson 5 baje shift ho sakta hai?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Bilal"}, {"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 baje"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "5 baje"}]}
+{"text": "Aoa, hair cut ki booking kal k bajaye parson kr dein please.", "intent": "reschedule", "entities": [{"entity": "service", "value": "hair cut"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "Bhai mera AC repair ka slot Friday ko 3 pm pe move kr dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "3 pm"}]}
+{"text": "Sir Usman maths tuition aaj sham 6 baje k bajaye kal subah 10 am kr len?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "sham 6 baje"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 10 am"}]}
+{"text": "Dr Ayesha appointment aagy shift krna tha, Monday ko slot mil jaye gi?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Can I reschedule my facial appointment to 6 pm today?", "intent": "reschedule", "entities": [{"entity": "service", "value": "facial"}, {"entity": "time", "value": "6 pm"}, {"entity": "date", "value": "today"}]}
+{"text": "Laptop repair ki timing badal dein, main abhi nahi aa sakta.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Laptop repair"}]}
+{"text": "Physics class ka time change kar k parson 4:30 pm rakh lein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Physics class"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Skin consultation ka slot postpone kr k next Saturday kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Skin consultation"}, {"entity": "date", "value": "next Saturday"}]}
+{"text": "Baji bridal makeup ka trial Tuesday ko shift kr skty hain?", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Tuesday"}]}
+{"text": "Car tuning k liye kal nahi aaskta, timing badal dein sham 5 baje ki.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Car tuning"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "sham 5 baje"}]}
+{"text": "Mera checkup kal tha 2 pm, please usko parson 2 pm pe reschedule kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "2 pm"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Miss Hira, English lecture kal 7 pm k bajaye Sunday 11 am shift kr dain.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Miss Hira"}, {"entity": "service", "value": "English lecture"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "7 pm"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Appointment aagy shift krna tha manicure ka, Friday 4 pm available hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Mobile repair ka appointment aaj k bajaye kal dopahar 2 baje shift kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mobile repair"}, {"entity": "date", "value": "aaj"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopahar 2 baje"}]}
+{"text": "Dr Asif k sath appointment kal k bajaye parson shift kr dein please", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "Meri haircut ki booking aaj shaam 6 baje se kal 4 baje kr dain", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "shaam 6 baje"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Bhai AC servicing ka slot change kr k parson 3 baje kr dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC servicing"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Sir Hamza maths tuition class Monday k bajaye Tuesday 5 pm rakh lein", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "Monday"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Salam, Dr Fatima ki checkup appointment Monday ko shift ho sakti hai?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Facial appointment timing badal dein, aaj nahi aa sakti", "intent": "reschedule", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Generator repair ka time aage shift kr dain kal 11 baje kr lein", "intent": "reschedule", "entities": [{"entity": "service", "value": "Generator repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 baje"}]}
+{"text": "Can we please reschedule chemistry class to tomorrow 6pm?", "intent": "reschedule", "entities": [{"entity": "service", "value": "chemistry class"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "6pm"}]}
+{"text": "Dental cleaning appointment aagy shift krna tha, Friday available hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "Dental cleaning"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Mera bridal makeup trial Saturday k bajaye Sunday 2 baje kr dein - Ayesha", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup trial"}, {"entity": "date", "value": "Saturday"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "2 baje"}, {"entity": "name", "value": "Ayesha"}]}
+{"text": "Mobile screen replacement appointment kal 5 baje move kr dein kindly", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 baje"}]}
+{"text": "Physics session kal 10 baje k bajaye shaam 7 baje shift ho sakta hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "Physics session"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 baje"}, {"entity": "time", "value": "shaam 7 baje"}]}
+{"text": "Bhaiya Dr Tariq k sath consultation timing change kr k aaj shaam 8 baje kr dein", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Tariq"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "shaam 8 baje"}]}
+{"text": "Please manicure timing change kr dain kal 12 baje", "intent": "reschedule", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Laptop repair ka time change kr k Wednesday afternoon kr dein please", "intent": "reschedule", "entities": [{"entity": "service", "value": "Laptop repair"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "afternoon"}]}
+{"text": "Dr. Asif ki appointment kal k bajaye parson kr dein please", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr. Asif"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "AOA, mera facial ka slot 5 baje se 7 baje shift ho sakta hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "facial"}, {"entity": "time", "value": "5 baje"}, {"entity": "time", "value": "7 baje"}]}
+{"text": "Bhai car tuning kal nahi ho sakti, Saturday ko 3 PM rakh lein", "intent": "reschedule", "entities": [{"entity": "service", "value": "car tuning"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "3 PM"}]}
+{"text": "Sir maths tuition ki timing badal dein, aaj shaam 6 baje le lein", "intent": "reschedule", "entities": [{"entity": "service", "value": "maths tuition"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "shaam 6 baje"}]}
+{"text": "Can we move my dental checkup from Monday to Wednesday?", "intent": "reschedule", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "Monday"}, {"entity": "date", "value": "Wednesday"}]}
+{"text": "Mera haircut ka appointment aagy shift krna tha, Friday sham ko kr dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "sham"}]}
+{"text": "AC repair k liye technician ko kal subah 11 am bhej dein aaj busy hoon", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "subah 11 am"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Physics class ka time change kar k parso 4:30 pm kr dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "Physics class"}, {"entity": "date", "value": "parso"}, {"entity": "time", "value": "4:30 pm"}]}
+{"text": "Salam, Dr Fatima se checkup postpone kr k kal dopehar 2 baje rakh lein", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopehar 2 baje"}]}
+{"text": "Mera bridal makeup ka trial aglay haftey shift kr dein please", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "aglay haftey"}]}
+{"text": "Mobile screen replacement wali booking postpone karke Sunday 12 baje kar dain", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Sir Usman aaj class nahi ho sakegi, kal 5 pm arrange kr dein", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "date", "value": "aaj"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Skin consultation ka slot move kar dein please, aaj nahi aa paunga", "intent": "reschedule", "entities": [{"entity": "service", "value": "Skin consultation"}, {"entity": "date", "value": "aaj"}]}
+{"text": "Hi, can you reschedule my manicure appointment for tomorrow 4 PM?", "intent": "reschedule", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "4 PM"}]}
+{"text": "Generator service timing badal dein, parson subah 10 baje theek rahay ga", "intent": "reschedule", "entities": [{"entity": "service", "value": "Generator service"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "subah 10 baje"}]}
+{"text": "Dr Asif k sath meri appointment kal k bajaye parson kr dein please", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "AOA, facial ki booking Saturday 5 pm par shift ho sakti hai?", "intent": "reschedule", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "5 pm"}]}
+{"text": "Bhai car service kal nahi ho sakegi, Monday ko 11 am pe rakh lein", "intent": "reschedule", "entities": [{"entity": "service", "value": "car service"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Sir physics class aaj sham 6 baje ki bajaye kal subah 10 baje shift kar dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "physics class"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "6 baje"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 baje"}]}
+{"text": "Mera haircut ka appointment kal 3 baje tha usko aage barha dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Dr Sara dental checkup appointment shift krna tha next week Tuesday ko", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "Tuesday"}]}
+{"text": "Mobile repair k liye timing badal dein, can I come at 4 pm instead?", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mobile repair"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Miss Hina, Ali ki tuition timing change karke 7 pm karden please", "intent": "reschedule", "entities": [{"entity": "name", "value": "Miss Hina"}, {"entity": "name", "value": "Ali"}, {"entity": "service", "value": "tuition"}, {"entity": "time", "value": "7 pm"}]}
+{"text": "Doctor sahab mera appointment kal 11 baje se shift karke 4 baje sham ka kar dein", "intent": "reschedule", "entities": [{"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 baje"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "Can you reschedule my bridal makeup to Sunday afternoon?", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Generator repair ka slot parson 2 pm pe change kar dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "Generator repair"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Kal ki maths class reschedule karni hai to Friday", "intent": "reschedule", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "maths class"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Salam, Dr Bilal appointment aagy shift krna tha Wednesday 6:30 pm", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Bilal"}, {"entity": "date", "value": "Wednesday"}, {"entity": "time", "value": "6:30 pm"}]}
+{"text": "Manicure booking Friday ki bajaye Saturday 12 baje kar dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "Manicure"}, {"entity": "date", "value": "Friday"}, {"entity": "date", "value": "Saturday"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Bhai AC repair wali appointment kal k bajaye aaj sham 8 pm kr dein", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "aaj"}, {"entity": "time", "value": "8 pm"}]}
+{"text": "Doctor sahab meri dental checkup kal k bajaye parson kr dein please.", "intent": "reschedule", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "parson"}]}
+{"text": "AOA, haircut ki timing badal dein, can we do it at 5 PM today?", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "time", "value": "5 PM"}, {"entity": "date", "value": "today"}]}
+{"text": "Sir physics tuition Monday 4:00 baje shift krna tha.", "intent": "reschedule", "entities": [{"entity": "service", "value": "physics tuition"}, {"entity": "date", "value": "Monday"}, {"entity": "time", "value": "4:00 baje"}]}
+{"text": "Bhai AC repair appointment Friday ko move ho sakti hai 3 baje?", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "date", "value": "Friday"}, {"entity": "time", "value": "3 baje"}]}
+{"text": "Salam Dr Asif, can you reschedule my consultation to tomorrow 11 am?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "consultation"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "11 am"}]}
+{"text": "Meri bridal makeup ki booking next Saturday ko shift kar dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "next Saturday"}]}
+{"text": "Car tuning kal nahi ho sakti, Tuesday ko 2 pm ka time de dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Car tuning"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "2 pm"}]}
+{"text": "Mam maths class aj shaam 6 baje rakh lein?", "intent": "reschedule", "entities": [{"entity": "service", "value": "maths class"}, {"entity": "time", "value": "6 baje"}]}
+{"text": "Blood test ki appointment reschedule krni thi.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Blood test"}]}
+{"text": "Can I move my facial appointment from 2 PM to 6 PM?", "intent": "reschedule", "entities": [{"entity": "service", "value": "facial"}, {"entity": "time", "value": "2 PM"}, {"entity": "time", "value": "6 PM"}]}
+{"text": "Mobile screen replacement ka time badal dein, kal subah 10 baje theek rahay ga.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mobile screen replacement"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "10 baje"}]}
+{"text": "Sir Usman chemistry lecture parson 5pm shift kr dain.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "chemistry lecture"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Dr Fatima ka checkup Thursday ko 4 pm per shift kar dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "Thursday"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Mani pedi session aaj ke bajaye Sunday ko 12 baje kar dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Mani pedi"}, {"entity": "date", "value": "Sunday"}, {"entity": "time", "value": "12 baje"}]}
+{"text": "Washing machine repair ka time agay barhana hai.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Washing machine repair"}]}
+{"text": "Salam doctor sahib, mera kal ka checkup Friday ko shift kr skty hain?", "intent": "reschedule", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "Friday"}]}
+{"text": "AOA baji, meri haircut wali booking kal k bajaye parson 4 pm pe shift kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}, {"entity": "time", "value": "4 pm"}]}
+{"text": "Bhai AC repair ka time change kr k sham 6 baje kr dain please.", "intent": "reschedule", "entities": [{"entity": "service", "value": "AC repair"}, {"entity": "time", "value": "sham 6 baje"}]}
+{"text": "Sir Ali, physics class can we reschedule for tomorrow at 10 am?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Ali"}, {"entity": "service", "value": "physics class"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "10 am"}]}
+{"text": "Dr Usman k sath appointment 5 baje k bajaye 7 baje kr dein.", "intent": "reschedule", "entities": [{"entity": "name", "value": "Dr Usman"}, {"entity": "time", "value": "5 baje"}, {"entity": "time", "value": "7 baje"}]}
+{"text": "Can you please reschedule my facial appointment to Monday?", "intent": "reschedule", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Bike tuning ka time badal kr kal dopehar 2 baje rakh dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "dopehar 2 baje"}]}
+{"text": "Sir tuition thori aagy shift kr skty hain aj 8 pm pe?", "intent": "reschedule", "entities": [{"entity": "service", "value": "tuition"}, {"entity": "date", "value": "aj"}, {"entity": "time", "value": "8 pm"}]}
+{"text": "Mera dental checkup Wednesday ko kr dein kal nahi a skta.", "intent": "reschedule", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "date", "value": "Wednesday"}, {"entity": "date", "value": "kal"}]}
+{"text": "Hi, Fatima here. Can we change my bridal makeup slot to next Saturday?", "intent": "reschedule", "entities": [{"entity": "name", "value": "Fatima"}, {"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "next Saturday"}]}
+{"text": "Laptop repairing k liye kal ana tha but timing badal k parson kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Laptop repairing"}, {"entity": "date", "value": "kal"}, {"entity": "date", "value": "parson"}]}
+{"text": "Maths lecture aj k bajaye Tuesday sham 5 baje shift kr dein.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Maths lecture"}, {"entity": "date", "value": "aj"}, {"entity": "date", "value": "Tuesday"}, {"entity": "time", "value": "sham 5 baje"}]}
+{"text": "Appointment aagy shift krna tha, kiya parson 3 pm ka slot mil skta hai?", "intent": "reschedule", "entities": [{"entity": "date", "value": "parson"}, {"entity": "time", "value": "3 pm"}]}
+{"text": "Baji manicure ka time change kr dein 6 baje nahi a sakti.", "intent": "reschedule", "entities": [{"entity": "service", "value": "manicure"}, {"entity": "time", "value": "6 baje"}]}
+{"text": "Generator servicing kal 11 am k bajaye Sunday ko shift kr dain.", "intent": "reschedule", "entities": [{"entity": "service", "value": "Generator servicing"}, {"entity": "date", "value": "kal"}, {"entity": "time", "value": "11 am"}, {"entity": "date", "value": "Sunday"}]}

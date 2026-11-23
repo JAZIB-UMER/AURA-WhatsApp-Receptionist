@@ -1,0 +1,20 @@
+# Whitelist: only what the image needs. Secrets (.env, credentials.json), the database (storage/),
+# the virtual environment, datasets and training files can never end up in the image.
+*
+!requirements.txt
+!main.py
+!Dashboard.py
+!chat_cli.py
+!app/
+!app_pages/
+!.streamlit/config.toml
+!models/intent_model_v2_fp16/
+!models/entity_model_fp16/
+!tests/send_test_webhook.py
+
+**/__pycache__
+**/*.pyc
+models/*/training_args.bin
+models/*/errors_ner.json
+models/*/results*.json
+models/*/classification_report*.txt

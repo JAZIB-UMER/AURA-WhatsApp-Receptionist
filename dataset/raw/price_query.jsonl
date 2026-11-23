@@ -1,0 +1,105 @@
+{"text": "Dr Asif ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "checkup"}]}
+{"text": "Keratin treatment k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "Bike tuning kitny ki hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bike tuning"}]}
+{"text": "Sir Hamza O levels Physics tuition ki monthly fee kya hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "O levels Physics tuition"}]}
+{"text": "Teeth scaling ka total package rate kya hai clinic pe?", "intent": "price_query", "entities": [{"entity": "service", "value": "Teeth scaling"}]}
+{"text": "Aoa, party makeup aur hair style ke kitne paise lety hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "party makeup"}, {"entity": "service", "value": "hair style"}]}
+{"text": "Laptop screen replacement ka cost estimate bata dain please.", "intent": "price_query", "entities": [{"entity": "service", "value": "Laptop screen replacement"}]}
+{"text": "Maths tuition per subject rate kia h class 10 ke liye?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "Dr Sarah ka consultation charge kitna hy?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sarah"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Facial and manicure karwani hai, total rate list send kardein.", "intent": "price_query", "entities": [{"entity": "service", "value": "Facial"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AC gas refill k kitne charge letay hain technician bhai?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC gas refill"}]}
+{"text": "Home tutor for chemistry fee per hour kitni mang rhy hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Home tutor for chemistry"}]}
+{"text": "Kal ultrasound karwana hai, charges kia hongy?", "intent": "price_query", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "service", "value": "ultrasound"}]}
+{"text": "Bridal package ka kya rate chal raha hai aaj kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bridal package"}]}
+{"text": "Mobile battery change karwane ke kitne paise lagte hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Mobile battery change"}]}
+{"text": "haircut ka kitna charge h?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}]}
+{"text": "AoA Dr Asif ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "checkup"}]}
+{"text": "bike tuning kitny ki hogi brother?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "Maths tuition k monthly charges kitne hein?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "facial aur manicure ka package rate bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "facial"}, {"entity": "service", "value": "manicure"}]}
+{"text": "AC general service k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC general service"}]}
+{"text": "teeth whitening ka total kharcha kitna hoga clinic pe?", "intent": "price_query", "entities": [{"entity": "service", "value": "teeth whitening"}]}
+{"text": "Sir Hamza physics k per subject charges kitne lety hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Hamza"}, {"entity": "service", "value": "physics"}]}
+{"text": "oil change k kitny pesy lagen gy kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "oil change"}, {"entity": "date", "value": "kal"}]}
+{"text": "bridal makeup charges for next week Saturday please?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup"}, {"entity": "date", "value": "next week Saturday"}]}
+{"text": "iPhone screen replacement ka cost kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "iPhone screen replacement"}]}
+{"text": "ultrasound test ki fee bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound test"}]}
+{"text": "O level chemistry tuition fees kya hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level chemistry tuition"}]}
+{"text": "Dr Sara consultation fee kitni leti hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "service", "value": "consultation"}]}
+{"text": "keratin treatment kitne mein ho jaye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "haircut ka kitna charge h?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}]}
+{"text": "Dr. Asif ka consultation fee kitna hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr. Asif"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Bhai AC service k charges bta dain kal k liye", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}]}
+{"text": "Sir O levels physics tuition ki monthly fees kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "physics tuition"}]}
+{"text": "Hydra facial k kitnay charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "Dental scaling kitne me hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "Dental scaling"}]}
+{"text": "bike tuning kitny ki hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "Sir maths coaching ki fees kitni hy?", "intent": "price_query", "entities": [{"entity": "service", "value": "maths coaching"}]}
+{"text": "Keratin treatment ka package rate bata den please", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "CBC blood test k charges kia hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "CBC blood test"}]}
+{"text": "Laptop screen replacement ka cost kitna aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Laptop screen replacement"}]}
+{"text": "Dr Hamza ka general checkup fee kitna hy?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Hamza"}, {"entity": "service", "value": "general checkup"}]}
+{"text": "Online tuition k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Online tuition"}]}
+{"text": "Bridal makeup k charges kia hain Sunday k liye?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bridal makeup"}, {"entity": "date", "value": "Sunday"}]}
+{"text": "Mobile screen change karwane k kitnay paise lagain gy?", "intent": "price_query", "entities": [{"entity": "service", "value": "screen change"}]}
+{"text": "AoA, bridal makeup k kia charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup"}]}
+{"text": "Dr Asim ki consultation fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "consultation"}]}
+{"text": "bike tuning kitny ki hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "O level physics tuition fee per month kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level physics tuition"}]}
+{"text": "hair color karwana hai short hair ka rate bta den", "intent": "price_query", "entities": [{"entity": "service", "value": "hair color"}]}
+{"text": "AC general service k kitne paise lein ge?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC general service"}]}
+{"text": "Salam, root canal treatment ka total cost kitna paray ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "root canal treatment"}]}
+{"text": "Sir Usman maths class k kitne charge karte hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "maths class"}]}
+{"text": "hydra facial ka package price kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "hydra facial"}]}
+{"text": "laptop screen replacement ki cost kia hai Dell Inspiron ki?", "intent": "price_query", "entities": [{"entity": "service", "value": "laptop screen replacement"}]}
+{"text": "Dr Fatima ka checkup fee schedule kia hy for tomorrow?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "tomorrow"}]}
+{"text": "Class 9 chemistry home tuition k kia charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "home tuition"}]}
+{"text": "haircut and beard trim ka package price bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Generator oil change kitnay main hoga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Generator oil change"}]}
+{"text": "Salam, ultrasound ka kitna charge hoga monday ko?", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound"}, {"entity": "date", "value": "monday"}]}
+{"text": "Dr Asim ki consultation fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "consultation"}]}
+{"text": "Haircut and beard trim k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Bike tuning aur oil change kitnay ka hoga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Bike tuning"}, {"entity": "service", "value": "oil change"}]}
+{"text": "O level Physics tuition ki per month fee kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Physics tuition"}]}
+{"text": "Ac service k kitnay letay hain ap?", "intent": "price_query", "entities": [{"entity": "service", "value": "Ac service"}]}
+{"text": "Dr Fatima say checkup karwane k charges kia hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Fatima"}, {"entity": "service", "value": "checkup"}]}
+{"text": "iPhone screen replacement ka rate bata dain please", "intent": "price_query", "entities": [{"entity": "service", "value": "screen replacement"}]}
+{"text": "Hydra facial ke kya charges hain apke parlor mein?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "Teeth scaling ka kya kharcha aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "Teeth scaling"}]}
+{"text": "Laptop motherboard repair ki cost kia hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "motherboard repair"}]}
+{"text": "Math tuition k kitnay charges letay hain Sir Usman?", "intent": "price_query", "entities": [{"entity": "service", "value": "Math tuition"}, {"entity": "name", "value": "Sir Usman"}]}
+{"text": "Keratin treatment ka total price kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Keratin treatment"}]}
+{"text": "Generator service k kitnay charges hongay?", "intent": "price_query", "entities": [{"entity": "service", "value": "Generator service"}]}
+{"text": "Ultrasound ki fee kitni hai clinic per?", "intent": "price_query", "entities": [{"entity": "service", "value": "Ultrasound"}]}
+{"text": "Sir Bilal se chemistry class ki fee maloom karni hai", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Bilal"}, {"entity": "service", "value": "chemistry class"}]}
+{"text": "AoA, haircut aur beard trim k total kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "service", "value": "beard trim"}]}
+{"text": "Dr Asif ki consultation fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asif"}, {"entity": "service", "value": "consultation"}]}
+{"text": "bike tuning kitny ki hogi brother?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "O Level physics tuition ki per month fee kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "O Level physics tuition"}]}
+{"text": "Hydra facial k kya charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "Hydra facial"}]}
+{"text": "dental scaling ke kitne paise honge kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "dental scaling"}, {"entity": "date", "value": "kal"}]}
+{"text": "AC service k charges bta den please", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}]}
+{"text": "class 10 maths tuition ki fees kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "class 10 maths tuition"}]}
+{"text": "ultrasound ka rate kia chal raha hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "ultrasound"}]}
+{"text": "keratin treatment ki price bta dain", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "laptop screen replacement cost kitni aye gi?", "intent": "price_query", "entities": [{"entity": "service", "value": "laptop screen replacement"}]}
+{"text": "Dr Sara ka checkup fee kitna hai aaj?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Sara"}, {"entity": "service", "value": "checkup"}, {"entity": "date", "value": "aaj"}]}
+{"text": "generator repair karne k kitne paise letay hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "generator repair"}]}
+{"text": "Sir Hamza chemistry class ke charges kitne lete hain?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Hamza"}, {"entity": "service", "value": "chemistry class"}]}
+{"text": "bridal makeup package price list mil sakti hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "bridal makeup package"}]}
+{"text": "haircut ka kitna charge h?", "intent": "price_query", "entities": [{"entity": "service", "value": "haircut"}]}
+{"text": "Dr Asim ki checkup fee kitni hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Asim"}, {"entity": "service", "value": "checkup"}]}
+{"text": "bike tuning kitny ki hogi?", "intent": "price_query", "entities": [{"entity": "service", "value": "bike tuning"}]}
+{"text": "Maths tuition ki per month fee kitni hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "Maths tuition"}]}
+{"text": "hydra facial ke charges bata dain please", "intent": "price_query", "entities": [{"entity": "service", "value": "hydra facial"}]}
+{"text": "AC service k kitne paise honge kal?", "intent": "price_query", "entities": [{"entity": "service", "value": "AC service"}, {"entity": "date", "value": "kal"}]}
+{"text": "teeth scaling ka package rate bata dain", "intent": "price_query", "entities": [{"entity": "service", "value": "teeth scaling"}]}
+{"text": "oil change ka kitna lety hain aap?", "intent": "price_query", "entities": [{"entity": "service", "value": "oil change"}]}
+{"text": "Sir Usman ki physics classes ki monthly fee kya hai?", "intent": "price_query", "entities": [{"entity": "name", "value": "Sir Usman"}, {"entity": "service", "value": "physics classes"}]}
+{"text": "keratin treatment ke charges bata dein", "intent": "price_query", "entities": [{"entity": "service", "value": "keratin treatment"}]}
+{"text": "root canal treatment ki cost kia hai?", "intent": "price_query", "entities": [{"entity": "service", "value": "root canal treatment"}]}
+{"text": "generator repair karne k kitne charges hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "generator repair"}]}
+{"text": "O level chemistry tuition ka kitna charge karte hain?", "intent": "price_query", "entities": [{"entity": "service", "value": "O level chemistry tuition"}]}
+{"text": "Dr Ayesha ka consultation fee structure share kr den", "intent": "price_query", "entities": [{"entity": "name", "value": "Dr Ayesha"}, {"entity": "service", "value": "consultation"}]}
+{"text": "mobile screen replacement ka kitna kharcha aye ga?", "intent": "price_query", "entities": [{"entity": "service", "value": "mobile screen replacement"}]}

@@ -1,0 +1,150 @@
+[
+ {
+  "text": "appointment leni hai",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "appointment milegi?",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "doctor se milna hai",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "appt chahiye",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Booking karni hai",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "booking krwani hai",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "appointment book karni hai",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "cancel krdo",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "nahi aa sakta, cancel",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "cancel appt",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "cancel it",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "booking cancel",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "cancel my booking",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "doctor available hain?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "khali time hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kal ka slot?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "aaj available?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "slot hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "abhi aa jaun?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "helo",
+  "intent": "greeting"
+ },
+ {
+  "text": "hey there",
+  "intent": "greeting"
+ },
+ {
+  "text": "aoa sir",
+  "intent": "greeting"
+ },
+ {
+  "text": "Wsalam",
+  "intent": "greeting"
+ },
+ {
+  "text": "salam ji",
+  "intent": "greeting"
+ },
+ {
+  "text": "hey",
+  "intent": "greeting"
+ },
+ {
+  "text": "kitne paise?",
+  "intent": "price_query"
+ },
+ {
+  "text": "rate kya hai",
+  "intent": "price_query"
+ },
+ {
+  "text": "charges kya hain",
+  "intent": "price_query"
+ },
+ {
+  "text": "price list bhejo",
+  "intent": "price_query"
+ },
+ {
+  "text": "charges?",
+  "intent": "price_query"
+ },
+ {
+  "text": "rate list",
+  "intent": "price_query"
+ },
+ {
+  "text": "time change please",
+  "intent": "reschedule"
+ },
+ {
+  "text": "date change karo",
+  "intent": "reschedule"
+ },
+ {
+  "text": "reschedule please",
+  "intent": "reschedule"
+ },
+ {
+  "text": "shift kar do",
+  "intent": "reschedule"
+ },
+ {
+  "text": "change my time",
+  "intent": "reschedule"
+ },
+ {
+  "text": "kal ki jagah parso kar do",
+  "intent": "reschedule"
+ }
+]

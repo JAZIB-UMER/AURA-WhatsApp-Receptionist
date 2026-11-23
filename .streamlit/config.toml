@@ -1,0 +1,57 @@
+# AURA dashboard theme — always light (based on the dense-dashboard template).
+# Only [theme] and [theme.sidebar] are set (no [theme.light]/[theme.dark]), which locks the
+# appearance: the dashboard stays white even when the browser or Windows uses dark mode.
+
+[theme]
+base = "light"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "6px"
+buttonRadius = "6px"
+font = "'Inter':https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "'Inter':https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+baseFontSize = 14
+baseFontWeight = 400
+codeFontSize = "13px"
+headingFontSizes = ["28px", "22px", "18px", "16px", "14px", "12px"]
+headingFontWeights = [700, 600, 600, 600, 500, 500]
+linkUnderline = false
+paddingTop = "0.5rem"
+paddingBottom = "3rem"
+
+primaryColor = "#0F766E"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F5F9"
+codeBackgroundColor = "#F1F5F9"
+textColor = "#0F172A"
+linkColor = "#0F766E"
+borderColor = "#CBD5E1"
+codeTextColor = "#334155"
+greenColor = "#059669"
+redColor = "#DC2626"
+yellowColor = "#D97706"
+orangeColor = "#EA580C"
+blueColor = "#1D4ED8"
+violetColor = "#7C3AED"
+grayColor = "#64748B"
+chartCategoricalColors = ["#0F766E", "#059669", "#7C3AED", "#DC2626", "#D97706", "#0284C7", "#64748B", "#EA580C"]
+chartSequentialColors = ["#F0F9FF", "#E0F2FE", "#BAE6FD", "#7DD3FC", "#38BDF8",
+                         "#0EA5E9", "#0284C7", "#0369A1", "#075985", "#0C4A6E"]
+dataframeBorderColor = "#CBD5E1"
+dataframeHeaderBackgroundColor = "#E2E8F0"
+dataframeHeaderTextColor = "#0F172A"
+
+[theme.sidebar]
+paddingTop = "0.5rem"
+paddingBottom = "1.5rem"
+backgroundColor = "#F8FAFC"
+secondaryBackgroundColor = "#F1F5F9"
+codeBackgroundColor = "#E2E8F0"
+textColor = "#0F172A"
+borderColor = "#CBD5E1"
+primaryColor = "#0F766E"
+linkColor = "#0F766E"
+
+[client]
+toolbarMode = "minimal"

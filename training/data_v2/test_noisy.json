@@ -1,0 +1,498 @@
+[
+ {
+  "text": "AoA Zainab ka makeup slott cancle kar den 15th November ka",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Aoa plx cancle my haircut apointment for tomorrow at 5pm",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "kl car tuning nhi krwani cansel my slott",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Phone repair ka appt cansel kar den Usman ke name pe he.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Mobile screen replacement ki booking cancell kar den phone bech diya hai",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "sir kall 5 baje wali tuition class cancel kr do, me out of city hoon.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "mujhe apni apointment cancel krwani ha ap plz cncl kar den thanku",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Mera facial ka slott cancel kar dijiye 4 baje wala.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Sorry I can come today as I have to go somewhere else due to an emergency condition",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "dr sahab kl ka appointment cansel kr dain usman ka.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Hamna ki bridal makeup boking cncl karni hai Sunday wali",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "dr usman ke sath kall 10 am ka checkup cancel krna he",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Zainab ki dental checkup wali boking cansel kar dijiye",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "plz cancell the dental checkup booked under ali for friday.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "ajj shaam 7 baje physics class cancle krni thi",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Pls cncl my dental checkup scheduled for Friday",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Maths tuition cancell kar dain Monday ki",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Due to some reasons mn apni apointment cancel karana chahti hun.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Meri bkng khatam kar dein aj 5 bajay ki",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "doctor asif ki appointment cancle kar den friday ki.",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "urgent: plzz cansel physics class scheduled for 6pm today",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "bhaii mera ac repair wala slot cancel kar dain aj 3 baje ka",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "dr fatima se 4:30 pm ka checkup cansel krwana ha",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "AC repair ki bookng cansel karni hai, emergency aagai h",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Slam kall nahin aa sakti mani pedi booking cancel kr den",
+  "intent": "cancel_booking"
+ },
+ {
+  "text": "Assalam o alikum! I hope you’re doing well. Muja appointment book krwani ha. Kindly muja availble dates our timings bata do. Also please share the chrgs. Thank you.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "MN nay hair cutting krani ha. Kindly AJ shaam 5 bjy ki bkng kar ln",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "please book a slots for physics tuition tomorrow at 6:00 pm for hamza.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Dental checkup k liye appointment schedule kar dein Saturday 4 bajay",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "hey i wanted to book an appointment at your salon for a haircut next week if possible let me know",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Can you book an appoinment for ultrasound tomorrow at 10 am?",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Skin whitening consultation k liye appointment book krni hy for Sarah on Friday",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Skin consultation book karwayen Thursday 7 pm pe",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Can you book a demo class for maths tomorrow at 4 pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Keratin treatment k liye Sunday 12 bajay mera time confirm kar dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "aoa party makeup book kar dain saturday ko 4 pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "slam, dr tariq se consultation book krni hai aaj raat 9 bjy.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "han mujhe apointment book karwaani ha",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Physics demo class book krna hai tomorrow 5pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "mobile screen replacement k lye kl sham 7 bjay ajaon? bkng confirm karein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "doctor sahab se checkup k liye monday ko 4 pm ka tym book kar dein name usman ha",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Keratin treatment ka appointmnt book krna hai aj 6 bje.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "kal sbh bike inspection k liye time reserve kar dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Car oil change k liye kal 10 am slott book kar den Bilal k name pe",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mobile screen repair k liye appointmnt register kar dijiye for today 4:30 pm.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "kal sham 5 bajay tuition slot book karna he for chemistry",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "tuesday 5:30 pm dental checkup book kar lein dr ahmed se",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "aoa sir physics tuition k liye tomorrow 4:30 pm appt book kr dein",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "mera ac servic ka slott rakh lein kal 11 am",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Mera car tuning ka slots Friday ko 3:00 PM rakh lein, name Usman.",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Monday ko dental checkup appointment confirm kar dein shaam 6 pm",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "Dental scaling krwani hai, Friday 7 bajay slott mil jaye ga kindly confirm kar dain",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "sunday slott confirm kr dain math demo k liye",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "aslam o alaikum kal 5 baje haircut book kar dain mera ali name se",
+  "intent": "book_appointment"
+ },
+ {
+  "text": "hey kya ap mujy bata sakte hain ke hair services ka koi slott khaali hy jisko mai book kr sakun",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Bike tuning k lye sham 6 baje slot mil sakti h?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Laptop repairing k liye shop kb khulegi aaj",
+  "intent": "check_availability"
+ },
+ {
+  "text": "AOA kal 3 bajay slot khali h",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Is there any slott available for facial today evening?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kia aaj space hy laptop repair k liye?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Bhai car tuning ke liye ajj koi taim free he",
+  "intent": "check_availability"
+ },
+ {
+  "text": "sir usman chemistry crash course k liye slot khali ha weekend pe",
+  "intent": "check_availability"
+ },
+ {
+  "text": "bhae ajj laptop repair k liye koi slots avail hy?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Bhae laptop check karwana tha kya ap kal avlbl hen",
+  "intent": "check_availability"
+ },
+ {
+  "text": "salaam, can i visit today at 4:30 pm for teeth cleaning?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Salaam kal subah dental checkup ki slots khali hy",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kya aaj haircut k liye space he",
+  "intent": "check_availability"
+ },
+ {
+  "text": "aoa, phone repair k liye kal suba koi slots available hai?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "any slott open for bridal makeup on sunday?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Hydra facial karwana tha, Saturday ko koi appointment free he?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dr Usman avlbl hen aaj shaam ko?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "mobile screen replacement k lye kall suba 11 bje space hogi?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "is there any appt available on friday with dr aslam",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Assalamualaikum.mje confirm karni tha k kya AJ Dr ha",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dr Ayesha clinic me hn abhi?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kya physics class k liye monday ko slot avail he",
+  "intent": "check_availability"
+ },
+ {
+  "text": "kl suba 11 bajay dentist checkup ke liye space hogi?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Dentist sahab kal afternoon mein baithenge",
+  "intent": "check_availability"
+ },
+ {
+  "text": "Salaam, kl 3 bajay slots khali h clinic me?",
+  "intent": "check_availability"
+ },
+ {
+  "text": "hydra facial ka package prise kya h?",
+  "intent": "price_query"
+ },
+ {
+  "text": "class 10 maths tuition ki fee kitni hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "bhae ac srvc k charges bta dain kall k liye",
+  "intent": "price_query"
+ },
+ {
+  "text": "bike tuning kitny ki hogi",
+  "intent": "price_query"
+ },
+ {
+  "text": "Kall ultrasound karwana hai chrgs kia hongy",
+  "intent": "price_query"
+ },
+ {
+  "text": "Yess I want to know",
+  "intent": "price_query"
+ },
+ {
+  "text": "Sir Hamza chemistry class ke charjes kitnay lete hn?",
+  "intent": "price_query"
+ },
+ {
+  "text": "hair color karwana he short hair ka rate bta den",
+  "intent": "price_query"
+ },
+ {
+  "text": "O level chemistry tuition fees kia hai?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Mobile battery change karwane ke kitne paise lagte hen?",
+  "intent": "price_query"
+ },
+ {
+  "text": "slam, root canal treatment ka total cost kitna paray ga?",
+  "intent": "price_query"
+ },
+ {
+  "text": "haircut and beard trim ka package price bata dijiye",
+  "intent": "price_query"
+ },
+ {
+  "text": "May I get to know about fee charjes plz.",
+  "intent": "price_query"
+ },
+ {
+  "text": "keratin treatment ke charjes bata do",
+  "intent": "price_query"
+ },
+ {
+  "text": "AoA, haircut aur beard trim k total ktne charjes hain?",
+  "intent": "price_query"
+ },
+ {
+  "text": "iPhone screen replacement ka rate bata dain plz",
+  "intent": "price_query"
+ },
+ {
+  "text": "bridal makeup charjes for next week saturday pls?",
+  "intent": "price_query"
+ },
+ {
+  "text": "Dr Fatima say checkup karwane k charjes kya hn",
+  "intent": "price_query"
+ },
+ {
+  "text": "asalam o alaikum",
+  "intent": "greeting"
+ },
+ {
+  "text": "hello sir kaise hn?",
+  "intent": "greeting"
+ },
+ {
+  "text": "Hii its me nayab fida hope you're doing well",
+  "intent": "greeting"
+ },
+ {
+  "text": "aoa kya hal hai?",
+  "intent": "greeting"
+ },
+ {
+  "text": "hey salaam",
+  "intent": "greeting"
+ },
+ {
+  "text": "Eye checkup kl suba 11 am pe kar dein aaj nahi aa sakta",
+  "intent": "reschedule"
+ },
+ {
+  "text": "bhaiya dr tariq k sath consultation timing change kr k ajj shaam 8 bjy kar dain",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Doctor sahab mera appt kall 11 baje se shft karke 4 baje shm ka kar do",
+  "intent": "reschedule"
+ },
+ {
+  "text": "mera haircut ka appt aagy shft krna tha, friday shaam ko kar dein",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Can we plzz reschedule chemistry class to tomorrow 6pm",
+  "intent": "reschedule"
+ },
+ {
+  "text": "the appointment which i cancelled can you please rescheduled it on coming friday",
+  "intent": "reschedule"
+ },
+ {
+  "text": "meri eye checkup aagy shft krna tha, friday 7 pm possible h?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Sir physics class aaj sham 6 baje ki bajaye kall suba 10 bje shift kr do",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Hi can you re schedule my manicure appt for tomorrow 4 PM",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Can you plz re schedule my facial appointment to Monday",
+  "intent": "reschedule"
+ },
+ {
+  "text": "I have previously cancelled my appointment with doc agar AP ky Liya possible ho to usko rescheduled kr den on Friday at 12",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Can I reschdule my apointment with Dr Sara to Monday?",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Physics session kal 10 bjy k bajaye shaam 7 baje shft ho sakta he",
+  "intent": "reschedule"
+ },
+ {
+  "text": "sir usman maths class aj nai ho sakti, kal shaam 6 baje rakh lein please.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Baji manicure ka time change kr dein 6 baje nahi a sakti",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AOA Dr Fatima, physiotherapy session Monday ko 3 bajay re schedule kr dain.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "sir usman aj class nahi ho sakegi kall 5 pm arrange kar dein",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Miss Hira, English lecture kall 7 pm k bajaye Sunday 11 am shft kar dain.",
+  "intent": "reschedule"
+ },
+ {
+  "text": "Car tuning kall nahi ho sakti Tuesday ko 2 pm ka time de dain",
+  "intent": "reschedule"
+ },
+ {
+  "text": "bhaii mera ac repair ka slots friday ko 3 pm pe move kar dain",
+  "intent": "reschedule"
+ },
+ {
+  "text": "AC repair visit postpone kr k Friday ko shft kar dein",
+  "intent": "reschedule"
+ },
+ {
+  "text": "blood test ki appointmet reschedule krni thi.",
+  "intent": "reschedule"
+ }
+]

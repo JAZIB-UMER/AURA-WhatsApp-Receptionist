@@ -1,0 +1,59 @@
+# AURA on any computer with Docker:   docker compose up -d
+#   Dashboard        http://localhost:8501   (log in as "admin" with ADMIN_PASSWORD from .env)
+#   WhatsApp server  http://localhost:8000
+#   WhatsApp webhook registered automatically through a free Cloudflare tunnel (run and repaired by AURA)
+#
+# Next to this file (all private - never commit them):
+#   .env                      copy of .env.example; your API keys in it are imported on the first start
+#   secrets/credentials.json  optional: your Google service-account key, imported on the first start
+name: aura
+
+x-aura: &aura
+  image: ${AURA_IMAGE:-aura:latest}
+  env_file:
+    - path: .env
+      required: false
+  environment: &aura-env
+    REDIS_HOST: redis
+    REDIS_PORT: "6379"
+    AURA_DB: /app/storage/aura.db
+    INTENT_MODEL_DIR: /app/models/intent_model_v2_fp16
+    ENTITY_MODEL_DIR: /app/models/entity_model_fp16
+    MODEL_DTYPE: ${MODEL_DTYPE:-float16}   # float32 = original precision (more RAM, same answers)
+    GOOGLE_CREDENTIALS_FILE: /app/secrets/credentials.json
+  volumes:
+    - aura-data:/app/storage          # database: businesses, bookings, chats, settings
+    - ./secrets:/app/secrets:ro       # your Google key (read-only; imported once into the dashboard)
+  depends_on:
+    - redis
+  restart: unless-stopped
+
+services:
+  aura:                               # WhatsApp webhook server, reminders, Cloudflare tunnel
+    <<: *aura
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      <<: *aura-env
+      PUBLIC_TUNNEL: ${PUBLIC_TUNNEL:-cloudflare}   # "off" in .env to manage the webhook yourself
+    ports:
+      - "${AURA_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s              # loading the two models takes a while
+      retries: 3
+
+  dashboard:                          # management dashboard
+    <<: *aura
+    command: ["streamlit", "run", "Dashboard.py", "--server.address", "0.0.0.0", "--server.port", "8501",
+              "--server.headless", "true", "--browser.gatherUsageStats", "false"]
+    ports:
+      - "${DASHBOARD_PORT:-8501}:8501"
+
+  redis:                              # short-lived conversation memory
+    image: redis:7.4-alpine
+    restart: unless-stopped
+
+volumes:
+  aura-data:

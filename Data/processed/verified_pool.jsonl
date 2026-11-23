@@ -1,0 +1,12 @@
+{"text": "Salam doctor sahab, kal ki booking cancel kr dein meri tabiyat theek nahi", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}]}
+{"text": "Aoa, please cancel my haircut appointment for tomorrow at 5pm.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "haircut"}, {"entity": "date", "value": "tomorrow"}, {"entity": "time", "value": "5pm"}]}
+{"text": "Bhai mera car inspection ka time cancel kardo, mai nahi aa paonga", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "car inspection"}]}
+{"text": "Sir main kal tuition nahi parh sakunga, meri class cancel kr dain please - Usman", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "kal"}, {"entity": "service", "value": "tuition"}, {"entity": "name", "value": "Usman"}]}
+{"text": "Dr. Ahmed k sath 3pm ka appointment cancel kar dain", "intent": "cancel_booking", "entities": [{"entity": "name", "value": "Dr. Ahmed"}, {"entity": "time", "value": "3pm"}]}
+{"text": "Mera salon ka slot cancel kr dein 4 baje wala", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "salon"}, {"entity": "time", "value": "4 baje"}]}
+{"text": "AC repair ki booking cancel karni hai, emergency aagai hai", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "AC repair"}]}
+{"text": "Please cancel the dental checkup booked under Ali for Friday.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "dental checkup"}, {"entity": "name", "value": "Ali"}, {"entity": "date", "value": "Friday"}]}
+{"text": "Aaj sham 7 baje physics class cancel karni thi", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Aaj"}, {"entity": "time", "value": "sham 7 baje"}, {"entity": "service", "value": "physics class"}]}
+{"text": "Mobile repairing ki booking khatam kr dein, I got it fixed somewhere else.", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "Mobile repairing"}]}
+{"text": "Plz cancel my facial booking for Monday", "intent": "cancel_booking", "entities": [{"entity": "service", "value": "facial"}, {"entity": "date", "value": "Monday"}]}
+{"text": "Kal 11 am wala ultrasound slot free kar dain, patient cannot travel", "intent": "cancel_booking", "entities": [{"entity": "date", "value": "Kal"}, {"entity": "time", "value": "11 am"}, {"entity": "service", "value": "ultrasound"}]}
