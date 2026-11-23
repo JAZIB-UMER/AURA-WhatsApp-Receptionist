@@ -16,3 +16,6 @@ secrets/
 .claude/
 .agents/
 training/**/checkpoints*/
+
+# Image files for sharing (docker save) - far too big for git
+*.tar

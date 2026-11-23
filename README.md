@@ -75,7 +75,12 @@ On the new computer:
 1. Run `git clone https://github.com/JAZIB-UMER/AURA-WhatsApp-Receptionist.git` and
    `cd AURA-WhatsApp-Receptionist`.
 2. Copy your private `.env` and `secrets/credentials.json` into this folder.
-3. Run `docker compose up -d`.
+3. If you have `aura.tar` (the images as one file, e.g. from Google Drive), put it in this folder and
+   load it. Then nothing needs to be downloaded, not even Redis:
+   ```
+   docker load -i aura.tar
+   ```
+4. Run `docker compose up -d`.
 
 On the first start, AURA imports the keys from `.env` and `secrets/credentials.json` into Platform
 settings, so you don't need to type anything. The database starts empty: add the businesses in the
@@ -84,9 +89,9 @@ dashboard.
 ### Sharing the image
 
 ```
-docker build -t aura:latest .
-docker save aura:latest redis:7.4-alpine -o aura.tar                  # file for a USB stick / Drive
-docker tag aura:latest ghcr.io/<user>/aura:1.0 && docker push ghcr.io/<user>/aura:1.0   # GitHub
+docker build -t ghcr.io/jazib-umer/aura:latest .
+docker save ghcr.io/jazib-umer/aura:latest redis:7.4-alpine -o aura.tar   # one file for Google Drive / USB
+docker push ghcr.io/jazib-umer/aura:latest                                # or publish on GitHub
 ```
 
 The image contains the code and the trained models, and **no secrets or data**.
