@@ -15,6 +15,7 @@ os.environ["ADMIN_PASSWORD"] = "admin-test-123"
 
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
+from app import ui  # noqa: E402
 from app.services import db, manage  # noqa: E402
 from app.services.datetime_parser import PKT  # noqa: E402
 
@@ -35,15 +36,58 @@ def fake_cancel(business, booking_id, notify):
 
 
 manage.cancel_booking = fake_cancel
+
+from app.services import whatsapp  # noqa: E402
+
+WAHA = {"up": True, "sessions": {}, "deleted": []}     # fake WhatsApp server: session -> status
+
+
+def fake_session_info(session):
+    if not WAHA["up"]:
+        return {"status": whatsapp.UNREACHABLE, "error": "connection refused"}
+    status = WAHA["sessions"].get(session, whatsapp.MISSING)
+    return {"status": status, "phone": "923001112233" if status == "WORKING" else "", "name": "Noon Salon"}
+
+
+def fake_start(session):
+    if not WAHA["up"]:
+        return False, "The WhatsApp server (WAHA) is not reachable: refused"
+    WAHA["sessions"][session] = "SCAN_QR_CODE"
+    return True, ""
+
+
+def fake_delete(session):
+    WAHA["sessions"].pop(session, None)
+    WAHA["deleted"].append(session)
+    return True, ""
+
+
+whatsapp.session_info = fake_session_info
+whatsapp.start_session = fake_start
+whatsapp.delete_session = fake_delete
+def _png() -> bytes:
+    import io
+
+    from PIL import Image
+    buffer = io.BytesIO()
+    Image.new("L", (40, 40), 255).save(buffer, "PNG")
+    return buffer.getvalue()
+
+
+QR_PNG = _png()
+whatsapp.qr_image = lambda session: QR_PNG if WAHA["sessions"].get(session) == "SCAN_QR_CODE" else None
+whatsapp.server_status = lambda: ((True, "WhatsApp server running: WAHA 2026.10.1 (GOWS engine).") if WAHA["up"]
+                                  else (False, "The WhatsApp server (WAHA) is not reachable."))
 CALENDAR_CHECK = {"ok": True}
 manage.check_calendar = lambda business: ((True, "Calendar is reachable.") if CALENDAR_CHECK["ok"] else
                                           (False, f"Can't read calendar {business.get('calendar_id')}. Share it."))
 
 # ------------------------------------------------------------------ seed data
-bid = db.create_business("Noon Salon", "noon", "secret123", waapi_instance_id="111",
+bid = db.create_business("Noon Salon", "noon", "secret123", whatsapp_session="aura_1_noon",
                          calendar_id="noon@gmail.com", owner_phone="03001234567", owner_email="owner@noon.pk",
                          open_days=[0, 1, 2, 3, 4, 5, 6], open_time="09:00", close_time="22:00")
-other = db.create_business("Smile Dental", "smile", "secret123", waapi_instance_id="222")
+other = db.create_business("Smile Dental", "smile", "secret123", whatsapp_session="aura_2_smile")
+WAHA["sessions"].update({"aura_1_noon": "WORKING", "aura_2_smile": "WORKING"})
 db.replace_services(bid, [{"name": "Haircut", "price": 500, "duration_min": 30},
                           {"name": "Beard", "price": 300, "duration_min": 15}])
 now = datetime.now(PKT)
@@ -179,12 +223,61 @@ check("conversations page lists the customer", not at.exception and at.dataframe
 at.session_state["conv_table"] = {"selection": {"rows": [0], "columns": [], "cells": []}}
 at.run()
 check("selecting a customer shows the chat", any("kal 11 baje beard" in m.value for m in at.markdown))
+check("customer list shows each number once, with its bookings", list(at.dataframe[0].value["bookings"]) == [1],
+      at.dataframe[0].value)
+# An older day of chat with the same customer: listed as its own day, not mixed into today's chat.
+with db.connect() as conn:
+    conn.execute("INSERT INTO messages (business_id, phone, direction, kind, text, created_at)"
+                 " VALUES (?, ?, 'in', 'chat', 'purani baat: rates kya hain?', ?)",
+                 (bid, "923003334444", (now - timedelta(days=3)).strftime("%Y-%m-%dT10:00:00")))
+at.run()
+day_box = by_label(at.selectbox, "Day")
+check("chats are grouped by day, newest first", len(day_box.options) == 2
+      and day_box.value == now.strftime("%Y-%m-%d"), day_box.options)
+check("only the chosen day's messages are shown", any("kal 11 baje beard" in m.value for m in at.markdown)
+      and not any("purani baat" in m.value for m in at.markdown))
+day_box.set_value((now - timedelta(days=3)).strftime("%Y-%m-%d")).run()
+check("picking an older day shows that day's chat only", any("purani baat" in m.value for m in at.markdown)
+      and not any("kal 11 baje beard" in m.value for m in at.markdown), texts(at))
+at.segmented_control(key="conv_view").set_value("Bookings").run()
+record = at.dataframe[1].value if len(at.dataframe) > 1 else None
+check("bookings view lists this number's bookings", record is not None and list(record["service"]) == ["Beard"]
+      and not at.exception, record if record is not None else at.exception)
+check("the Beard booking was cancelled earlier in this test", db.get_booking(b2)["status"] == "cancelled")
+older = db.create_booking(bid, "923003334444", "Sara", "Haircut", (now - timedelta(days=10)).strftime("%Y-%m-%d"),
+                          "15:00", 30, "EV9")
+db.set_booking_status(older, "confirmed")
+at.run()
+check("every booking of the number is in the record, newest appointment first",
+      list(at.dataframe[1].value["service"]) == ["Beard", "Haircut"], at.dataframe[1].value)
+at.pills(key="conv_status_923003334444").set_value(["Cancelled"]).run()
+check("status filter: only cancellations", list(at.dataframe[1].value["service"]) == ["Beard"], at.dataframe[1].value)
+at.pills(key="conv_status_923003334444").set_value(["Confirmed"]).run()
+check("status filter: only confirmed", list(at.dataframe[1].value["service"]) == ["Haircut"], at.dataframe[1].value)
+at.pills(key="conv_status_923003334444").set_value(["Rescheduled"]).run()
+check("no booking with that status -> says so", any("No bookings with the chosen status" in c.value for c in at.caption))
+at.pills(key="conv_status_923003334444").set_value(list(ui.STATUS_LABELS.values())).run()
+row = list(at.dataframe[1].value["service"]).index("Beard")
+at.session_state["conv_bookings_923003334444"] = {"selection": {"rows": [row], "columns": [], "cells": []}}
+at.run()
+check("selecting a booking shows the chat of the day it was made",
+      any("when this booking was made" in m.value for m in at.markdown) and not at.exception, texts(at))
+at.segmented_control(key="conv_view").set_value("Chats by day").run()
 
 at.switch_page("app_pages/overview.py").run()
 metrics = {m.label: m.value for m in at.metric}
-check("overview shows messages handled and escalation rate",
-      metrics.get("Messages (30 days)") == "2" and metrics.get("Escalation rate (30 days)") == "100%"
-      and metrics.get("Open escalations") == "0", metrics)
+check("overview shows customers and escalation rate (no message count)",
+      metrics.get("Customers (30 days)") == "1" and "Messages (30 days)" not in metrics
+      and metrics.get("Escalation rate (30 days)") == "100%" and metrics.get("Open escalations") == "0", metrics)
+# Before: 2 escalations of one customer, or one for a customer who never messaged, showed 150% / 200%.
+extra = [db.create_escalation(bid, "923003334444", "not_understood", "again"),
+         db.create_escalation(bid, "923001112222", "unconfirmed", "no reply to the reminder")]
+at.run()
+metrics = {m.label: m.value for m in at.metric}
+check("escalation rate counts each customer once and never goes over 100%",
+      metrics.get("Escalation rate (30 days)") == "100%", metrics)
+for e in extra:
+    db.resolve_escalation(bid, e)
 
 # ------------------------------------------------------------------ services
 at.switch_page("app_pages/services.py").run()
@@ -194,7 +287,9 @@ check("save disabled without changes", by_label(at.button, "Save services").disa
 # ------------------------------------------------------------------ settings
 at.switch_page("app_pages/settings.py").run()
 check("settings page has no errors", not at.exception, at.exception)
-check("owner can't see admin connection fields", not any(w.label == "WaAPI instance ID" for w in at.text_input))
+check("owner can't see admin connection fields", not any(w.label == "Google Calendar ID" for w in at.text_input))
+check("owner sees their WhatsApp is connected, with the number",
+      any("Connected: **0300 1112233** (Noon Salon)" in s.value for s in at.success), [s.value for s in at.success])
 by_label(at.text_input, "Owner's WhatsApp number").set_value("12345")
 at.form_submit_button[0].click().run()
 check("invalid phone is refused", any("Pakistani mobile number" in e.value for e in at.error), texts(at))
@@ -255,20 +350,19 @@ check("businesses page has no errors", not at.exception, at.exception)
 check("businesses table lists both", at.dataframe and len(at.dataframe[0].value) == 2)
 
 
-def add_business(name, username, password, instance="333", calendar="fixit@gmail.com", email="fix@it.pk"):
+def add_business(name, username, password, calendar="fixit@gmail.com", email="fix@it.pk"):
     by_label(at.text_input, "Business name").set_value(name)
     by_label(at.text_input, "Owner login username").set_value(username)
     by_label(at.text_input, "Owner's first password").set_value(password)
-    by_label(at.text_input, "WaAPI instance ID").set_value(instance)
     by_label(at.text_input, "Google Calendar ID (email)").set_value(calendar)
     by_label(at.text_input, "Owner's email (for alerts)").set_value(email)
     at.form_submit_button[0].click().run()
 
 
-add_business("Fix It", "fixit", "secret123", instance="", calendar="")
-check("WaAPI instance and calendar are required",
-      any("WaAPI instance ID is required" in e.value for e in at.error)
-      and any("Calendar ID (email) is required" in e.value for e in at.error), texts(at))
+check("businesses table shows whose WhatsApp is linked",
+      list(at.dataframe[0].value["WhatsApp"]) == ["Linked", "Linked"], at.dataframe[0].value)
+add_business("Fix It", "fixit", "secret123", calendar="")
+check("calendar is required", any("Calendar ID (email) is required" in e.value for e in at.error), texts(at))
 check("form keeps typed values after an error", by_label(at.text_input, "Business name").value == "Fix It")
 add_business("Fix It", "fixit", "secret123", email="")
 check("owner email is required", any("Owner's email is required" in e.value for e in at.error), texts(at))
@@ -276,23 +370,22 @@ add_business("Fix It", "fixit", "secret123", calendar="not-an-email")
 check("bad calendar email refused", any("Calendar ID looks like an email" in e.value for e in at.error), texts(at))
 add_business("Fix It", "noon", "secret123")
 check("duplicate username refused", any("already used" in e.value for e in at.error), texts(at))
-add_business("Fix It", "fixit", "secret123", instance="111")
-check("duplicate WaAPI instance refused", any("already linked" in e.value for e in at.error), texts(at))
 add_business("Fix It", "Fix It!", "123")
 check("bad username and weak password both reported", len(at.error) >= 2, texts(at))
 add_business("Fix It", "fixit", "secret123")
-check("valid business added", any(b["username"] == "fixit" and b["calendar_id"] == "fixit@gmail.com"
-                                  and b["owner_email"] == "fix@it.pk" for b in db.list_businesses()))
+check("valid business added, WhatsApp not linked yet",
+      any(b["username"] == "fixit" and b["calendar_id"] == "fixit@gmail.com" and b["owner_email"] == "fix@it.pk"
+          and b["whatsapp_session"] is None for b in db.list_businesses()))
 check("new business becomes the managed one", at.session_state["business_id"] == db.list_businesses()[-1]["id"])
 check("no errors after adding", not at.exception, at.exception)
 at.switch_page("app_pages/businesses.py").run()
 check("add form is empty after adding",
       all(by_label(at.text_input, label).value in ("", None) for label in
-          ["Business name", "Owner login username", "WaAPI instance ID", "Google Calendar ID (email)"]),
+          ["Business name", "Owner login username", "Google Calendar ID (email)"]),
       [(w.label, w.value) for w in at.text_input])
 
 at.switch_page("app_pages/settings.py").run()
-check("admin sees connection fields", any(w.label == "WaAPI instance ID" for w in at.text_input))
+check("admin sees connection fields", any(w.label == "Google Calendar ID" for w in at.text_input))
 check("admin can edit the business name", not by_label(at.text_input, "Business name").disabled)
 by_label(at.text_input, "Google Calendar ID").set_value("")
 at.form_submit_button[0].click().run()
@@ -335,22 +428,28 @@ check("a fake token is refused", "user" not in app().run().session_state)
 ui.cookie_token = lambda: ""
 
 # ------------------------------------------------------------------ platform settings (admin)
-from app.services import config, nlu, voice, whatsapp  # noqa: E402
+from app.services import config, nlu, voice  # noqa: E402
 
-config.save({k: None for k in ("waapi_token", "gemini_api_key", "groq_api_key", "google_service_account",
+config.save({k: None for k in ("gemini_api_key", "groq_api_key", "google_service_account",
                                "smtp_host", "smtp_user", "smtp_password", "smtp_from", "admin_password_hash")})
-TOKEN_OK = {"value": True}
-whatsapp.check_token = lambda token=None: (TOKEN_OK["value"], "Token works." if TOKEN_OK["value"] else "rejected")
-nlu.check_gemini = lambda key=None, model=None: (True, "ok")
+KEY_OK = {"value": True}
+nlu.check_gemini = lambda key=None, model=None: (KEY_OK["value"], "ok" if KEY_OK["value"] else "rejected")
 voice.check_groq = lambda key=None, model=None: (True, "ok")
 
 at = login(app().run(), "admin", "admin-test-123")
 at.switch_page("app_pages/platform.py").run()
 check("platform settings page opens for the admin", not at.exception and "not set" in texts(at), at.exception)
+check("WhatsApp server status shown (no token or account needed)",
+      any("WAHA 2026.10.1" in s.value for s in at.success) and not any(w.label == "API token" for w in at.text_input))
+WAHA["up"] = False
+at.run()
+check("WhatsApp server down is shown as an error", any("not reachable" in e.value for e in at.error), texts(at))
+WAHA["up"] = True
+at.run()
 
 
 def submit(at, form):
-    """Click the save button of one platform form (pf_waapi, pf_smtp, ...): found by form, not position."""
+    """Click the save button of one platform form (pf_gemini, pf_smtp, ...): found by form, not position."""
     next(b for b in at.form_submit_button if b.proto.form_id.startswith(form)).click().run()
 
 
@@ -358,28 +457,33 @@ def fill(at, label, value, nth=0):
     [w for w in at.text_input if w.label == label][nth].set_value(value)
 
 
-fill(at, "API token", "short")
-submit(at, "pf_waapi")
-check("an invalid WaAPI token is refused", "doesn't look like a valid key" in texts(at)
-      and not config.is_set("waapi_token"), texts(at))
+def gemini_key(at, value):
+    # Type into the Gemini form's key field (the Groq form has an 'API key' field too).
+    next(w for w in at.text_input if w.label == "API key" and w.proto.form_id.startswith("pf_gemini")).set_value(value)
 
-TOKEN_OK["value"] = False
-fill(at, "API token", "waapi_live_ABCDEFGHIJKLMNOPQRSTUV")
-submit(at, "pf_waapi")
-check("a token WaAPI rejects is not saved", "Not saved" in texts(at) and not config.is_set("waapi_token"), texts(at))
 
-TOKEN_OK["value"] = True
-fill(at, "API token", "  waapi_live_ABCDEFGHIJKLMNOPQRSTUV \n")
-at.form_submit_button[0].click().run()
-check("a valid token is saved (spaces/line breaks from pasting removed)",
-      config.get("waapi_token") == "waapi_live_ABCDEFGHIJKLMNOPQRSTUV", config.get("waapi_token"))
+gemini_key(at, "short")
+submit(at, "pf_gemini")
+check("an invalid API key is refused", "doesn't look like a valid key" in texts(at)
+      and not config.is_set("gemini_api_key"), texts(at))
+
+KEY_OK["value"] = False
+gemini_key(at, "AIzaSyABCDEFGHIJKLMNOPQRSTUV")
+submit(at, "pf_gemini")
+check("a key Gemini rejects is not saved", "Not saved" in texts(at) and not config.is_set("gemini_api_key"), texts(at))
+
+KEY_OK["value"] = True
+gemini_key(at, "  AIzaSyABCDEFGHIJKLMNOPQRSTUV \n")
+submit(at, "pf_gemini")
+check("a valid key is saved (spaces/line breaks from pasting removed)",
+      config.get("gemini_api_key") == "AIzaSyABCDEFGHIJKLMNOPQRSTUV", config.get("gemini_api_key"))
 page_text = texts(at) + " ".join(str(w.value) for w in at.text_input)
-check("the saved token is never shown, only its last 4 characters",
+check("the saved key is never shown, only its last 4 characters",
       "ABCDEFGHIJKLMNOPQRSTUV" not in page_text and "…STUV" in page_text, page_text[:300])
-check("the token field is empty again after saving", all(not w.value for w in at.text_input if w.label == "API token"))
-submit(at, "pf_waapi")
-check("saving with an empty field keeps the saved token",
-      config.get("waapi_token") == "waapi_live_ABCDEFGHIJKLMNOPQRSTUV")
+check("the key field is empty again after saving", all(not w.value for w in at.text_input if w.label == "API key"))
+submit(at, "pf_gemini")
+check("saving with an empty field keeps the saved key",
+      config.get("gemini_api_key") == "AIzaSyABCDEFGHIJKLMNOPQRSTUV")
 
 fill(at, "Server", "smtp.gmail.com")
 fill(at, "Port", "99999")
@@ -439,6 +543,92 @@ at.session_state[f"calendar_warning_{bid}"] = "Can't read calendar noon@gmail.co
 at.switch_page("app_pages/settings.py").run()
 check("a calendar AURA can't use is shown as a warning on Settings",
       any("Google Calendar" in (w.proto.title or "") or "Share it" in w.value for w in at.warning), at.warning)
+
+# ------------------------------------------------------------------ linking a business's WhatsApp (QR code)
+fixit = next(b for b in db.list_businesses() if b["username"] == "fixit")
+at = login(app().run(), "fixit", "secret123")
+at.switch_page("app_pages/settings.py").run()
+check("not linked yet: Connect button and how-to", by_label(at.button, "Connect WhatsApp")
+      and any("scan the QR code" in c.value for c in at.caption) and not at.exception, at.exception)
+by_label(at.button, "Connect WhatsApp").click().run()
+session = db.get_business(fixit["id"])["whatsapp_session"]
+check("Connect creates the business's own session", bool(session) and session.startswith(f"aura_{fixit['id']}_")
+      and WAHA["sessions"].get(session) == "SCAN_QR_CODE", session)
+check("the QR code and scanning steps are shown", len(at.get("image")) == 1
+      and any("Linked devices" in c.value for c in at.caption) and not at.exception, at.exception)
+WAHA["sessions"][session] = "WORKING"
+at.run()
+check("after scanning: connected with the number", any("Connected: **0300 1112233**" in s.value for s in at.success))
+WAHA["sessions"][session] = "FAILED"
+at.run()
+check("QR expired / phone unlinked: warning and a new QR code button",
+      any("not connected" in w.value for w in at.warning) and by_label(at.button, "Show a new QR code"))
+by_label(at.button, "Show a new QR code").click().run()
+check("new QR code shows the same session again", WAHA["sessions"][session] == "SCAN_QR_CODE"
+      and db.get_business(fixit["id"])["whatsapp_session"] == session and len(at.get("image")) == 1)
+WAHA["up"] = False
+at.run()
+check("WhatsApp server down: clear error, no crash", any("isn't answering" in e.value for e in at.error)
+      and not at.exception, at.exception)
+WAHA["up"] = True
+WAHA["sessions"][session] = "WORKING"
+at.run()
+by_label(at.button, "Disconnect").click().run()
+check("disconnect asks for confirmation first", any("stop answering" in m.value for m in at.markdown)
+      and db.get_business(fixit["id"])["whatsapp_session"] == session)
+by_label(at.button, "Keep it connected").click().run()
+check("'Keep it connected' changes nothing", db.get_business(fixit["id"])["whatsapp_session"] == session
+      and not WAHA["deleted"])
+by_label(at.button, "Disconnect").click().run()
+by_label(at.button, "Yes, disconnect").click().run()
+check("disconnected: session removed from WAHA and the business",
+      WAHA["deleted"] == [session] and db.get_business(fixit["id"])["whatsapp_session"] is None and not at.exception)
+check("then the Connect button is back", by_label(at.button, "Connect WhatsApp") is not None)
+at.switch_page("app_pages/overview.py").run()
+check("overview checklist asks to connect WhatsApp",
+      any("connect the business's **WhatsApp**" in w.value for w in at.warning), [w.value for w in at.warning])
+
+# ------------------------------------------------------------------ booking emails to customers (business's own email)
+from app.services import customer_mail  # noqa: E402
+
+TEST_MAILS = []
+customer_mail.send_email = lambda to, subject, body, **kw: TEST_MAILS.append((to, subject, kw.get("account"))) or True
+at.switch_page("app_pages/settings.py").run()
+check("email section: not set up yet, test button off",
+      any("Not set up" in m.value for m in at.markdown) and by_label(at.button, "Send test email").disabled)
+by_label(at.text_input, "Business email").set_value("fixit.shop@gmail.com")
+submit(at, "mail_")
+check("an email without its App Password is refused", any("Enter the App Password" in e.value for e in at.error)
+      and db.mail_account(fixit["id"]) is None, texts(at))
+by_label(at.text_input, "App password").set_value("abcd efgh ijkl mnop")
+by_label(at.text_input, "Port").set_value("99999")
+submit(at, "mail_")
+check("a wrong port is refused", any("between 1 and 65535" in e.value for e in at.error)
+      and db.mail_account(fixit["id"]) is None)
+by_label(at.text_input, "App password").set_value("abcd efgh ijkl mnop")
+by_label(at.text_input, "Port").set_value("587")
+submit(at, "mail_")
+account = db.mail_account(fixit["id"])
+check("saved: Gmail App Password without spaces, default server",
+      account and account["user"] == "fixit.shop@gmail.com" and account["password"] == "abcdefghijklmnop"
+      and account["host"] == "smtp.gmail.com" and account["port"] == 587, account)
+page_text = texts(at) + " ".join(str(w.value) for w in at.text_input)
+check("the App Password is never shown again; the page says where emails come from",
+      "abcdefghijklmnop" not in page_text and any("Sending from" in m.value and "fixit.shop@gmail.com" in m.value
+                                                  for m in at.markdown)
+      and by_label(at.text_input, "App password").value in ("", None))
+by_label(at.toggle, "Ask customers for their email during booking (they can skip it)").set_value(False)
+submit(at, "mail_")
+check("saving again with an empty password keeps it; the question can be turned off",
+      db.mail_account(fixit["id"])["password"] == "abcdefghijklmnop" and not db.get_business(fixit["id"])["asks_email"])
+by_label(at.button, "Send test email").click().run()
+check("test email goes from the business's address to itself",
+      TEST_MAILS and TEST_MAILS[-1][0] == "fixit.shop@gmail.com" and TEST_MAILS[-1][2]["user"] == "fixit.shop@gmail.com"
+      and any("Sent to fixit.shop@gmail.com" in s.value for s in at.success), texts(at))
+by_label(at.text_input, "Business email").set_value("")
+submit(at, "mail_")
+check("emptying the address turns booking emails off and forgets the password",
+      db.mail_account(fixit["id"]) is None and any("Not set up" in m.value for m in at.markdown) and not at.exception)
 
 failed = [n for n, ok in CHECKS if not ok]
 print(f"\n{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")

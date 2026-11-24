@@ -3,11 +3,10 @@
 Reminder jobs run inside the WhatsApp server, not the dashboard. They re-check the booking in
 the database before sending, so a booking cancelled here never gets a reminder.
 """
-from app.services import config, db
+from app.services import config, customer_mail, db, whatsapp
 from app.services.calendar import cancel_appointment, get_busy
 from app.services.datetime_parser import describe, today_pkt
 from app.services.messaging import send_to_customer
-from app.services.whatsapp import get_status
 
 ACTIVE = ("booked", "confirmed")
 
@@ -46,6 +45,7 @@ def cancel_booking(business: dict, booking_id: int, notify_customer: bool) -> di
     if booking.get("event_id"):
         calendar_ok = cancel_appointment(booking["event_id"], business.get("calendar_id"))
     db.set_booking_status(booking_id, "cancelled")
+    customer_mail.cancelled(business, booking)          # if they gave an email and the business sends emails
 
     notified = None
     if notify_customer:
@@ -86,13 +86,17 @@ def check_calendar(business: dict):
 
 
 def check_whatsapp(business: dict):
-    """(ok, message) — is this business's WaAPI instance connected?"""
-    instance = business.get("waapi_instance_id")
-    if not instance:
-        return False, "No WaAPI instance ID set for this business."
-    data = get_status(instance)
-    if data.get("error"):
-        return False, f"WaAPI check failed: {str(data['error'])[:150]}"
-    status = (data.get("clientStatus") or {}).get("instanceStatus") or data.get("status") or "unknown"
-    ok = str(status).lower() in ("ready", "connected", "authenticated")
-    return ok, f"WaAPI instance {instance}: {status}."
+    """(ok, message) — is this business's WhatsApp linked and connected?"""
+    session = business.get("whatsapp_session")
+    if not session:
+        return False, "No WhatsApp linked yet: Settings → WhatsApp → Connect, then scan the QR code."
+    info = whatsapp.session_info(session)
+    status = info["status"]
+    if status == whatsapp.CONNECTED:
+        number = display_phone(info.get("phone") or "")
+        return True, "WhatsApp connected" + (f": {number}." if number else ".")
+    if status == whatsapp.UNREACHABLE:
+        return False, f"The WhatsApp server (WAHA) is not reachable: {info.get('error', '')[:150]}"
+    if status in whatsapp.WAITING:
+        return False, "WhatsApp is waiting for the QR code to be scanned (Settings → WhatsApp)."
+    return False, f"WhatsApp is not connected ({status}). Settings → WhatsApp → Reconnect."

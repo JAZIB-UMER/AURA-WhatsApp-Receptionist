@@ -73,7 +73,7 @@ def escalate(business: dict, phone: str, kind: str, detail: str = "", booking: "
 
     owner_phone = business.get("owner_phone")
     whatsapp_ok = bool(owner_phone) and send_message(owner_phone, "\n".join(lines),
-                                                     instance_id=business.get("waapi_instance_id"))
+                                                     session=business.get("whatsapp_session"))
     email_ok = send_email(
         business.get("owner_email") or "",
         f"AURA: {KINDS.get(kind, 'Attention needed')} — {customer}",

@@ -18,7 +18,6 @@ PASSWORD_MIN = 8
 # Regexes shared with the browser-side checks (JavaScript-compatible).
 USERNAME_RE = r"^[a-z0-9][a-z0-9_.]{2,29}$"
 PHONE_RE = r"^(\+?92|0)?\s*3\d{2}[\s-]?\d{7}$"
-INSTANCE_RE = r"^\d{1,12}$"
 CALENDAR_RE = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
 EMAIL_RE = r"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$"
 RESERVED_USERNAMES = {"admin", "root", "aura"}
@@ -87,17 +86,6 @@ def phone(value, required: bool = False):
     if not re.fullmatch(r"03\d{9}", digits):
         return None, "Enter a Pakistani mobile number, e.g. 0300 1234567 or +92 300 1234567."
     return digits, None
-
-
-def instance_id(value, taken: bool = False, required: bool = False):
-    value = clean_text(value)
-    if not value:
-        return ("", "WaAPI instance ID is required.") if required else ("", None)
-    if not re.fullmatch(INSTANCE_RE, value):
-        return None, "WaAPI instance ID is a number, e.g. 108128."
-    if taken:
-        return None, f"WaAPI instance {value} is already linked to another business."
-    return value, None
 
 
 def calendar_id(value, required: bool = False):
@@ -249,6 +237,14 @@ def smtp_server(host, port):
     if not 1 <= number <= 65535:
         return None, "Email port must be a number between 1 and 65535 (Gmail: 587)."
     return (host, str(number)), None
+
+
+def app_password(value):
+    """An email App Password (Gmail shows it as 4 groups of 4 letters; the spaces are removed)."""
+    text = "".join(str(value or "").split())
+    if not 8 <= len(text) <= 100:
+        return None, "That doesn't look like an App Password (Gmail's are 16 letters)."
+    return text, None
 
 
 def sender_name(value):

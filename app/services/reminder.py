@@ -13,7 +13,7 @@ database when the server starts.
 from datetime import datetime, timedelta
 
 from apscheduler.schedulers.background import BackgroundScheduler
-from app.services import db
+from app.services import customer_mail, db
 from app.services.calendar import cancel_appointment, event_exists
 from app.services.datetime_parser import PKT, describe
 from app.services.escalation import escalate
@@ -83,6 +83,7 @@ def send_reminder(booking_id: int):
         f"• {booking_line(booking)}\n\n"
         f"Aa rahe hain? Reply *haan* ya *cancel*."
     ), "reminder")
+    customer_mail.reminder(business, booking)
     r.setex(f"reminder_sent:{booking_id}", 86400 * 2, "1")   # "haan"/"cancel" now count as an answer
     r.setex(f"reminded:{booking_id}", 86400 * 7, "1")        # lets follow-up / escalation run
     print(f"[Reminder] Sent for booking {booking_id}")
@@ -176,6 +177,7 @@ def cancel_booking_by_id(business: dict, booking_id: int) -> "dict | None":
         cancel_appointment(booking["event_id"], business.get("calendar_id"))
     db.set_booking_status(booking_id, "cancelled")
     cancel_reminders(booking_id)
+    customer_mail.cancelled(business, booking)
     return booking
 
 

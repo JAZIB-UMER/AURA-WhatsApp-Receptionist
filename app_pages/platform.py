@@ -2,7 +2,7 @@
 
 Secrets are never shown again after saving (only their last 4 characters). Leaving a key field empty
 keeps the saved key. Each section has a check button that tests the saved value against the real service.
-Per-business values (WaAPI instance, calendar, owner contacts) are on each business's Settings page.
+Per-business values (WhatsApp link, calendar, owner contacts) are on each business's Settings page.
 """
 import smtplib
 
@@ -13,7 +13,7 @@ from app.services import config, validation
 from app.services.email_alert import send_email
 from app.services.nlu import check_gemini
 from app.services.voice import check_groq
-from app.services.whatsapp import check_token
+from app.services.whatsapp import server_status
 
 if not ui.is_admin():                       # page is only registered for the admin; double-check anyway
     st.error("Admins only.")
@@ -55,8 +55,9 @@ st.caption("Accounts AURA uses for **every** business. Each business's own Whats
            "owner contacts are on that business's Settings page. Changes apply within a few seconds, no restart.")
 
 # ----------------------------------------------------------------- status at a glance
+whatsapp_ok, whatsapp_message = server_status()
 with st.container(horizontal=True, gap="small"):
-    for label, ok in [("WhatsApp", config.is_set("waapi_token")),
+    for label, ok in [("WhatsApp server", whatsapp_ok),
                       ("Gemini", config.is_set("gemini_api_key")),
                       ("Voice notes", config.is_set("groq_api_key")),
                       ("Google Calendar", config.is_set("google_service_account")),
@@ -67,28 +68,13 @@ left, right = st.columns(2, gap="medium")
 
 # ----------------------------------------------------------------- WhatsApp
 with left.container(border=True):
-    st.subheader("WhatsApp (WaAPI)", icon=":material/chat:")
-    st.markdown(f"API token: {saved_or_missing('waapi_token')}")
-    if config.get("public_url"):
-        st.caption(f"Public address: `{config.get('public_url')}` — every business's WhatsApp webhook "
-                   "is pointed here automatically (Cloudflare tunnel).")
-    with st.form(f"pf_waapi_{version}", border=False):
-        token = secret_input(st, "API token", "waapi_token", "waapi.app → User API Tokens. One token covers "
-                             "all WhatsApp instances on that WaAPI account.")
-        save = st.form_submit_button("Save", type="primary", icon=":material/save:")
-    if save:
-        if not token.strip():
-            st.info("Nothing to save: the token field is empty.", icon=":material/info:")
-        else:
-            value, error = validation.api_key(token, "WaAPI token")
-            if error:
-                show_errors([error])
-            else:
-                ok, message = check_token(value)
-                if ok:
-                    finish({"waapi_token": value}, "WaAPI token saved.")
-                show_errors([f"Not saved: {message}"])
-    check_button("Check WaAPI", "pf_check_waapi", check_token)
+    st.subheader("WhatsApp server (WAHA)", icon=":material/chat:")
+    (st.success if whatsapp_ok else st.error)(whatsapp_message,
+                                              icon=":material/check_circle:" if whatsapp_ok else ":material/error:")
+    st.caption("Free and self-hosted: it runs next to AURA (Docker container \"waha\"), so there's no account, "
+               "token or monthly fee. Each business links its own WhatsApp number by scanning a QR code on "
+               "its Settings page.")
+    check_button("Check again", "pf_check_waha", server_status)
 
 # ----------------------------------------------------------------- Gemini
 with right.container(border=True):

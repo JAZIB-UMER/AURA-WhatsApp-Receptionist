@@ -14,9 +14,10 @@ def record_incoming(business: dict, phone: str, text: str):
 
 
 def send_to_customer(business: dict, phone: str, text: str, kind: str = "chat", booking_id: "int | None" = None,
-                     chat_id: "str | None" = None, instance_id: "str | None" = None) -> bool:
-    """Send a WhatsApp message to a customer and save it. chat_id: the exact chat to reply to (e.g. @lid)."""
-    delivered = send_message(chat_id or phone, text, instance_id=business.get("waapi_instance_id") or instance_id)
+                     chat_id: "str | None" = None) -> bool:
+    """Send a WhatsApp message to a customer from the business's own WhatsApp, and save it.
+    chat_id: the exact chat to reply to (e.g. a privacy ID that couldn't be turned into a number)."""
+    delivered = send_message(chat_id or phone, text, session=business.get("whatsapp_session"))
     try:
         db.log_message(business["id"], phone, "out", text, kind=kind, booking_id=booking_id, delivered=delivered)
     except Exception as e:

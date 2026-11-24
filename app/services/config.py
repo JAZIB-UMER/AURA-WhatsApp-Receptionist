@@ -2,10 +2,10 @@
 
 Two kinds of configuration:
   .env (machine)      ports, hosts, file paths, first admin password. Set once when installing.
-  this module (admin) Gemini / Groq / WaAPI keys, Google service account, email (SMTP), admin password.
+  this module (admin) Gemini / Groq keys, Google service account, email (SMTP), admin password.
                       Stored in the database, edited in the dashboard (Admin -> Platform settings),
                       and picked up by the running server within a few seconds, no restart.
-Per-business values (WaAPI instance, calendar, owner phone/email) live on each business, not here.
+Per-business values (WhatsApp link, calendar, owner phone/email) live on each business, not here.
 
 First start: values found in the old .env / credentials.json are imported once, so nothing has to be
 typed again. After that the dashboard is the only place to change them.
@@ -35,12 +35,11 @@ DEFAULTS = {
     "whisper_model": "whisper-large-v3",
     "smtp_port": "587",
 }
-SECRETS = {"gemini_api_key", "groq_api_key", "waapi_token", "smtp_password", "google_service_account",
-           "admin_password_hash"}
+SECRETS = {"gemini_api_key", "groq_api_key", "smtp_password", "google_service_account", "admin_password_hash",
+           "webhook_secret"}
 ENV_NAMES = {             # setting -> old .env name (imported once)
     "gemini_api_key": "GEMINI_API_KEY", "gemini_model": "GEMINI_MODEL",
     "groq_api_key": "GROQ_API_KEY", "whisper_model": "WHISPER_MODEL",
-    "waapi_token": "WAAPI_TOKEN",
     "smtp_host": "SMTP_HOST", "smtp_port": "SMTP_PORT", "smtp_user": "SMTP_USER",
     "smtp_password": "SMTP_PASSWORD", "smtp_from": "SMTP_FROM",
 }
@@ -118,6 +117,12 @@ def service_account_email(raw: str) -> str:
     if not (info.get("private_key") and info.get("client_email") and info.get("token_uri")):
         return ""
     return str(info["client_email"])
+
+
+def webhook_secret() -> str:
+    """Secret that signs WhatsApp webhooks (WAHA -> AURA), so nobody else can fake customer messages.
+    Generated on first use and kept in the database; never typed or shown anywhere."""
+    return db.setting_once("webhook_secret", secrets.token_hex(32))
 
 
 # ----------------------------------------------------------------- admin password

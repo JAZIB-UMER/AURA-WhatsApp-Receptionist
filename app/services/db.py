@@ -29,13 +29,18 @@ CREATE TABLE IF NOT EXISTS businesses (
     greeting          TEXT DEFAULT '',
     username          TEXT UNIQUE NOT NULL,
     password_hash     TEXT NOT NULL,
-    waapi_instance_id TEXT UNIQUE,
+    whatsapp_session  TEXT,                         -- WAHA session of the business's WhatsApp (QR-linked)
     calendar_id       TEXT DEFAULT '',
     owner_phone       TEXT DEFAULT '',
     open_days         TEXT DEFAULT '0,1,2,3,4,5',   -- 0 = Monday ... 6 = Sunday
     open_time         TEXT DEFAULT '10:00',
     close_time        TEXT DEFAULT '20:00',
     custom_questions  TEXT DEFAULT '[]',            -- JSON: [{"question", "type", "required"}]
+    mail_from         TEXT DEFAULT '',              -- the business's own email: booking emails to customers
+    mail_password     TEXT DEFAULT '',              --   its App Password (never shown again)
+    mail_host         TEXT DEFAULT '',              --   mail server, '' = smtp.gmail.com
+    mail_port         TEXT DEFAULT '',              --   '' = 587
+    ask_email         INTEGER DEFAULT 1,            -- ask customers for their email (optional question)
     active            INTEGER DEFAULT 1,
     created_at        TEXT
 );
@@ -58,6 +63,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     event_id      TEXT,
     status        TEXT DEFAULT 'booked',   -- booked | confirmed | cancelled | rescheduled
     answers       TEXT DEFAULT '{}',       -- answers to custom questions (JSON)
+    customer_email TEXT,                   -- for booking emails (optional, given by the customer)
     created_at    TEXT,
     updated_at    TEXT
 );
@@ -111,7 +117,14 @@ CREATE TABLE IF NOT EXISTS settings (            -- platform settings the admin 
 """
 
 # Columns added after the first release; init_db() adds them to existing databases.
-MIGRATIONS = {"businesses": {"owner_email": "TEXT DEFAULT ''"}}
+# (Databases from the WaAPI version keep their unused waapi_instance_id column.)
+MIGRATIONS = {"businesses": {"owner_email": "TEXT DEFAULT ''", "whatsapp_session": "TEXT",
+                              "mail_from": "TEXT DEFAULT ''", "mail_password": "TEXT DEFAULT ''",
+                              "mail_host": "TEXT DEFAULT ''", "mail_port": "TEXT DEFAULT ''",
+                              "ask_email": "INTEGER DEFAULT 1"},
+              "bookings": {"customer_email": "TEXT"}}
+# Indexes on migrated columns (SQLite can't add a UNIQUE column, so uniqueness is an index).
+INDEXES = "CREATE UNIQUE INDEX IF NOT EXISTS idx_businesses_session ON businesses(whatsapp_session);"
 
 
 def _now() -> str:
@@ -134,6 +147,7 @@ def init_db():
             for column, definition in columns.items():
                 if column not in existing:
                     conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
+        conn.executescript(INDEXES)
 
 
 # ------------------------------------------------------------ passwords
@@ -196,9 +210,9 @@ def delete_business_sessions(business_id: int):
 
 # ------------------------------------------------------------ businesses
 
-BUSINESS_FIELDS = {"name", "business_type", "greeting", "username", "waapi_instance_id", "calendar_id",
+BUSINESS_FIELDS = {"name", "business_type", "greeting", "username", "whatsapp_session", "calendar_id",
                    "owner_phone", "owner_email", "open_days", "open_time", "close_time", "custom_questions",
-                   "active"}
+                   "active", "mail_from", "mail_password", "mail_host", "mail_port", "ask_email"}
 
 
 def _business(row):
@@ -208,7 +222,25 @@ def _business(row):
     b["open_days"] = [int(d) for d in str(b["open_days"] or "").split(",") if d.strip() != ""]
     b["custom_questions"] = normalize_questions(json.loads(b["custom_questions"] or "[]"))
     b.pop("password_hash", None)
+    # The App Password stays in the database (mail_account()); pages only learn whether one is saved.
+    has_password = bool(b.pop("mail_password", None))
+    b["mail_ready"] = bool(b.get("mail_from")) and has_password
+    # AURA asks for the customer's email only when it can send them one, and only if the owner's own
+    # questions don't already ask for an email.
+    b["asks_email"] = bool(b["mail_ready"] and b.get("ask_email", 1)
+                           and not any(q["type"] == "email" for q in b["custom_questions"]))
     return b
+
+
+def mail_account(business_id: int) -> "dict | None":
+    """The business's own email account for booking emails, or None if not set up."""
+    with connect() as conn:
+        row = conn.execute("SELECT name, mail_from, mail_password, mail_host, mail_port FROM businesses"
+                           " WHERE id = ?", (business_id,)).fetchone()
+    if not row or not (row["mail_from"] and row["mail_password"]):
+        return None
+    return {"host": row["mail_host"] or "smtp.gmail.com", "port": int(row["mail_port"] or 587),
+            "user": row["mail_from"], "password": row["mail_password"], "name": row["name"]}
 
 
 def _encode(fields: dict) -> dict:
@@ -217,8 +249,8 @@ def _encode(fields: dict) -> dict:
         fields["open_days"] = ",".join(str(int(d)) for d in sorted(fields["open_days"]))
     if "custom_questions" in fields and not isinstance(fields["custom_questions"], str):
         fields["custom_questions"] = json.dumps(normalize_questions(fields["custom_questions"]), ensure_ascii=False)
-    if fields.get("waapi_instance_id") == "":
-        fields["waapi_instance_id"] = None      # keep UNIQUE happy for businesses without a number yet
+    if fields.get("whatsapp_session") == "":
+        fields["whatsapp_session"] = None       # keep UNIQUE happy for businesses without WhatsApp yet
     return fields
 
 
@@ -260,26 +292,18 @@ def username_taken(username: str, except_id: int = None) -> bool:
     return row is not None
 
 
-def instance_taken(instance_id: str, except_id: int = None) -> bool:
-    if not instance_id:
-        return False
-    with connect() as conn:
-        row = conn.execute("SELECT id FROM businesses WHERE waapi_instance_id = ? AND id IS NOT ?",
-                           (str(instance_id), except_id)).fetchone()
-    return row is not None
-
-
 def get_business(business_id: int):
     with connect() as conn:
         return _business(conn.execute("SELECT * FROM businesses WHERE id = ?", (business_id,)).fetchone())
 
 
-def get_business_by_instance(instance_id):
-    if instance_id in (None, ""):
+def get_business_by_session(session: "str | None"):
+    """The active business whose WhatsApp is linked as this WAHA session (None if there is none)."""
+    if not session:
         return None
     with connect() as conn:
-        return _business(conn.execute("SELECT * FROM businesses WHERE waapi_instance_id = ? AND active = 1",
-                                      (str(instance_id),)).fetchone())
+        return _business(conn.execute("SELECT * FROM businesses WHERE whatsapp_session = ? AND active = 1",
+                                      (str(session),)).fetchone())
 
 
 def login(username: str, password: str):
@@ -333,13 +357,14 @@ def _booking(row):
 
 
 def create_booking(business_id: int, phone: str, customer_name: str, service: str, date: str, time: str,
-                   duration_min: int, event_id: str, answers: dict = None) -> int:
+                   duration_min: int, event_id: str, answers: dict = None, customer_email: "str | None" = None) -> int:
     with connect() as conn:
         cur = conn.execute(
             "INSERT INTO bookings (business_id, phone, customer_name, service, date, time, duration_min,"
-            " event_id, status, answers, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,'booked',?,?,?)",
+            " event_id, status, answers, customer_email, created_at, updated_at)"
+            " VALUES (?,?,?,?,?,?,?,?,'booked',?,?,?,?)",
             (business_id, phone, customer_name, service, date, time, duration_min, event_id,
-             json.dumps(answers or {}, ensure_ascii=False), _now(), _now()))
+             json.dumps(answers or {}, ensure_ascii=False), customer_email or None, _now(), _now()))
         return cur.lastrowid
 
 
@@ -374,6 +399,15 @@ def last_customer_name(business_id: int, phone: str):
     return row["customer_name"] if row else None
 
 
+def last_customer_email(business_id: int, phone: str):
+    """Email the customer gave on an earlier booking (returning customers aren't asked again)."""
+    with connect() as conn:
+        row = conn.execute("SELECT customer_email FROM bookings WHERE business_id = ? AND phone = ?"
+                           " AND customer_email IS NOT NULL AND customer_email != '' ORDER BY id DESC LIMIT 1",
+                           (business_id, phone)).fetchone()
+    return row["customer_email"] if row else None
+
+
 def all_upcoming_bookings() -> list:
     """Every active booking from today on (used to restore reminders after a restart)."""
     today = today_pkt().isoformat()
@@ -404,6 +438,22 @@ def list_bookings(business_id: int, from_date: str = None, statuses=("booked", "
         params.extend(statuses)
     with connect() as conn:
         return [_booking(r) for r in conn.execute(query + " ORDER BY date, time", params).fetchall()]
+
+
+def customer_bookings(business_id: int, phone: str) -> list:
+    """Every booking of one customer (any status), newest appointment first."""
+    with connect() as conn:
+        return [_booking(r) for r in conn.execute(
+            "SELECT * FROM bookings WHERE business_id = ? AND phone = ? ORDER BY date DESC, time DESC, id DESC",
+            (business_id, phone)).fetchall()]
+
+
+def chat_days(business_id: int, phone: str) -> list:
+    """[(YYYY-MM-DD, messages that day)] of one customer's chat, newest day first."""
+    with connect() as conn:
+        return [(r["day"], r["n"]) for r in conn.execute(
+            "SELECT substr(created_at, 1, 10) AS day, COUNT(*) AS n FROM messages WHERE business_id = ? AND phone = ?"
+            " GROUP BY day ORDER BY day DESC", (business_id, phone))]
 
 
 def bookings_made(business_id: int, since: str) -> int:
@@ -489,7 +539,8 @@ def list_conversations(business_id: int, since: "str | None" = None) -> list:
              " SUM(m.direction = 'in') AS from_customer,"
              " COALESCE((SELECT customer_name FROM bookings b WHERE b.business_id = m.business_id AND b.phone = m.phone"
              "  AND customer_name IS NOT NULL ORDER BY b.id DESC LIMIT 1),"
-             " (SELECT profile_name FROM contacts c WHERE c.business_id = m.business_id AND c.phone = m.phone)) AS name"
+             " (SELECT profile_name FROM contacts c WHERE c.business_id = m.business_id AND c.phone = m.phone)) AS name,"
+             " (SELECT COUNT(*) FROM bookings k WHERE k.business_id = m.business_id AND k.phone = m.phone) AS bookings"
              " FROM messages m WHERE m.business_id = ?")
     params = [business_id]
     if since:
@@ -507,6 +558,17 @@ def message_stats(business_id: int, since: str) -> dict:
             " COUNT(DISTINCT CASE WHEN direction = 'in' THEN phone END) AS customers"
             " FROM messages WHERE business_id = ? AND created_at >= ?", (business_id, since)).fetchone()
     return {k: row[k] or 0 for k in ("received", "sent", "customers")}
+
+
+def escalated_customers(business_id: int, since: str) -> int:
+    """How many of the customers who messaged since `since` were handed to the owner at least once
+    (each customer counts once, however many alerts they caused), for the escalation rate."""
+    with connect() as conn:
+        row = conn.execute(
+            "SELECT COUNT(DISTINCT e.phone) AS n FROM escalations e WHERE e.business_id = ? AND e.created_at >= ?"
+            " AND e.phone IN (SELECT phone FROM messages WHERE business_id = ? AND direction = 'in'"
+            " AND created_at >= ?)", (business_id, since, business_id, since)).fetchone()
+    return row["n"] or 0
 
 
 # ------------------------------------------------------------ escalations
@@ -568,6 +630,14 @@ def resolve_escalation(business_id: int, escalation_id: int) -> bool:
 def get_settings() -> dict:
     with connect() as conn:
         return {r["key"]: r["value"] for r in conn.execute("SELECT key, value FROM settings")}
+
+
+def setting_once(key: str, value: str) -> str:
+    """Save value under key unless the key already exists; return the stored value. Safe when two
+    processes (server and dashboard) call it at the same moment: both get the same value."""
+    with connect() as conn:
+        conn.execute("INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)", (key, value, _now()))
+        return conn.execute("SELECT value FROM settings WHERE key = ?", (key,)).fetchone()["value"]
 
 
 def save_settings(values: dict):

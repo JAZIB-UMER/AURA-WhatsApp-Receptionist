@@ -1,4 +1,4 @@
-"""Voice notes: WaAPI webhook -> audio -> Whisper -> AURA reply. Offline (Groq, WaAPI, Gemini faked).
+"""Voice notes: WAHA webhook -> audio -> Whisper -> AURA reply. Offline (Groq, WAHA, Gemini faked).
 
 Run:  python tests/test_voice.py
 """
@@ -26,31 +26,40 @@ def check(name, cond):
     print(f"  [{'PASS' if cond else 'FAIL'}] {name}")
 
 
-def payload(kind="ptt", body="", media=None):
-    return {"event": "message", "instanceId": "108128",
-            "data": {"message": {"type": kind, "body": body, "from": "923001234567@c.us", "fromMe": False,
-                                 "id": {"_serialized": "false_923001234567@c.us_ABC"}},
-                     **({"media": media} if media else {})}}
+def payload(body="", media=None, sender="923001234567@c.us", data=None):
+    """A WAHA 'message' webhook as the GOWS engine sends it."""
+    message = {"id": "false_923001234567@c.us_ABC", "from": sender, "fromMe": False, "body": body,
+               "hasMedia": bool(media), "media": media, "_data": data or {}}
+    return {"event": "message", "session": "aura_1_abc123", "payload": message}
 
 
 class FakeResponse:
-    def __init__(self, body, status=200):
+    def __init__(self, body, status=200, content=b"", headers=None):
         self.status_code, self._body, self.text = status, body, str(body)
+        self.content, self.headers = content, headers or {}
+        self.ok = status < 400
 
     def json(self):
         return self._body
 
+    def raise_for_status(self):
+        if not self.ok:
+            raise whatsapp.requests.HTTPError(str(self.status_code))
+
 
 print("Webhook parsing")
-audio = b"OggS fake voice"
-p = whatsapp.parse_incoming(payload(media={"mimetype": "audio/ogg; codecs=opus",
-                                           "data": base64.b64encode(audio).decode()}))
-check("voice note -> empty text + audio and mimetype", p and p.text == "" and p.voice["mimetype"].startswith("audio/ogg")
-      and base64.b64decode(p.voice["data"]) == audio and p.message_id == "false_923001234567@c.us_ABC")
-p = whatsapp.parse_incoming(payload("chat", "kal 3 baje haircut"))
+VOICE_MEDIA = {"url": "http://waha:3000/api/files/aura_1_abc123/ABC.oga", "mimetype": "audio/ogg; codecs=opus"}
+p = whatsapp.parse_incoming(payload(media=VOICE_MEDIA))
+check("voice note -> empty text + WAHA file link and mimetype", p and p.text == "" and p.voice["url"] == VOICE_MEDIA["url"]
+      and p.voice["mimetype"].startswith("audio/ogg") and p.message_id == "false_923001234567@c.us_ABC"
+      and p.session == "aura_1_abc123")
+p = whatsapp.parse_incoming(payload("kal 3 baje haircut"))
 check("text message unchanged, no voice", p and p.text == "kal 3 baje haircut" and p.voice is None)
-check("images / stickers ignored", whatsapp.parse_incoming(payload("image")) is None)
-check("forwarded audio file accepted too", whatsapp.parse_incoming(payload("audio")) is not None)
+check("images / stickers ignored",
+      whatsapp.parse_incoming(payload(media={"url": "http://waha:3000/x.jpg", "mimetype": "image/jpeg"})) is None)
+gows_voice = payload(media={"url": None, "mimetype": None}, data={"Message": {"audioMessage": {"PTT": True}}})
+check("voice note recognised even when WAHA couldn't save the file",
+      (whatsapp.parse_incoming(gows_voice) or Incoming("", "x", "", "")).voice is not None)
 
 print("Whisper result handling")
 speech = {"text": " کل تین بجے", "segments": [{"text": " کل تین بجے", "no_speech_prob": 0.01}]}
@@ -72,64 +81,78 @@ check("no API key -> None", voice.transcribe(b"x") is None)
 config.save({"groq_api_key": "gsk_test_key_0123456789"})
 
 print("Server flow")
-BUSINESS = {"id": 1, "name": "Glow Salon"}
+audio = b"OggS fake voice"
+BUSINESS = {"id": 1, "name": "Glow Salon", "whatsapp_session": "aura_1_abc123"}
 sent, logged = [], []
 with mock.patch.object(main, "find_business", return_value=BUSINESS), \
+        mock.patch.object(main, "mark_seen"), \
         mock.patch.object(main, "record_incoming", side_effect=lambda b, ph, t: logged.append(t)), \
         mock.patch.object(main, "send_to_customer", side_effect=lambda b, ph, t, **k: sent.append(t)), \
         mock.patch.object(main, "process_message", side_effect=lambda b, ph, t: f"REPLY to {t}"), \
         mock.patch.object(main, "transcribe", return_value="kal 3 baje haircut") as tr, \
         mock.patch.object(main, "download_media", return_value=(b"downloaded", "audio/ogg")) as dl:
-    main.handle_message(Incoming("923001234567@c.us", "", "MSG1", "108128",
-                                 {"data": base64.b64encode(audio).decode(), "mimetype": "audio/ogg"}))
-    check("webhook audio transcribed (no download needed)", tr.call_args[0][0] == audio and not dl.called)
+    main.handle_message(Incoming("923001234567@c.us", "", "MSG1", "aura_1_abc123",
+                                 {"url": VOICE_MEDIA["url"], "mimetype": "audio/ogg"}))
+    check("voice note fetched from WAHA and transcribed",
+          dl.call_args[0] == (VOICE_MEDIA["url"],) and tr.call_args[0][0] == b"downloaded")
     check("backup says it was a voice note", logged[-1] == "🎤 Voice note: kal 3 baje haircut")
     check("reply shows what AURA heard, then answers it",
           sent[-1].startswith('🎤 _"kal 3 baje haircut"_') and sent[-1].endswith("REPLY to kal 3 baje haircut"))
 
-    main.handle_message(Incoming("923001234567@c.us", "", "MSG2", "108128", {"data": None, "mimetype": "audio/ogg"}))
-    check("audio missing from webhook -> downloaded from WaAPI",
-          dl.call_args[0] == ("MSG2", "108128") and tr.call_args[0][0] == b"downloaded")
+    dl.reset_mock()
+    main.handle_message(Incoming("923001234567@c.us", "", "MSG2", "aura_1_abc123",
+                                 {"data": base64.b64encode(audio).decode(), "mimetype": "audio/ogg"}))
+    check("audio inside the webhook (test sender) -> no download", tr.call_args[0][0] == audio and not dl.called)
 
     tr.return_value = None
-    main.handle_message(Incoming("923001234567@c.us", "", "MSG3", "108128", {"data": "x", "mimetype": "audio/ogg"}))
+    main.handle_message(Incoming("923001234567@c.us", "", "MSG3", "aura_1_abc123", {"url": None, "mimetype": "audio/ogg"}))
     check("unreadable voice note -> polite 'please type it'", sent[-1] == main.VOICE_FAILED
           and logged[-1] == "🎤 Voice note (could not be understood)")
 
-    main.handle_message(Incoming("923001234567@c.us", "Salam", "MSG4", "108128"))
+    main.handle_message(Incoming("923001234567@c.us", "Salam", "MSG4", "aura_1_abc123"))
     check("text messages work as before", logged[-1] == "Salam" and sent[-1] == "REPLY to Salam")
 
 print("Privacy IDs (@lid) and WhatsApp profile names")
-lid_payload = payload("chat", "Hi")
-lid_payload["data"]["message"].update({"from": "257139759173829@lid", "_data": {"notifyName": "Fatima​  K\n"}})
+lid_payload = payload("Hi", sender="257139759173829@lid", data={"Info": {"PushName": "Fatima​  K\n"}})
 p = whatsapp.parse_incoming(lid_payload)
 check("profile name read from the webhook (cleaned)", p and p.profile_name == "Fatima K" and p.chat_id.endswith("@lid"))
+hinted = payload("Hi", sender="257139759173829@lid",
+                 data={"Info": {"SenderAlt": "923007654321:5@s.whatsapp.net"}})
+check("real number taken from the webhook when WAHA includes it (device suffix dropped)",
+      whatsapp.parse_incoming(hinted).phone_hint == "923007654321@c.us")
 
-LID_ANSWER = {"data": {"status": "success",
-                       "data": {"contacts": [{"lid": "257139759173829@lid", "pn": "923007654321@c.us"}]}}}
+LID_ANSWER = {"lid": "257139759173829@lid", "pn": "923007654321@c.us"}
 whatsapp._phone_cache.clear()
-with mock.patch.object(whatsapp.requests, "post", return_value=FakeResponse(LID_ANSWER)) as post:
-    check("privacy ID -> real number", whatsapp.resolve_chat_id("257139759173829@lid", "108215") == "923007654321@c.us")
-    whatsapp.resolve_chat_id("257139759173829@lid", "108215")
-    check("looked up once, then remembered", post.call_count == 1)
+with mock.patch.object(whatsapp.requests, "request", return_value=FakeResponse(LID_ANSWER)) as call:
+    check("privacy ID -> real number", whatsapp.resolve_chat_id("257139759173829@lid", "aura_1_abc123")
+          == "923007654321@c.us")
+    whatsapp.resolve_chat_id("257139759173829@lid", "aura_1_abc123")
+    check("looked up once, then remembered", call.call_count == 1)
+    check("asked WAHA's lids API for that session", "/api/aura_1_abc123/lids/257139759173829%40lid"
+          in call.call_args[0][1])
     check("normal numbers are not looked up",
-          whatsapp.resolve_chat_id("923001234567@c.us", "108215") == "923001234567@c.us" and post.call_count == 1)
+          whatsapp.resolve_chat_id("923001234567@c.us", "aura_1_abc123") == "923001234567@c.us" and call.call_count == 1)
 whatsapp._phone_cache.clear()
-with mock.patch.object(whatsapp.requests, "post", side_effect=whatsapp.requests.RequestException("down")):
+with mock.patch.object(whatsapp.requests, "request") as call:
+    check("number from the webhook used without asking WAHA",
+          whatsapp.resolve_chat_id("257139759173829@lid", "s", "923007654321@c.us") == "923007654321@c.us"
+          and not call.called)
+whatsapp._phone_cache.clear()
+with mock.patch.object(whatsapp.requests, "request", side_effect=whatsapp.requests.RequestException("down")):
     check("lookup fails -> keeps the privacy ID (reply still attempted)",
-          whatsapp.resolve_chat_id("257139759173829@lid", "108215") == "257139759173829@lid")
+          whatsapp.resolve_chat_id("257139759173829@lid", "aura_1_abc123") == "257139759173829@lid")
 
-real = db.get_business(db.create_business("Fatima Salon", "fatima", "secret123", waapi_instance_id="108215"))
+real = db.get_business(db.create_business("Fatima Salon", "fatima", "secret123", whatsapp_session="aura_1_abc123"))
 replies = []
 whatsapp._phone_cache.clear()
-with mock.patch.object(main, "find_business", return_value=real), \
-        mock.patch.object(whatsapp.requests, "post", return_value=FakeResponse(LID_ANSWER)), \
+with mock.patch.object(whatsapp.requests, "request", return_value=FakeResponse(LID_ANSWER)), \
         mock.patch.object(main, "process_message", side_effect=lambda b, ph, t: f"REPLY to {t}"), \
         mock.patch("app.services.messaging.send_message",
-                   side_effect=lambda to, t, instance_id=None: replies.append(to) or True):
+                   side_effect=lambda to, t, session=None: replies.append((to, session)) or True):
     main.handle_message(whatsapp.parse_incoming(lid_payload))
 chats = db.list_conversations(real["id"])
-check("reply goes to the real number (the trial accepts it)", replies == ["923007654321@c.us"])
+check("reply goes to the real number, from the business's own WhatsApp",
+      replies == [("923007654321@c.us", "aura_1_abc123")])
 check("dashboard shows the real number and the WhatsApp name",
       [(c["phone"], c["name"]) for c in chats] == [("923007654321", "Fatima K")])
 db.create_booking(real["id"], "923007654321", "Fatima Azeem", "Haircut", "2030-01-01", "10:00", 30, "EV1")

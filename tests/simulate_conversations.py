@@ -86,7 +86,7 @@ nlu.entity_model.extract = fake_extract
 
 BUSY = {}                       # date -> list of (start, end)
 EVENTS = {}                     # event_id -> details
-SENT = []                       # (phone, message, instance)
+SENT = []                       # (phone, message, WhatsApp session)
 
 
 def fake_book(**kw):
@@ -105,8 +105,8 @@ reminder.cancel_appointment = fake_cancel
 EMAILS = []                     # (to, subject, body)
 
 
-def fake_send(phone, message, instance_id=None):
-    SENT.append((phone, message, instance_id))
+def fake_send(phone, message, session=None):
+    SENT.append((phone, message, session))
     return True
 
 
@@ -120,12 +120,12 @@ reminder.event_exists = lambda event_id, calendar_id=None: event_id in EVENTS
 # ---------------------------------------------------------------- test businesses
 
 salon_id = db.create_business("Glow Salon", "glow", "secret1", business_type="Salon",
-                              waapi_instance_id="111", calendar_id="glow@cal", owner_phone="03001111111",
+                              whatsapp_session="aura_1_test", calendar_id="glow@cal", owner_phone="03001111111",
                               open_days=[0, 1, 2, 3, 4, 5], open_time="10:00", close_time="20:00")
 db.replace_services(salon_id, [{"name": "Haircut", "price": 800, "duration_min": 30},
                                {"name": "Nail polish", "price": 500, "duration_min": 45},
                                {"name": "Hair colour", "price": 3000, "duration_min": 90}])
-clinic_id = db.create_business("City Clinic", "clinic", "secret2", waapi_instance_id="222",
+clinic_id = db.create_business("City Clinic", "clinic", "secret2", whatsapp_session="aura_2_test",
                                owner_phone="03002222222", open_days=[0, 1, 2, 3, 4],
                                open_time="17:00", close_time="22:00",
                                custom_questions=["Aap ki age kya hai?", "Kya problem hai?"])
@@ -354,6 +354,7 @@ print("20) Three unclear answers -> the RIGHT owner is alerted")
 SENT.clear()
 chat(SALON, "p10", "appointment book karni hai", "haircut", "pata nahi", "hmm", "???")
 check("salon owner alerted", any(p == "03001111111" for p, _, _ in SENT))
+check("alert sent from the salon's own WhatsApp", all(s == "aura_1_test" for p, _, s in SENT if p == "03001111111"))
 
 print("21) Salam mid-booking")
 chat(SALON, "p11", "appointment book karni hai", "Assalam o alaikum")
@@ -367,7 +368,7 @@ check("intent = reschedule", r["intent"] == "reschedule")
 nlu.intent_model.predict = fake_predict
 
 print("23) Real chats from 12 Nov (model calls names, 'Timings', 'Shukriya' greetings)")
-shop_id = db.create_business("NoonSyNai", "noon", "secret3", waapi_instance_id="333",
+shop_id = db.create_business("NoonSyNai", "noon", "secret3", whatsapp_session="aura_3_test",
                              open_days=[0, 1, 2, 3, 4, 5], open_time="10:00", close_time="20:00")
 db.replace_services(shop_id, [{"name": "Haircut", "price": 500, "duration_min": 30},
                               {"name": "Massage", "price": 200, "duration_min": 10},
@@ -642,6 +643,85 @@ NER["out"] = {msg: {"name": "Usman"}}
 out = chat(SALON, "p73", msg)
 check("name changed at the summary from 'main Usman hoon'", "Naam: Usman" in out)
 NER.update(on=False, out={})
+
+print("36) Booking emails to the customer, from the business's own email")
+from app.services import customer_mail  # noqa: E402
+
+MAILS = []                      # (to, subject, body, account) -- nothing really sent
+
+
+class _NowThread:               # run the background send at once, so the test can see it
+    def __init__(self, target, args=(), **kw):
+        self.target, self.args = target, args
+
+    def start(self):
+        self.target(*self.args)
+
+
+customer_mail.threading = types.SimpleNamespace(Thread=_NowThread)
+customer_mail.send_email = lambda to, subject, body, account=None, **kw: MAILS.append((to, subject, body, account)) or True
+mail_id = db.create_business("Mail Salon", "mailsalon", "secret4", whatsapp_session="aura_4_test",
+                             open_days=[0, 1, 2, 3, 4, 5], open_time="10:00", close_time="20:00",
+                             mail_from="mail.salon@gmail.com", mail_password="abcdefghijklmnop")
+db.replace_services(mail_id, [{"name": "Haircut", "price": 800, "duration_min": 30}])
+MAIL = db.get_business(mail_id)
+check("the App Password never leaves the database with the business",
+      "mail_password" not in MAIL and MAIL["mail_ready"] and MAIL["asks_email"])
+out = chat(MAIL, "m1", f"{OPEN_DAY_NAME} 3 baje haircut book kar do", "Bilal")
+check("after the name, AURA asks for the email (optional)", "Confirmation email ke liye apna email" in out and "skip" in out)
+out = chat(MAIL, "m1", "bilal at gmail")
+check("not an email -> asks again with an example", "Sahi email likhein" in out)
+out = chat(MAIL, "m1", "ye lo Bilal@Gmail.com")
+check("email in the summary (cleaned)", "confirm kar doon" in out and "• Email: bilal@gmail.com" in out)
+out = chat(MAIL, "m1", "haan")
+booked = db.upcoming_booking(mail_id, "m1")
+check("booked; the reply says the confirmation email went out",
+      "confirm ho gayi" in out and "📧 Confirmation email: bilal@gmail.com" in out
+      and booked["customer_email"] == "bilal@gmail.com")
+check("confirmation email: to the customer, from the business's own address, with the details",
+      len(MAILS) == 1 and MAILS[0][0] == "bilal@gmail.com" and MAILS[0][1].startswith("Appointment confirmed: Haircut")
+      and MAILS[0][3]["user"] == "mail.salon@gmail.com" and "Mail Salon" in MAILS[0][3]["sender"]
+      and "Rs 800" in MAILS[0][2] and "3:00 PM" in MAILS[0][2] and "Bilal" in MAILS[0][2])
+MAILS.clear()
+reminder.send_reminder(booked["id"])
+check("reminder email together with the WhatsApp reminder", len(MAILS) == 1 and MAILS[0][1].startswith("Reminder: Haircut"))
+MAILS.clear()
+out = chat(MAIL, "m1", f"meri appointment {OPEN_DAY_NAME} 5 baje shift kar dein")
+check("moving a booking never asks for the email again", "shift kar doon" in out and "Email: bilal@gmail.com" in out)
+chat(MAIL, "m1", "haan")
+check("'moved' email with the old and the new time", len(MAILS) == 1 and MAILS[0][1].startswith("Appointment moved")
+      and "3:00 PM" in MAILS[0][2] and "5:00 PM" in MAILS[0][2])
+MAILS.clear()
+chat(MAIL, "m1", "booking cancel karni hai", "haan")
+check("cancelling on WhatsApp -> cancellation email", len(MAILS) == 1
+      and MAILS[0][1].startswith("Appointment cancelled") and db.upcoming_booking(mail_id, "m1") is None)
+MAILS.clear()
+out = chat(MAIL, "m1", f"{OPEN_DAY_NAME} 4 baje haircut book kar do")
+check("returning customer: name and email remembered, not asked again",
+      "confirm kar doon" in out and "Email: bilal@gmail.com" in out)
+out = chat(MAIL, "m1", "nahi, email bilal.new@gmail.com kar do")
+check("email can be changed at the summary", "Email: bilal.new@gmail.com" in out)
+chat(MAIL, "m1", "haan")
+check("confirmation goes to the new address", MAILS and MAILS[-1][0] == "bilal.new@gmail.com")
+MAILS.clear()
+from app.services import manage  # noqa: E402
+manage.cancel_appointment = fake_cancel
+result = manage.cancel_booking(MAIL, db.upcoming_booking(mail_id, "m1")["id"], notify_customer=False)
+check("owner cancels on the dashboard -> the customer gets the cancellation email",
+      result["error"] is None and len(MAILS) == 1 and MAILS[0][0] == "bilal.new@gmail.com"
+      and MAILS[0][1].startswith("Appointment cancelled"))
+MAILS.clear()
+chat(MAIL, "m2", f"{OPEN_DAY_NAME} 6 baje haircut book kar do", "Zara")
+out = chat(MAIL, "m2", "skip")
+check("'skip' -> no email, straight to the summary", "confirm kar doon" in out and "Email" not in out)
+out = chat(MAIL, "m2", "haan")
+check("no email given -> booked, nothing emailed", "confirm ho gayi" in out and "📧" not in out and not MAILS)
+db.update_business(mail_id, ask_email=0)
+out = chat(db.get_business(mail_id), "m3", f"{OPEN_DAY_NAME} 7 baje haircut book kar do", "Hina")
+check("business turned the question off -> not asked", "confirm kar doon" in out and "email" not in out.lower())
+chat(MAIL, "m3", "nahi rehne do")
+out = chat(SALON, "m4", f"{OPEN_DAY_NAME} 11 baje haircut book kar do", "Ali")
+check("business without its own email set up -> never asks", "confirm kar doon" in out and "email" not in out.lower())
 
 passed = sum(c for _, c in checks)
 print(f"\n{passed}/{len(checks)} checks passed")

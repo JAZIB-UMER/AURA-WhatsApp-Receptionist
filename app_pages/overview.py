@@ -31,8 +31,8 @@ elif not email_configured():
     missing.append("email alerts need the **email server** in Platform settings (admin)")
 if not business.get("calendar_id"):
     missing.append("link a **Google Calendar** (admin)")
-if not business.get("waapi_instance_id"):
-    missing.append("link a **WhatsApp number** (WaAPI instance, admin)")
+if not business.get("whatsapp_session"):
+    missing.append("connect the business's **WhatsApp** (Settings → WhatsApp, scan the QR code)")
 if not business.get("active"):
     missing.append("this business is **inactive** — AURA won't answer its customers")
 if missing:
@@ -66,16 +66,17 @@ k4.metric("Expected revenue (7 days)", ui.money(next7["price"].sum()), border=Tr
 # ----------------------------------------------------------------- AURA's work (last 30 days)
 month_ago = (datetime.now() - timedelta(days=30)).isoformat(timespec="seconds")
 stats = db.message_stats(bid, since=month_ago)
-escalations_30 = db.list_escalations(bid, since=month_ago)
 open_cases = db.list_escalations(bid, status="open")
-rate = f"{len(escalations_30) / stats['customers']:.0%}" if stats["customers"] else "—"
+escalated = db.escalated_customers(bid, since=month_ago)
+rate = f"{escalated / stats['customers']:.0%}" if stats["customers"] else "—"
 m1, m2, m3, m4 = st.columns(4)
-m1.metric("Messages (30 days)", stats["received"], border=True, height="stretch", icon=":material/chat:",
-          help=f"Customer messages AURA answered, from {stats['customers']} customer(s).")
+m1.metric("Customers (30 days)", stats["customers"], border=True, height="stretch", icon=":material/group:",
+          help="Different people who messaged the business on WhatsApp and got answers from AURA.")
 m2.metric("Bookings made (30 days)", db.bookings_made(bid, since=month_ago), border=True, height="stretch",
           icon=":material/event_available:", help="Bookings AURA created in the last 30 days (any status now).")
 m3.metric("Escalation rate (30 days)", rate, border=True, height="stretch", icon=":material/support_agent:",
-          help="Escalations ÷ customers who messaged. Lower means AURA handled more on its own.")
+          help=f"{escalated} of {stats['customers']} customer(s) needed you (each customer counted once). "
+               "Lower means AURA handled more on its own.")
 m4.metric("Open escalations", len(open_cases), border=True, height="stretch",
           icon=":material/notification_important:", help="Cases waiting for you on the Escalations page.")
 

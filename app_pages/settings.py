@@ -4,8 +4,8 @@ from datetime import datetime
 import pandas as pd
 import streamlit as st
 
-from app import ui
-from app.services import db, manage, validation
+from app import ui, whatsapp_panel
+from app.services import customer_mail, db, validation
 from app.services.business import SHORT_DAYS, hours_text
 from app.services.questions import TYPES as QUESTION_TYPES
 
@@ -89,16 +89,14 @@ with st.form(f"settings_{bid}", border=False):
         with st.container(border=True):
             st.subheader("Connection (admin only)", icon=":material/link:")
             c1, c2 = st.columns(2)
-            instance = c1.text_input("WaAPI instance ID", business.get("waapi_instance_id") or "", max_chars=12,
-                                     required=True, validate=(validation.INSTANCE_RE, "Numbers only, e.g. 108128."), key=k + "instance")
-            calendar = c2.text_input("Google Calendar ID", business.get("calendar_id") or "", max_chars=200,
+            calendar = c1.text_input("Google Calendar ID", business.get("calendar_id") or "", max_chars=200,
                                      required=True, validate=(validation.CALENDAR_RE, "Looks like an email address."),
                                      help=ui.calendar_share_help(),
                                      key=k + "calendar")
-            username = c1.text_input("Owner login username", business["username"], max_chars=30, required=True,
+            username = c2.text_input("Owner login username", business["username"], max_chars=30, required=True,
                                      validate=(validation.USERNAME_RE, "3–30 lowercase letters, numbers, '.' or '_'."),
                                      key=k + "username")
-            active = c2.toggle("Active (AURA answers this business's customers)", bool(business.get("active")),
+            active = c1.toggle("Active (AURA answers this business's customers)", bool(business.get("active")),
                                key=k + "active")
 
     submitted = st.form_submit_button("Save settings", type="primary", icon=":material/save:")
@@ -129,8 +127,6 @@ if submitted:
                       close_time=close_time.strftime("%H:%M"))
 
     if admin:
-        take("waapi_instance_id", validation.instance_id(
-            instance, required=True, taken=db.instance_taken(validation.clean_text(instance), bid)))
         take("calendar_id", validation.calendar_id(calendar, required=True))
         take("username", validation.username(username, taken=db.username_taken(username, bid)))
         fields["active"] = int(bool(active))
@@ -150,18 +146,81 @@ if submitted:
             ui.flash("Settings saved.")
             st.rerun()
         except sqlite3.IntegrityError:
-            st.error("That username or WaAPI instance ID is already used by another business.")
+            st.error("That username is already used by another business.")
 
 st.caption(f"Saved hours, as AURA tells customers: {hours_text(business)}")
 
+whatsapp_panel.show(business)
+
+# ----------------------------------------------------------------- booking emails to customers
+with st.container(border=True):
+    st.subheader("Booking emails to customers", icon=":material/mail:")
+    st.caption("AURA emails customers **from the business's own address**: the booking confirmation, the reminder, "
+               "and a note when a booking is moved or cancelled. During booking it asks for their email (optional). "
+               "Gmail: use an **App Password** (Google Account → Security → 2-Step Verification → App passwords), "
+               "not the normal password.")
+    if business.get("mail_ready"):
+        st.markdown(f"Sending from :green[:material/check_circle: {business['mail_from']}]")
+    else:
+        st.markdown(":orange[:material/warning: Not set up]: customers only get WhatsApp messages.")
+    with st.form(f"mail_{bid}", border=False):
+        c1, c2 = st.columns(2)
+        mail_from = c1.text_input("Business email", business.get("mail_from") or "", max_chars=120, type="email",
+                                  placeholder="glowsalon@gmail.com", key=k + "mail_from",
+                                  help="Customers see this address as the sender. Leave empty to turn emails off.")
+        mail_password = c2.text_input("App password", type="password", max_chars=100, autocomplete="new-password",
+                                      key=k + "mail_password",
+                                      placeholder="Leave empty to keep the saved one" if business.get("mail_ready")
+                                      else "16 letters from Google")
+        c3, c4 = st.columns([3, 1])
+        mail_host = c3.text_input("Mail server", business.get("mail_host") or "smtp.gmail.com", max_chars=120,
+                                  key=k + "mail_host")
+        mail_port = c4.text_input("Port", business.get("mail_port") or "587", max_chars=5, key=k + "mail_port")
+        ask_email = st.toggle("Ask customers for their email during booking (they can skip it)",
+                              bool(business.get("ask_email", 1)), key=k + "ask_email",
+                              help="Off: only customers who answer one of your own email questions get emails.")
+        save_mail = st.form_submit_button("Save email settings", icon=":material/save:")
+
+    if save_mail:
+        errors: list = []
+        mail_fields: dict = {"ask_email": int(bool(ask_email))}
+        address, error = validation.email(mail_from)
+        errors += [error] if error else []
+        if address:
+            server, error = validation.smtp_server(mail_host, mail_port)
+            errors += [error] if error else []
+            if server:
+                mail_fields.update(mail_from=address, mail_host=server[0], mail_port=server[1])
+            if mail_password.strip():
+                value, error = validation.app_password(mail_password)
+                errors += [error] if error else []
+                mail_fields["mail_password"] = value
+            elif not business.get("mail_ready") or address != business.get("mail_from"):
+                errors.append("Enter the App Password for this email address.")
+        elif not errors:                                 # address emptied: booking emails off, password forgotten
+            mail_fields.update(mail_from="", mail_password="", mail_host="", mail_port="")
+        if errors:
+            for e in errors:
+                st.error(e, icon=":material/error:")
+        else:
+            db.update_business(bid, **mail_fields)
+            for key in [key for key in st.session_state if str(key).startswith(k + "mail_")]:
+                del st.session_state[key]                # the password field empties; the rest reloads
+            ui.flash("Email settings saved. Use 'Send test email' to try them." if address
+                     else "Booking emails turned off.")
+            st.rerun()
+
+    if st.button("Send test email", icon=":material/send:", key=k + "mail_test",
+                 disabled=not business.get("mail_ready"),
+                 help="Sends a short test email from the business's address to itself."):
+        with st.spinner("Sending…"):
+            ok, message = customer_mail.send_test(business)
+        (st.success if ok else st.error)(message, icon=":material/check_circle:" if ok else ":material/error:")
+
 if admin:
     with st.container(border=True):
-        st.subheader("Check connections", icon=":material/network_check:")
-        st.caption("Uses the saved settings above. Read-only: nothing is booked or sent.")
-        c1, c2 = st.columns(2)
-        if c1.button("Check Google Calendar", icon=":material/calendar_month:", key=k + "chk_cal"):
+        st.subheader("Check Google Calendar", icon=":material/network_check:")
+        st.caption("Uses the saved calendar above. Read-only: nothing is booked.")
+        if st.button("Check Google Calendar", icon=":material/calendar_month:", key=k + "chk_cal"):
             ok, message = ui.check_calendar_after_save(business)
-            (c1.success if ok else c1.error)(message)
-        if c2.button("Check WhatsApp (WaAPI)", icon=":material/chat:", key=k + "chk_wa"):
-            ok, message = manage.check_whatsapp(business)
-            (c2.success if ok else c2.error)(message)
+            (st.success if ok else st.error)(message)

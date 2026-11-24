@@ -1,7 +1,9 @@
 # AURA on any computer with Docker:   docker compose up -d
 #   Dashboard        http://localhost:8501   (log in as "admin" with ADMIN_PASSWORD from .env)
-#   WhatsApp server  http://localhost:8000
-#   WhatsApp webhook registered automatically through a free Cloudflare tunnel (run and repaired by AURA)
+#   WhatsApp         each business links its number by scanning a QR code: dashboard -> Settings -> WhatsApp
+#
+# Four containers: aura (WhatsApp server), dashboard, waha (WhatsApp connection), redis (memory).
+# WAHA and AURA talk to each other inside Docker, so no public address or tunnel is needed.
 #
 # Next to this file (all private - never commit them):
 #   .env                      copy of .env.example; your API keys in it are imported on the first start
@@ -21,22 +23,23 @@ x-aura: &aura
     ENTITY_MODEL_DIR: /app/models/entity_model_fp16
     MODEL_DTYPE: ${MODEL_DTYPE:-float16}   # float32 = original precision (more RAM, same answers)
     GOOGLE_CREDENTIALS_FILE: /app/secrets/credentials.json
+    WAHA_URL: http://waha:3000
+    WAHA_API_KEY: ${WAHA_API_KEY:-aura-waha-local-key}
+    AURA_WEBHOOK_URL: http://aura:8000/webhook
   volumes:
     - aura-data:/app/storage          # database: businesses, bookings, chats, settings
     - ./secrets:/app/secrets:ro       # your Google key (read-only; imported once into the dashboard)
   depends_on:
     - redis
+    - waha
   restart: unless-stopped
 
 services:
-  aura:                               # WhatsApp webhook server, reminders, Cloudflare tunnel
+  aura:                               # WhatsApp messages in and out, reminders
     <<: *aura
     command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-    environment:
-      <<: *aura-env
-      PUBLIC_TUNNEL: ${PUBLIC_TUNNEL:-cloudflare}   # "off" in .env to manage the webhook yourself
     ports:
-      - "${AURA_PORT:-8000}:8000"
+      - "127.0.0.1:${AURA_PORT:-8000}:8000"   # this computer only: WAHA reaches AURA inside Docker
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/', timeout=5)"]
       interval: 30s
@@ -51,9 +54,24 @@ services:
     ports:
       - "${DASHBOARD_PORT:-8501}:8501"
 
+  waha:                               # WhatsApp connection (WAHA, free and self-hosted): one session per business
+    image: ${WAHA_IMAGE:-devlikeapro/waha:gows-2026.10.1}   # gows: no browser inside, light on memory
+    environment:
+      WHATSAPP_DEFAULT_ENGINE: GOWS
+      WAHA_API_KEY: ${WAHA_API_KEY:-aura-waha-local-key}    # only AURA uses it; WAHA has no port outside Docker
+      WAHA_BASE_URL: http://waha:3000                       # links to received voice notes, fetched by AURA
+      WHATSAPP_RESTART_ALL_SESSIONS: "True"                 # linked numbers reconnect after a restart
+      WAHA_DASHBOARD_ENABLED: "False"
+      WHATSAPP_SWAGGER_ENABLED: "False"
+      TZ: Asia/Karachi
+    volumes:
+      - waha-data:/app/.sessions      # the linked WhatsApp logins: survive restarts, no new QR scan needed
+    restart: unless-stopped
+
   redis:                              # short-lived conversation memory
     image: redis:7.4-alpine
     restart: unless-stopped
 
 volumes:
   aura-data:
+  waha-data:

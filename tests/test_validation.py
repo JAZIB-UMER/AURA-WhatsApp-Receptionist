@@ -37,11 +37,10 @@ check("password no digit", v.password("abcdefgh")[1])
 check("password mismatch", v.password("secret12", "secret13")[1])
 
 # connection fields
-check("instance ok", v.instance_id(" 108128 ") == ("108128", None))
-check("instance letters", v.instance_id("abc")[1])
-check("instance taken", v.instance_id("1", taken=True)[1])
 check("calendar ok", v.calendar_id("a@gmail.com") == ("a@gmail.com", None))
 check("calendar bad", v.calendar_id("not a calendar")[1])
+check("app password: Gmail spaces removed", v.app_password("abcd efgh ijkl mnop") == ("abcdefghijklmnop", None))
+check("app password too short refused", v.app_password("abc")[1])
 
 # email
 check("email ok + lowercased", v.email(" Owner@Gmail.com ") == ("owner@gmail.com", None))

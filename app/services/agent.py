@@ -15,7 +15,7 @@ import json
 import re
 from datetime import date, datetime, timedelta
 
-from app.services import db, intent_model
+from app.services import customer_mail, db, intent_model
 from app.services.business import (
     DEFAULT_DURATION, duration_for, format_price, free_slots, is_open_day, match_service,
     nearest, overlaps, price_list_message, services_text, similar_services, suggest, suggestion_text,
@@ -76,6 +76,8 @@ def _question(field: str, business: dict, services: list) -> str:
         return "Kis waqt? (e.g. 3 baje, sham 6 baje, 10am)"
     if field == "name":
         return "Apna naam batayein please?"
+    if field == "email":
+        return question_prompt(customer_mail.EMAIL_QUESTION)
     return question_prompt(business["custom_questions"][int(field[1:])])   # owner's question "q0", "q1", ...
 
 
@@ -359,6 +361,14 @@ def collect_field(state: dict, message: str, business: dict, services: list):
     c = state["collected"]
     before = dict(c)
 
+    if asked == "email":                           # optional: an email address, or 'skip'
+        answer, problem = check_answer(customer_mail.EMAIL_QUESTION, message)
+        if problem:
+            state["question_problem"] = problem
+            return state, False
+        c["email"] = answer                        # '' = skipped
+        return state, True
+
     if asked.startswith("q"):                      # owner's question: check the answer against its type
         answer, problem = check_answer(business["custom_questions"][int(asked[1:])], message)
         if problem:
@@ -406,8 +416,13 @@ def collect_field(state: dict, message: str, business: dict, services: list):
 
 
 def _apply_changes(state: dict, message: str, services: list) -> bool:
-    """'Nahi, 5 baje kar do' / 'Friday rakh lo' / 'haircut kar do' while reviewing the summary."""
+    """'Nahi, 5 baje kar do' / 'Friday rakh lo' / 'haircut kar do' / a new email while reviewing the summary."""
     c = state["collected"]
+    if c.get("email") is not None:                 # only when AURA asked for an email in this booking
+        found = re.search(r"[^@\s]+@[^@\s]+\.[A-Za-z]{2,}", message)
+        if found and found.group(0).strip(".,;").lower() != c["email"]:
+            c["email"] = found.group(0).strip(".,;").lower()
+            return True
     details = extract_details(message, use_gemini=False)
     if re.fullmatch(r"\s*\d{1,2}([:.]\d{2})?\s*", message):
         details["time"] = parse_time(message.strip().replace(".", ":") + " baje")
@@ -681,6 +696,8 @@ def _start_booking(intent, entities, state, business, services, phone, message) 
         # Returning customer: reuse their last name, and say so in the summary so they can change it.
         c["name"] = db.last_customer_name(bid, phone)
         state["remembered_name"] = c["name"]
+    if business.get("asks_email") and c.get("email") is None:
+        c["email"] = db.last_customer_email(bid, phone)    # returning customer: not asked again
 
     if intent == "check_availability" and c["date"] and not c["time"]:
         return _list_free_slots(state, business, services, phone)
@@ -721,6 +738,7 @@ def _begin_reschedule(state, business, services, phone, booking, entities) -> st
     state["reschedule_of"] = booking["id"]
     c = state["collected"]
     c["service"], c["name"] = booking["service"], booking["customer_name"]
+    c["email"] = booking.get("customer_email") or ""    # moving a booking: never asks for the email again
     c["date"], c["time"] = entities.get("date"), entities.get("time")
     questions = business.get("custom_questions") or []
     state["answers"] = [booking["answers"].get(q["question"], "") for q in questions]
@@ -841,6 +859,8 @@ def _summary(state, business, services) -> str:
     lines = [f"• Service: {c['service']}{price}", f"• Waqt: {describe(c['date'], c['time'])}", f"• Naam: {name}"]
     for q, a in zip(business.get("custom_questions") or [], state.get("answers") or []):
         lines.append(f"• {q['question']} {a or '—'}")
+    if c.get("email"):
+        lines.append(f"• Email: {c['email']}")
     if state.get("reschedule_of"):
         old = db.get_booking(state["reschedule_of"])
         head = (f"*Booking shift kar doon?*\nPurani: {describe(old['date'], old['time'])}\nNayi:" if old
@@ -880,9 +900,9 @@ def _finalize(state, business, services, phone) -> str:
         return _calendar_down(state, business, phone)     # owner gets the request; customer isn't stuck
 
     booking_id = db.create_booking(bid, phone, c["name"], c["service"], c["date"], c["time"],
-                                   duration, result["event_id"], answers)
+                                   duration, result["event_id"], answers, customer_email=c.get("email"))
 
-    moved = False
+    moved_from = None
     old_id = state.get("reschedule_of")
     if old_id:
         old = db.get_booking(old_id)
@@ -891,16 +911,20 @@ def _finalize(state, business, services, phone) -> str:
                 cancel_appointment(old["event_id"], business.get("calendar_id"))
             db.set_booking_status(old_id, "rescheduled")
             cancel_reminders(old_id)
-            moved = True
+            moved_from = old
 
     schedule_reminders(booking_id)
     clear_state(bid, phone)
-    title = "Booking shift ho gayi!" if moved else "Booking confirm ho gayi!"
+    booking = db.get_booking(booking_id)
+    emailed = customer_mail.booking_confirmed(business, booking, moved_from=moved_from)
+    title = "Booking shift ho gayi!" if moved_from else "Booking confirm ho gayi!"
+    email_line = f"📧 Confirmation email: {customer_mail.customer_email(business, booking)}\n" if emailed else ""
     return (
         f"✅ *{title}*\n"
         f"🏪 {business['name']}\n\n"
         f"• Naam: {c['name']}\n"
         f"• Service: {c['service']}\n"
         f"• Waqt: {describe(c['date'], c['time'])}\n\n"
+        f"{email_line}"
         f"Appointment se pehle reminder bhej diya jayega. Shukriya!"
     )

@@ -203,7 +203,8 @@ def bookings_frame(bookings: list, prices: dict) -> pd.DataFrame:
             "price": prices.get((b.get("service") or "").lower()),
             "status": [STATUS_LABELS.get(b["status"], b["status"])],
             "status_key": b["status"],
-            "details": "; ".join(f"{k} {v}" for k, v in (b.get("answers") or {}).items() if v),
+            "details": "; ".join([f"{k} {v}" for k, v in (b.get("answers") or {}).items() if v]
+                                 + ([f"Email: {b['customer_email']}"] if b.get("customer_email") else [])),
         })
     return pd.DataFrame(rows).astype({"price": "float"})
 

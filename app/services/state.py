@@ -22,7 +22,8 @@ def new_state(phone: str) -> dict:
     return {
         "phone": phone,
         "intent": None,
-        "collected": {"service": None, "date": None, "time": None, "name": None},
+        "collected": {"service": None, "date": None, "time": None, "name": None,
+                      "email": None},  # email: None = not asked yet, "" = customer skipped it
         "answers": [],            # answers to the business's custom questions, in order
         "reschedule_of": None,    # booking id being moved, when rescheduling
         "pending": None,          # a question AURA is waiting on: pick a booking / confirm / what to change
@@ -53,12 +54,15 @@ def clear_state(business_id: int, phone: str):
 
 
 def get_missing_fields(state: dict, business: "dict | None" = None) -> list:
-    """What AURA still needs to ask, in order: service, date, time, name, then custom questions."""
+    """What AURA still needs to ask, in order: service, date, time, name, the owner's questions, then
+    the customer's email (optional; only when the business sends booking emails)."""
     collected = state["collected"]
     missing = [f for f in ("service", "date", "time", "name") if not collected.get(f)]
     questions = (business or {}).get("custom_questions") or []
     answered = len(state.get("answers") or [])
     missing += [f"q{i}" for i in range(answered, len(questions))]
+    if (business or {}).get("asks_email") and collected.get("email") is None:
+        missing.append("email")
     return missing
 
 

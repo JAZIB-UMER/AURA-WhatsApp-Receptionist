@@ -69,8 +69,6 @@ RUN test -f /usr/share/zoneinfo/Asia/Karachi \
 
 WORKDIR /app
 COPY --from=libs /opt/venv /opt/venv
-# Cloudflare tunnel program (a single file, ~40 MB): AURA runs it to get a public address for WhatsApp.
-COPY --from=cloudflare/cloudflared:2026.11.0 /usr/local/bin/cloudflared /usr/local/bin/cloudflared
 
 # Trained models in half precision (2 x 0.55 GB, made by training/convert_fp16.py; same predictions as the
 # float32 originals on every test set), then the code (changes often).
