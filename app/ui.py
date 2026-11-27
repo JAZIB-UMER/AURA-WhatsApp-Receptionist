@@ -1,13 +1,61 @@
 """Shared helpers for the dashboard pages (Dashboard.py + app_pages/)."""
 import re
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+from typing import Literal, cast
 
 import pandas as pd
 import streamlit as st
 
 from app.services import config, db
 from app.services.manage import display_phone
+
+
+# Action colours the owner asked for: red = cancel / delete / disconnect, green = confirm / resolve.
+# Only buttons whose key starts with "danger_" or "ok_" are coloured (Streamlit adds .st-key-<key>).
+ACTION_COLORS = """<style>
+[class*="st-key-danger_"] button { background-color: #DC2626; border-color: #DC2626; color: #FFFFFF; }
+[class*="st-key-danger_"] button:hover { background-color: #B91C1C; border-color: #B91C1C; color: #FFFFFF; }
+[class*="st-key-ok_"] button { background-color: #059669; border-color: #059669; color: #FFFFFF; }
+[class*="st-key-ok_"] button:hover { background-color: #047857; border-color: #047857; color: #FFFFFF; }
+[class*="st-key-danger_"] button:disabled, [class*="st-key-ok_"] button:disabled { opacity: 0.45; }
+</style>"""
+
+
+def section_counts(business_id: int) -> dict:
+    """Numbers shown in the menu and as badges under the section titles."""
+    today = date.today().isoformat()
+    upcoming = db.list_bookings(business_id, from_date=today, statuses=("booked", "confirmed"))
+    month_ago = (date.today() - timedelta(days=30)).isoformat()
+    return {
+        "awaiting": sum(b["status"] == "booked" for b in upcoming),
+        "confirmed": sum(b["status"] == "confirmed" for b in upcoming),
+        "cancelled_30": len(db.list_bookings(business_id, from_date=month_ago, statuses=("cancelled",))),
+        "open_cases": len(db.list_escalations(business_id, status="open")),
+        "today": sum(b["date"] == today for b in upcoming),
+    }
+
+
+BadgeColor = Literal["red", "orange", "yellow", "blue", "green", "violet", "gray", "grey", "primary"]
+
+
+def section_badges(section: str, counts: dict):
+    """Coloured badges under a section title, e.g. Bookings: 3 awaiting reply · 5 confirmed."""
+    badges = {
+        "Overview": [(f"{counts['today']} today", "violet", ":material/today:"),
+                     (f"{counts['awaiting']} awaiting reply", "orange", ":material/hourglass_top:"),
+                     (f"{counts['open_cases']} open escalation" + ("s" if counts["open_cases"] != 1 else ""),
+                      "red" if counts["open_cases"] else "green", ":material/notification_important:")],
+        "Bookings": [(f"{counts['awaiting']} awaiting reply", "orange", ":material/hourglass_top:"),
+                     (f"{counts['confirmed']} confirmed", "green", ":material/check_circle:"),
+                     (f"{counts['cancelled_30']} cancelled (30 days)", "red", ":material/event_busy:")],
+        "Escalations": [(f"{counts['open_cases']} open", "red", ":material/priority_high:") if counts["open_cases"]
+                        else ("All handled", "green", ":material/task_alt:")],
+    }.get(section)
+    if badges:
+        with st.container(horizontal=True, gap="small"):
+            for label, color, icon in badges:
+                st.badge(label, color=cast(BadgeColor, color), icon=icon)
 
 
 def check_calendar_after_save(business: dict):
@@ -36,7 +84,7 @@ def calendar_share_help() -> str:
 
 STATUS_LABELS = {"booked": "Awaiting reply", "confirmed": "Confirmed", "cancelled": "Cancelled",
                  "rescheduled": "Rescheduled"}
-STATUS_COLORS = ["orange", "green", "red", "gray"]          # same order as STATUS_LABELS
+STATUS_COLORS = ["orange", "green", "red", "blue"]          # same order as STATUS_LABELS
 
 MAX_ATTEMPTS, LOCK_SECONDS = 5, 300
 
@@ -178,8 +226,17 @@ def price_lookup(business_id: int) -> dict:
     return {s["name"].lower(): s["price"] for s in db.list_services(business_id)}
 
 
-def bookings_frame(bookings: list, prices: dict) -> pd.DataFrame:
-    """Bookings as a typed DataFrame (also correct when empty)."""
+def bookings_frame(bookings: list, prices: dict, questions: "list | None" = None) -> pd.DataFrame:
+    """Bookings as a typed DataFrame (also correct when empty). questions: the business's extra questions;
+    each answer gets its own column ans_0, ans_1, ... (plus 'email')."""
+    frame = _bookings_frame(bookings, prices)
+    for i, q in enumerate(questions or []):
+        frame[f"ans_{i}"] = pd.Series([(b.get("answers") or {}).get(q, "") for b in bookings], dtype="string")
+    frame["email"] = pd.Series([b.get("customer_email") or "" for b in bookings], dtype="string")
+    return frame
+
+
+def _bookings_frame(bookings: list, prices: dict) -> pd.DataFrame:
     columns = {
         "id": pd.Series(dtype="int64"), "when": pd.Series(dtype="datetime64[ns]"),
         "date": pd.Series(dtype="object"), "customer": pd.Series(dtype="string"),

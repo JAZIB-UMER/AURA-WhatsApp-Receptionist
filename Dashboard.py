@@ -7,6 +7,7 @@ Admin    username "admin". First login with ADMIN_PASSWORD from .env, then chang
 Owners   log in with the username/password the admin created; they see only their own business.
 Pages live in app_pages/; shared helpers in app/ui.py; validation in app/services/validation.py.
 """
+import re
 from typing import NoReturn
 
 import streamlit as st
@@ -15,6 +16,8 @@ from app import ui
 from app.services import config, db
 
 st.set_page_config(page_title="AURA dashboard", page_icon=":material/support_agent:", layout="wide")
+st.html(ui.ACTION_COLORS)
+st.logo("app/assets/aura_logo.svg", icon_image="app/assets/aura_icon.svg", size="large")
 
 
 def _login_failed(message: str) -> NoReturn:
@@ -63,13 +66,14 @@ def login_page():
         st.rerun()
 
 
-def business_pages(business_id: int) -> list:
-    """Pages for one business; the Escalations title shows how many cases are open."""
-    open_cases = len(db.list_escalations(business_id, status="open"))
+def business_pages(business_id: int, counts: dict) -> list:
+    """Pages for one business. The menu shows upcoming bookings and open escalations as counts."""
+    upcoming, open_cases = counts["awaiting"] + counts["confirmed"], counts["open_cases"]
     return [
         st.Page("app_pages/overview.py", title="Overview", icon=":material/dashboard:", default=True,
                 help="Today's schedule, the next 7 days at a glance, and what needs your attention."),
-        st.Page("app_pages/bookings.py", title="Bookings", icon=":material/event:",
+        st.Page("app_pages/bookings.py", title=f"Bookings ({upcoming})" if upcoming else "Bookings",
+                icon=":material/event:",
                 help="Search and filter bookings, see each booking's conversation, confirm or cancel, export CSV."),
         st.Page("app_pages/escalations.py", title=f"Escalations ({open_cases})" if open_cases else "Escalations",
                 icon=":material/notification_important:",
@@ -112,8 +116,10 @@ if ui.is_admin():
             st.session_state.business_id = ids[0]
         with st.sidebar:
             st.selectbox("Managing", ids, format_func=lambda i: names[i], key="business_id")
+        counts = ui.section_counts(st.session_state.business_id)
         page = st.navigation({"Admin": admin_pages,
-                              names[st.session_state.business_id]: business_pages(st.session_state.business_id)})
+                              names[st.session_state.business_id]: business_pages(st.session_state.business_id,
+                                                                                   counts)})
     else:
         page = st.navigation({"Admin": admin_pages})
 else:
@@ -121,7 +127,8 @@ else:
     if not business or not business.get("active"):
         ui.end_session()
         st.rerun()
-    page = st.navigation(business_pages(business["id"]))
+    counts = ui.section_counts(business["id"])
+    page = st.navigation(business_pages(business["id"], counts))
 
 with st.sidebar:
     who = "Administrator" if ui.is_admin() else user.get("name", "")
@@ -129,5 +136,8 @@ with st.sidebar:
     st.button("Log out", icon=":material/logout:", on_click=ui.end_session, width="stretch")
 
 ui.show_flash()
-st.title(page.title, icon=page.icon)
+section = re.sub(r"\s*\(\d+\)$", "", page.title)          # "Bookings (5)" in the menu, "Bookings" as the title
+st.title(section, icon=page.icon)
+if "counts" in globals():
+    ui.section_badges(section, counts)
 page.run()

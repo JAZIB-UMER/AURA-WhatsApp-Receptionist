@@ -62,7 +62,7 @@ def delete_dialog(phone: str, label: str):
     st.caption("This can't be undone. Their bookings and escalation records are kept. If they message again, "
                "AURA starts a fresh conversation.")
     with st.container(horizontal=True):
-        confirm = st.button("Yes, delete it", type="primary", icon=":material/delete:", key="conv_delete_yes")
+        confirm = st.button("Yes, delete it", type="primary", icon=":material/delete:", key="danger_conv_delete_yes")
         keep = st.button("Keep it", key="conv_delete_no")
     if keep:
         close_delete_dialog()
@@ -140,7 +140,7 @@ if rows and rows[0] < len(table):
     with st.container(border=True):
         with st.container(horizontal=True, vertical_alignment="center"):
             st.subheader(label, icon=":material/person:", width="stretch")
-            if st.button("Delete conversation", icon=":material/delete:", key="conv_delete_btn"):
+            if st.button("Delete conversation", icon=":material/delete:", key="danger_conv_delete_btn"):
                 st.session_state.conv_delete = {"phone": phone, "label": label}
         view = st.segmented_control("View", ["Chats by day", "Bookings"], default="Chats by day", key="conv_view",
                                     label_visibility="collapsed")

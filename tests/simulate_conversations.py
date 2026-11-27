@@ -188,13 +188,13 @@ check("booked after 'haan': right service, 15:00, 45 min", "confirm ho gayi" in 
 
 print("2) Service list, unknown service, ambiguous 'hair'")
 out = chat(SALON, "p2", "appointment book karni hai")
-check("question lists the business's services, one per line",
-      "*Kaunsi service chahiye?*\n• Haircut — Rs 800\n" in out and "• Hair colour — Rs 3,000" in out)
+check("question lists the business's services, one per line, with price and duration",
+      "*Kaunsi service chahiye?*\n• Haircut — Rs 800 (30 min)\n" in out and "• Hair colour — Rs 3,000" in out)
 out = chat(SALON, "p2", "massage")
 check("'massage' not offered -> pick from list (one service per line)",
       "list mein nahi" in out and "\n• Nail polish — Rs 500" in out)
 out = chat(SALON, "p2", "hair")
-check("'hair' -> asks which, as a list", "*Kaunsi wali?*\n• Haircut — Rs 800\n• Hair colour — Rs 3,000" in out)
+check("'hair' -> asks which, as a list", "*Kaunsi wali?*\n• Haircut — Rs 800 (30 min)\n• Hair colour — Rs 3,000 (90 min)" in out)
 chat(SALON, "p2", "haircut", f"{OPEN_DAY_NAME} 4 baje", "Sara Khan", "ji")
 check("booked haircut 16:00 for Sara Khan", (db.upcoming_booking(salon_id, "p2") or {}).get("time") == "16:00")
 
@@ -557,7 +557,7 @@ check("owner alerted with what was requested", any(c["phone"] == "p80" and c["ki
 check("session ended (no retry loop)", session(SALON, "p80") is None)
 out = chat(SALON, "p80", "Salam")
 check("next message gets a normal answer, not the same calendar error", "calendar" not in out.lower()
-      and "AURA" in out)
+      and "kya madad kar sakta hoon" in out)
 chat(SALON, "p80", "appointment book karni hai", "haircut", f"{OPEN_DAY_NAME} 12 baje")
 check("asking again doesn't alert the owner twice",
       len([c for c in db.list_escalations(salon_id, status="open") if c["phone"] == "p80"]) == 1)
@@ -584,7 +584,7 @@ check("then 'Aslam' (a real name) is accepted", "Naam: Aslam" in out)
 print("35) Never stuck: 'menu' always restarts; the same reply 3 times mid-request breaks the loop")
 out = chat(SALON, "p90", "appointment book karni hai", "haircut", "menu")
 check("'menu' mid-booking restarts and shows the menu",
-      "nayi shuruaat" in out and "• Appointment book karna" in out and session(SALON, "p90") is None)
+      "nayi shuruaat" in out and "• Appointment booking" in out and session(SALON, "p90") is None)
 chat(SALON, "p90", "appointment book karni hai", "haircut", f"{OPEN_DAY_NAME} 1 baje")
 out = chat(SALON, "p90", "Start over")
 check("'Start over' while AURA waits for the name restarts too", "nayi shuruaat" in out and session(SALON, "p90") is None)
@@ -599,7 +599,7 @@ third = chat(SALON, "p91", "Hello?")
 agent._respond = real_respond
 check("same reply twice is still sent (could be legitimate)", first == second == "Maaf kijiye, abhi kuch masla hai.")
 check("third identical reply -> loop broken, conversation restarted with the menu",
-      "atak gayi" in third and "• Appointment book karna" in third and session(SALON, "p91") is None)
+      "atak gayi" in third and "• Appointment booking" in third and session(SALON, "p91") is None)
 check("owner told the conversation got stuck", any(c["phone"] == "p91" and "stuck" in c["reason"]
                                                   for c in db.list_escalations(salon_id, status="open")))
 out = chat(SALON, "p91", "rates?")
@@ -722,6 +722,147 @@ check("business turned the question off -> not asked", "confirm kar doon" in out
 chat(MAIL, "m3", "nahi rehne do")
 out = chat(SALON, "m4", f"{OPEN_DAY_NAME} 11 baje haircut book kar do", "Ali")
 check("business without its own email set up -> never asks", "confirm kar doon" in out and "email" not in out.lower())
+
+print("37) The real chat of 26 Nov: 'Kardein' confirms, full names, changing one detail, Gemini as backup")
+MEANING = {}                    # message -> what Gemini says a confirmation reply means
+CHAT = {}                       # message -> Gemini's free answer
+agent.confirmation_meaning = lambda text: dict(MEANING.get(text, {}))
+agent.chat_reply = lambda text, *a, **k: CHAT.get(text)
+clinic2 = db.create_business("Fatima clinic", "fatimaclinic", "secret5", whatsapp_session="aura_5_test",
+                             open_days=[0, 1, 2, 3, 4, 5], open_time="10:00", close_time="20:00")
+db.replace_services(clinic2, [{"name": "General Consultation", "price": 1200, "duration_min": 30},
+                              {"name": "Follow-up Visit", "price": 1000, "duration_min": 20},
+                              {"name": "Dental checkups", "price": 1500, "duration_min": 45}])
+FC = db.get_business(clinic2)
+out = chat(FC, "c1", "asdf qwerty")
+check("one message AURA can't read -> asks again (no Gemini here)", "samajh nahi aaya" in out)
+out = chat(FC, "c1", "appointment chahiye")
+check("the service list shows price and duration", "• Follow-up Visit — Rs 1,000 (20 min)" in out)
+chat(FC, "c1", "Follow up", f"{OPEN_DAY_NAME} 10 baje")
+out = chat(FC, "c1", "jazib umer")
+check("a full name is kept whole and capitalised", "Naam: Jazib Umer" in out and "confirm kar doon" in out)
+out = chat(FC, "c1", "Kardein")
+check("'Kardein' confirms the booking (no escalation from earlier slips)",
+      "confirm ho gayi" in out and db.upcoming_booking(clinic2, "c1") is not None
+      and not [e for e in db.list_escalations(clinic2) if e["phone"] == "c1"])
+
+chat(FC, "c2", "appointment chahiye", "Dental", f"{OPEN_DAY_NAME} 11 baje", "Sana Malik")
+out = chat(FC, "c2", "service change karni hai")
+check("'service change karni hai' -> says the current one and lists the services",
+      "Abhi service *Dental checkups* hai" in out and "• General Consultation — Rs 1,200 (30 min)" in out)
+out = chat(FC, "c2", "general consultation")
+check("new service -> summary again, day and time kept", "confirm kar doon" in out and "General Consultation" in out
+      and "11:00 AM" in out)
+out = chat(FC, "c2", "time badalna hai")
+check("'time badalna hai' -> says the current time and asks the new one", "Abhi waqt *11:00 AM* hai" in out)
+out = chat(FC, "c2", "4 baje")
+check("new time -> summary with 4:00 PM, same service", "4:00 PM" in out and "General Consultation" in out)
+out = chat(FC, "c2", "din change kar do")
+check("'din change kar do' is a change, not a yes", "Abhi din" in out and db.upcoming_booking(clinic2, "c2") is None)
+chat(FC, "c2", OPEN_DAY_NAME)
+out = chat(FC, "c2", "nahi")
+check("'nahi' -> asks what to change", "Kya change karna hai" in out)
+out = chat(FC, "c2", "service")
+check("then just 'service' is enough", "Abhi service *General Consultation* hai" in out)
+chat(FC, "c2", "follow up visit")
+MEANING["chalo phir set karo bhai"] = {"meaning": "yes", "change": None}
+out = chat(FC, "c2", "chalo phir set karo bhai")
+check("a 'yes' the rules don't know -> Gemini reads it -> booked", "confirm ho gayi" in out
+      and db.upcoming_booking(clinic2, "c2")["service"] == "Follow-up Visit")
+
+chat(FC, "c3", "appointment chahiye", "General", f"{OPEN_DAY_NAME} 12 baje", "Ali Raza")
+MEANING["ye wala nahi koi aur dikhao"] = {"meaning": "change", "change": "service"}
+out = chat(FC, "c3", "ye wala nahi koi aur dikhao")
+check("Gemini says they want another service -> asks which, with the list",
+      "Abhi service *General Consultation* hai" in out)
+out = chat(FC, "c3", "xyz", "abc")
+check("two unclear replies -> still helping (service list again), not escalated", "Inn mein se batayein" in out
+      and not [e for e in db.list_escalations(clinic2) if e["phone"] == "c3"])
+out = chat(FC, "c3", "qqq")
+check("only the 3rd unclear message in a row goes to the owner", "owner ko notify" in out)
+
+CHAT["aap ke paas parking hai?"] = "Parking ke baare mein owner hi bata sakenge, aap unse isi number par pooch lein."
+out = chat(FC, "c4", "aap ke paas parking hai?")
+check("a question outside booking -> a natural answer (Gemini, business facts only)", "Parking" in out
+      and "samajh nahi aaya" not in out)
+out = chat(FC, "c4", "services kya hain?")
+check("'services kya hain?' -> the list with prices and durations", "Hamari services aur rates" in out
+      and "(45 min)" in out)
+
+print("38) A question in the middle of a booking is answered, then AURA carries on")
+CHAT["kitne paise lagenge?"] = "Follow-up Visit Rs 1,000 ka hai."
+chat(FC, "c6", "appointment chahiye", "follow up", f"{OPEN_DAY_NAME} 1 baje")
+out = chat(FC, "c6", "kitne paise lagenge?")
+check("question at the name step -> answered, then the name is asked again (the question is not a name)",
+      "Rs 1,000" in out and out.endswith("Apna naam batayein please?") and session(FC, "c6")["collected"]["name"] is None)
+chat(FC, "c6", "Hamza Ali")
+CHAT["aap ke paas parking hai?"] = "Parking ki maloomat hamare paas nahi, owner se isi number par pooch lein."
+MEANING["aap ke paas parking hai?"] = {"meaning": "question", "change": None}
+out = chat(FC, "c6", "aap ke paas parking hai?")
+check("question at the summary -> answered, booking still waiting for 'yes'",
+      "Parking" in out and "*yes* likhein" in out and session(FC, "c6")["pending"]["type"] == "confirm_booking")
+out = chat(FC, "c6", "theek hai kar dein")
+check("then 'theek hai kar dein' books it", "confirm ho gayi" in out)
+
+print("39) A change request containing 'kar do' is never taken as a yes (found in a real test run)")
+chat(FC, "c7", "appointment chahiye", "dental", f"{OPEN_DAY_NAME} 2 baje", "Usman Tariq")
+MEANING["time thora late kar do"] = {"meaning": "change", "change": "time"}
+out = chat(FC, "c7", "time thora late kar do")
+check("'time thora late kar do' -> NOT booked; asks for the new time",
+      db.upcoming_booking(clinic2, "c7") is None and "Abhi waqt *2:00 PM* hai" in out)
+out = chat(FC, "c7", "4 baje")
+check("new time in the summary", "4:00 PM" in out and "confirm kar doon" in out)
+out = chat(FC, "c7", "service change kar do")
+check("'service change kar do' asks for the service, does not book",
+      "Abhi service *Dental checkups* hai" in out and db.upcoming_booking(clinic2, "c7") is None)
+chat(FC, "c7", "rehne do")
+chat(FC, "c8", "appointment chahiye", "dental", f"{OPEN_DAY_NAME} 5 baje", "Ayesha Noor")
+out = chat(FC, "c8", "ok thanks")
+check("'ok thanks' still confirms", "confirm ho gayi" in out)
+chat(FC, "c8", "booking cancel karni hai")
+out = chat(FC, "c8", "time change kar do")
+check("at 'cancel kar doon?', a change request does not cancel", db.upcoming_booking(clinic2, "c8") is not None)
+chat(FC, "c8", "booking cancel karni hai")
+out = chat(FC, "c8", "haan cancel kar do")
+check("'haan cancel kar do' cancels", "cancel kar di gayi" in out and db.upcoming_booking(clinic2, "c8") is None)
+
+print("40) Greeting with options, 'yes' wording, small talk, and today's / tomorrow's free times")
+out = chat(FC, "c9", "Assalam o alaikum")
+check("greeting: no 'Main AURA hoon'; asks how to help, then the options",
+      "Main AURA hoon" not in out and "Main aap ki kya madad kar sakta hoon?" in out
+      and "• Appointment booking" in out and "• Services aur rates" in out)
+db.update_business(clinic2, greeting="Assalamualaikum! Fatima clinic mein khush aamdeed. Aap ki kya madad kar sakte hain?")
+out = chat(db.get_business(clinic2), "c9", "salam")
+check("owner's greeting already asks how to help -> not asked twice, options follow",
+      out.count("madad") == 1 and "• Appointment booking" in out)
+db.update_business(clinic2, greeting="")
+CHAT["kia haal hy"] = "Alhamdulillah hum theek hain, aap sunayein!"
+out = chat(FC, "c10", "kia haal hy")
+check("'kia haal hy' -> a friendly answer, then how AURA can help (not a greeting, no booking question)",
+      out.startswith("Alhamdulillah") and "kya madad kar sakta hoon" in out and session(FC, "c10")["intent"] is None)
+CHAT.pop("kia haal hy")
+out = chat(FC, "c11", "kia haal hy")
+check("Gemini unavailable -> still a friendly answer and the options", "theek hain" in out and "• Timings" in out)
+out = chat(FC, "c12", "appointment chahiye", "dental")
+check("date question shows today's and tomorrow's free times (or 'band'), then 'kisi aur din'",
+      "*Kab aana chahenge?*" in out and "Aaj (" in out and "Kal (" in out and "kisi aur din" in out
+      and "15 Nov" not in out)
+CHAT["kia haal hy"] = "Hum theek hain, shukriya!"
+out = chat(FC, "c12", "kia haal hy")
+check("small talk mid-booking -> answered, then the same date question again",
+      out.startswith("Hum theek hain") and "*Kab aana chahenge?*" in out)
+chat(FC, "c12", f"{OPEN_DAY_NAME} 6 baje")
+out = chat(FC, "c12", "Bilal Ahmed")
+check("summary ends with 'Reply *yes*'", "Reply *yes*" in out and "haan" not in out)
+out = chat(FC, "c12", "yes")
+check("'yes' confirms", "confirm ho gayi" in out)
+
+empty = db.get_business(db.create_business("New Shop", "newshop", "secret6", whatsapp_session="aura_6_test"))
+out = chat(empty, "c5", "services kya hain?")
+check("no services yet -> says so (not 'samajh nahi aaya')", "services online available nahi" in out)
+out = chat(empty, "c5", "appointment book karni hai")
+check("no services yet -> no booking started", "services online available nahi" in out
+      and session(empty, "c5") is None)
 
 passed = sum(c for _, c in checks)
 print(f"\n{passed}/{len(checks)} checks passed")

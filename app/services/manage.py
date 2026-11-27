@@ -30,8 +30,16 @@ def confirm_booking(business: dict, booking_id: int):
     return None
 
 
-def cancel_booking(business: dict, booking_id: int, notify_customer: bool) -> dict:
-    """Cancel from the dashboard: calendar event, database, optional WhatsApp message.
+def cancel_message(business: dict, booking: dict) -> str:
+    """The WhatsApp message the customer gets when the owner cancels (editable on the dashboard)."""
+    return (f"Assalamualaikum {booking['customer_name'] or ''}! {business['name']} ki taraf se: aap ki "
+            f"{booking['service']} ki booking ({describe(booking['date'], booking['time'])}) cancel kar di gayi hai. "
+            f"Nayi booking ke liye isi number par message kar dein.").replace("  ", " ")
+
+
+def cancel_booking(business: dict, booking_id: int, notify_customer: bool, message: "str | None" = None) -> dict:
+    """Cancel from the dashboard: calendar event, database, optional WhatsApp message (message: the owner's
+    own text; default cancel_message()).
 
     Returns {"error": str|None, "calendar": bool, "notified": bool|None}.
     """
@@ -49,11 +57,8 @@ def cancel_booking(business: dict, booking_id: int, notify_customer: bool) -> di
 
     notified = None
     if notify_customer:
-        message = (f"Assalamualaikum {booking['customer_name'] or ''}! {business['name']} ki taraf se: "
-                   f"aap ki {booking['service']} ki booking ({describe(booking['date'], booking['time'])}) "
-                   f"cancel kar di gayi hai. Nayi booking ke liye isi number par message kar dein.")
-        notified = send_to_customer(business, booking["phone"], " ".join(message.split()),
-                                    kind="notice", booking_id=booking_id)
+        text = (message or "").strip() or cancel_message(business, booking)
+        notified = send_to_customer(business, booking["phone"], text, kind="notice", booking_id=booking_id)
     return {"error": None, "calendar": calendar_ok, "notified": notified}
 
 

@@ -17,14 +17,16 @@ from datetime import date, datetime, timedelta
 
 from app.services import customer_mail, db, intent_model
 from app.services.business import (
-    DEFAULT_DURATION, duration_for, format_price, free_slots, is_open_day, match_service,
+    DEFAULT_DURATION, duration_for, format_price, free_slots, free_windows, hours_text, is_open_day, match_service,
     nearest, overlaps, price_list_message, services_text, similar_services, suggest, suggestion_text,
     timings_line, within_hours,
 )
 from app.services.calendar import book_appointment, cancel_appointment, get_busy
 from app.services.datetime_parser import PKT, WEEKDAYS, describe, parse_date, parse_time
 from app.services.escalation import REPEAT_WINDOW_HOURS, escalate, wants_human
-from app.services.nlu import extract_details, gemini_service, has_greeting_word, understand_message
+from app.services.nlu import (
+    chat_reply, confirmation_meaning, extract_details, gemini_service, has_greeting_word, understand_message,
+)
 from app.services.questions import check_answer, prompt as question_prompt
 from app.services.reminder import (
     booking_line, cancel_booking_by_id, cancel_reminders, handle_confirmation, schedule_reminders,
@@ -41,7 +43,12 @@ STOP_PHRASES = ("cancel", "rehne do", "rehnay do", "rehny do", "nahi chahiye", "
                 "nhi chahiye", "chodo", "chhoro", "chor do", "stop", "kuch nahi")
 
 YES_WORDS = {"haan", "han", "haa", "ha", "hn", "ji", "jee", "g", "yes", "yeah", "yep", "ok", "okay", "okk", "theek",
-             "thik", "confirm", "bilkul", "sahi", "done", "kardo", "krdo", "karden", "krden", "zaroor", "perfect"}
+             "thik", "confirm", "confirmed", "bilkul", "sahi", "done", "kardo", "krdo", "karden", "krden", "kardein",
+             "krdein", "kardain", "krdain", "kardijiye", "kardijye", "zaroor", "perfect", "sure", "chalega",
+             "acha", "achha", "accha", "proceed"}
+# "kar dein", "book kar do", "theek hai", "go ahead" (two-word ways of saying yes)
+YES_RE = re.compile(r"\b(kar|kr|ker)\s*(do|dein|den|dain|dijiye|dijye|de|lo|lein|len)\b|\bbook\s*(kar|kr)|"
+                    r"\bgo\s*ahead\b|\b(theek|thik)\s*(hai|he|h)\b|\bsounds\s*good\b", re.IGNORECASE)
 NO_WORDS = {"nahi", "nai", "nhi", "na", "no", "nope", "mat", "galat", "ghalat"}
 
 
@@ -51,9 +58,21 @@ def _words(message: str) -> set:
     return set(re.findall(r"[a-z0-9]+", message.lower()))
 
 
-def _is_yes(message: str) -> bool:
+# Words that may sit around a "yes" without changing it ("haan g, book kar dein please").
+YES_FILLER = {"hai", "he", "h", "hain", "do", "dein", "den", "dain", "de", "dijiye", "dijye", "kar", "kr", "ker",
+              "karo", "kro", "lo", "lein", "len", "please", "plz", "pls", "bhai", "sir", "book", "booking", "ye",
+              "yeh", "isay", "ise", "bas", "phir", "to", "toh", "it", "go", "ahead", "sounds", "good", "jee", "g",
+              "appointment", "kardo", "krdo", "ji",
+              "thanks", "thank", "you", "thx", "ty", "shukriya", "jazakallah"}   # "ok thanks" still confirms
+
+
+def _is_yes(message: str, also: frozenset = frozenset()) -> bool:
+    """A clear yes: a yes-word or phrase, and NOTHING else of substance. 'Kardein', 'theek hai kar dein' yes;
+    'time thora late kar do' or 'service change kar do' no (they ask for a change). also: extra words allowed."""
     w = _words(message)
-    return bool(w & YES_WORDS) and not (w & NO_WORDS)
+    if not w or w & NO_WORDS:
+        return False
+    return bool(w & YES_WORDS or YES_RE.search(message)) and w <= YES_WORDS | YES_FILLER | also
 
 
 def _is_no(message: str) -> bool:
@@ -65,13 +84,42 @@ def _wants_to_stop(message: str) -> bool:
     return any(p in text for p in STOP_PHRASES)
 
 
-def _question(field: str, business: dict, services: list) -> str:
+def _availability(business: dict, duration: int) -> str:
+    """'🗓 *Aaj (Fri 27 Nov):* 1:00 PM – 5:00 PM' and the same for tomorrow, from the calendar.
+    '' if neither day is open, or the calendar can't be read (then the plain question is asked)."""
+    lines = []
+    today = datetime.now(PKT).date()
+    for offset, label in ((0, "Aaj"), (1, "Kal")):
+        day = today + timedelta(days=offset)
+        heading = f"🗓 *{label} ({day:%a %d %b}):*"
+        if not is_open_day(business, day.isoformat()):
+            lines.append(f"{heading} band")
+            continue
+        busy = get_busy(day.isoformat(), business.get("calendar_id"))
+        if busy is None:
+            return ""                              # calendar unreadable: don't show guesses
+        windows = free_windows(business, day.isoformat(), duration, busy)
+        lines.append(f"{heading} {', '.join(windows)}" if windows else f"{heading} koi waqt free nahi")
+    if all(line.endswith((" band", "free nahi")) for line in lines):
+        return ""
+    return "\n".join(lines)
+
+
+def _date_question(business: dict, services: list, state: "dict | None") -> str:
+    duration = _duration(state, services) if state else DEFAULT_DURATION
+    free = _availability(business, duration)
+    if not free:
+        return "Kis din aana chahenge?"
+    return f"*Kab aana chahenge?*\n{free}\n\nInn mein se waqt batayein — ya kisi aur din aana chahenge?"
+
+
+def _question(field: str, business: dict, services: list, state: "dict | None" = None) -> str:
     if field == "service":
         if services:
             return f"*Kaunsi service chahiye?*\n{services_text(services)}"
         return "Kaunsi service chahiye?"
     if field == "date":
-        return "Kis din aana chahenge? (e.g. kal, parso, Friday, 15 Nov)"
+        return _date_question(business, services, state)
     if field == "time":
         return "Kis waqt? (e.g. 3 baje, sham 6 baje, 10am)"
     if field == "name":
@@ -86,11 +134,26 @@ OPENING_SALAM_RE = re.compile(r"^\s*(assalam\w*|asalam\w*|salam\w*)(\s+(o|u|wa)?
                               re.IGNORECASE)
 
 
-HELP_MENU = ("Aap mujh se ye sab kar sakte hain:\n"       # customer-side wording: fits any greeting
-             "• Appointment book karna\n"
-             "• Booking cancel ya shift karna\n"
-             "• Services, rates aur timings poochna\n\n"
-             "_Kabhi bhi *menu* likh kar dobara shuru kar sakte hain._")
+NO_SERVICES = ("Maaf kijiye, abhi {name} ki services online available nahi hain, is liye main booking nahi kar "
+               "sakta. 🙏\nOwner jald services add kar denge — tab tak isi number par owner se rabta kar sakte hain.")
+
+# "services kya hain?", "kya kya karte hain", "rate list" (a question about the list, not one service)
+SERVICES_QUESTION = re.compile(r"\b(services?|servis|sarvis|rate\s*list|price\s*list|rates|prices)\b|"
+                               r"kya\s*kya\s*(karte|hota|milta|hai|hain)", re.IGNORECASE)
+
+MENU_OPTIONS = ("• Appointment booking\n"
+                "• Services aur rates\n"
+                "• Booking reschedule ya cancel\n"
+                "• Timings\n\n"
+                "_Kabhi bhi *menu* likh kar dobara shuru kar sakte hain._")
+HELP_MENU = f"Main aap ki kya madad kar sakta hoon?\n{MENU_OPTIONS}"
+
+
+def _with_menu(greeting: str) -> str:
+    """Greeting, then the options. If the owner's greeting already asks how to help, it isn't asked twice."""
+    if re.search(r"madad|khidmat|help", greeting, re.IGNORECASE):
+        return f"{greeting}\n\n{MENU_OPTIONS}"
+    return f"{greeting}\n\n{HELP_MENU}"
 
 
 def _greeting(business: dict, message: str = "") -> str:
@@ -174,6 +237,34 @@ def _looks_like_name(text: str) -> bool:
     return not all(w in NOT_NAME_WORDS for w in words)   # (no greeting regex: "Aslam" is a real name)
 
 
+SMALL_TALK_RE = re.compile(r"\b(kya|kia|kiya)\s*(haal|hal|hall)\b|\b(kaise|kese|kesay|kesy|kaisay)\s*(ho|hain|hn|hen)\b|"
+                           r"\bhow\s*(are|r)\s*(you|u)\b|\bkhair(iyat|iat)\b|\bsab\s*(theek|thik|khair)\b|"
+                           r"\bwhat'?s\s*up\b|\bkya\s*scene\b", re.IGNORECASE)
+
+QUESTION_RE = re.compile(r"\?|\b(kya|kia|kahan|kahaan|kaise|kesay|kitn[aie]|kab|kaun|kon|what|where|when|how|why|"
+                         r"do\s+you|can\s+i|is\s+there|are\s+there)\b", re.IGNORECASE)
+
+
+def _answer_aside(state, business, services, phone, message, then: str):
+    """A question in the middle of a booking ("parking hai?"): answer it naturally (Gemini, business facts
+    only), then repeat what AURA is waiting for. None if Gemini can't answer it."""
+    reply = chat_reply(message, business["name"], business.get("business_type") or "",
+                       "; ".join(line.lstrip("• ") for line in services_text(services).splitlines()),
+                       hours_text(business))
+    if not reply:
+        return None
+    save_state(business["id"], phone, state)
+    return f"{reply}\n\n{then}"
+
+
+def _plain_name(text: str) -> bool:
+    """A reply that is only a name: 1-4 words, no digits, none of them a common chat word ('Jazib Umer' yes;
+    'mera naam Ali hai', 'ok', 'kal 3 baje' no)."""
+    words = re.findall(r"[^\W\d_]+", text.lower())
+    return (0 < len(words) <= 4 and not re.search(r"\d", text) and not QUESTION_RE.search(text)
+            and not set(words) & NOT_NAME_WORDS and len(" ".join(words)) >= 2)
+
+
 def _asks_my_bookings(message: str) -> bool:
     """'Meri booking kab hai?', 'my appointments', 'konsi booking hai meri?'"""
     t = message.lower()
@@ -191,8 +282,9 @@ def _is_hhmm(value) -> bool:
 
 
 def _fail(state: dict, business: dict, phone: str, message: str, reply: str) -> str:
-    """Count a message AURA couldn't use; after 3, hand over to the owner."""
+    """Count a message AURA couldn't use; after 3 in a row, hand over to the owner."""
     state["failed_turns"] += 1
+    state["last_failed_turn"] = state["turn_count"]
     if state["failed_turns"] >= MAX_FAILED_TURNS:
         return _escalate(business, phone, message)
     save_state(business["id"], phone, state)
@@ -384,8 +476,9 @@ def collect_field(state: dict, message: str, business: dict, services: list):
         details["time"] = parse_time(text.replace(".", ":") + " baje")   # reply "6" to a slot list
     svc = match_service(text, services) or match_service(details.get("service") or "", services)
     words = len(text.split())
+    plain_name = name_asked and _plain_name(text) and not (details["date"] or details["time"] or svc)
     needs_gemini = ((asked in ("date", "time") and not details[asked])
-                    or (name_asked and words > 2 and not details["name"])
+                    or (name_asked and words > 2 and not details["name"] and not plain_name)
                     or (asked == "service" and not svc and (words > 2 or details["service"])))
     if needs_gemini:
         gem = extract_details(text, name_needs_cue=not name_asked, force_gemini=True)
@@ -404,11 +497,13 @@ def collect_field(state: dict, message: str, business: dict, services: list):
         c["time"] = details["time"]
 
     if asked == "name" and not c["name"]:
-        if details.get("name"):
+        if plain_name:                             # "jazib umer" -> "Jazib Umer" (the model may tag one word)
+            c["name"] = " ".join(text.split())[:60].title()
+        elif details.get("name"):
             c["name"] = details["name"]
-        elif not (details["date"] or details["time"]) and _looks_like_name(text):
+        elif not (details["date"] or details["time"]) and _looks_like_name(text) and not QUESTION_RE.search(text):
             c["name"] = text[:60].title()
-        elif not (details["date"] or details["time"] or svc):
+        elif not (details["date"] or details["time"] or svc or QUESTION_RE.search(text)):
             state["question_problem"] = "Booking kis naam par karun? Apna naam likh dein, jaise: Ali Khan"
 
     # Useful even if it answered a different question (e.g. "11 baje" after a slot list)
@@ -443,6 +538,58 @@ def _apply_changes(state: dict, message: str, services: list) -> bool:
     if changed:
         state["slot_checked"] = None
     return changed
+
+
+CHANGE_WORDS = re.compile(r"\b(change|chnge|badal\w*|badl\w*|tabdeel|tabdil|dusr[ia]|doosr[ia]|another|different|"
+                          r"alag|koi\s*aur)\b", re.IGNORECASE)
+FIELD_WORDS = {
+    "service": re.compile(r"\b(services?|servis|sarvis|treatment)\b", re.IGNORECASE),
+    "time": re.compile(r"\b(time|timing|waqt|wakt|tym|samay)\b", re.IGNORECASE),
+    "date": re.compile(r"\b(date|din|day|tareekh|tarikh)\b", re.IGNORECASE),
+    "name": re.compile(r"\b(naam|name)\b", re.IGNORECASE),
+    "email": re.compile(r"\be-?mail\b", re.IGNORECASE),
+}
+
+
+def _field_to_change(message: str, need_change_word: bool = True):
+    """'service change karni hai' -> 'service'; 'time badalna hai' -> 'time'. After "kya change karna hai?",
+    the field word alone ('service') is enough. None if no single part is named."""
+    if need_change_word and not CHANGE_WORDS.search(message):
+        return None
+    fields = [f for f, pattern in FIELD_WORDS.items() if pattern.search(message)]
+    return fields[0] if len(fields) == 1 else None
+
+
+def _clock(hhmm: str) -> str:
+    return datetime.strptime(hhmm, "%H:%M").strftime("%I:%M %p").lstrip("0")
+
+
+def _ask_new_value(state, business, services, phone, field: str) -> str:
+    """Clear one detail and ask for it again, saying what it is now. The summary follows once it's given."""
+    c = state["collected"]
+    state["pending"] = None
+    state["slot_checked"] = None
+    if field == "service" and services:
+        question = f"Abhi service *{c['service']}* hai. Kaunsi service chahiye?\n{services_text(services)}"
+        c["service"] = None
+    elif field == "date" and c.get("date"):
+        question = f"Abhi din *{describe(c['date'], '12:00').split(',')[0]}* hai. Kis din karna hai?"
+        c["date"] = None
+    elif field == "time" and c.get("time"):
+        question = f"Abhi waqt *{_clock(c['time'])}* hai. Naya waqt batayein? (e.g. 3 baje, sham 6 baje)"
+        c["time"] = None
+    elif field == "name":
+        question = f"Abhi naam *{c['name']}* hai. Booking kis naam par karun?"
+        c["name"] = None
+        state.pop("remembered_name", None)
+    elif field == "email" and c.get("email") is not None:
+        question = _question("email", business, services)
+        c["email"] = None
+    else:
+        state["pending"] = {"type": "change"}
+        question = "Kya change karna hai? Naya din, waqt ya service batayein — ya 'rehne do' likhein."
+    save_state(business["id"], phone, state)
+    return question
 
 
 # ----------------------------------------------------------------- main entry
@@ -499,6 +646,8 @@ def _respond(business: dict, phone: str, message: str) -> str:
     bid = business["id"]
     state = get_state(bid, phone)
     state["turn_count"] += 1
+    if state.get("last_failed_turn") != state["turn_count"] - 1:
+        state["failed_turns"] = 0          # the last message was understood: start counting again
     message = message.strip()
 
     # "owner se baat karni hai" / "call me" -> the owner takes over (checked first, even mid-booking)
@@ -536,6 +685,17 @@ def _respond(business: dict, phone: str, message: str) -> str:
         return f"{timings_line(business)}\n\nAppointment book karni ho toh din aur waqt batayein!"
     if _asks_my_bookings(message):
         return _list_my_bookings(state, business, phone)
+    if SMALL_TALK_RE.search(message) and len(message.split()) <= 8:
+        save_state(bid, phone, state)
+        reply = chat_reply(message, business["name"], business.get("business_type") or "",
+                           "; ".join(line.lstrip("• ") for line in services_text(services).splitlines()),
+                           hours_text(business)) or "Alhamdulillah, hum theek hain! 😊"
+        return f"{reply}\n\n{HELP_MENU}"
+    if SERVICES_QUESTION.search(message) and not match_service(message, services) and len(message.split()) <= 8:
+        save_state(bid, phone, state)
+        if not services:
+            return NO_SERVICES.format(name=business["name"])
+        return price_list_message(services)
 
     nlu = understand_message(message)
     intent = nlu.get("intent", "unknown")
@@ -549,12 +709,18 @@ def _respond(business: dict, phone: str, message: str) -> str:
         intent, state["confidence"] = "book_appointment", "medium"
 
     if state["confidence"] == "low" or intent in ("unknown", "other"):
+        reply = chat_reply(message, business["name"], business.get("business_type") or "",
+                           "; ".join(line.lstrip("• ") for line in services_text(services).splitlines()),
+                           hours_text(business))
+        if reply:
+            save_state(bid, phone, state)
+            return f"{reply}\n\n{HELP_MENU}"
         return _fail(state, business, phone, message,
-                     f"Sorry, mujhe samajh nahi aaya. {HELP_MENU}\n\nBatayein, kya chahiye?")
+                     f"Sorry, mujhe samajh nahi aaya. {HELP_MENU}")
 
     if intent == "greeting":
         save_state(bid, phone, state)
-        return f"{_greeting(business, message)}\n\nMain AURA hoon. {HELP_MENU}"
+        return _with_menu(_greeting(business, message))
 
     if intent == "cancel_booking":
         return _start_cancel(state, business, phone, message)
@@ -567,7 +733,7 @@ def _respond(business: dict, phone: str, message: str) -> str:
                     f"Booking karni ho toh batayein kab aana chahenge!")
         if services:
             return price_list_message(services)
-        return "Rates ke liye owner se rabta karein, ya appointment book karne ke liye din aur waqt batayein."
+        return NO_SERVICES.format(name=business["name"])
 
     if intent == "reschedule":
         return _start_reschedule(state, business, services, phone, message, entities)
@@ -607,7 +773,7 @@ def _ask_cancel_confirmation(state, business, phone, bookings: list) -> str:
     save_state(business["id"], phone, state)
     lines = "\n".join(f"• {booking_line(b)}" for b in bookings)
     what = "Ye booking" if len(bookings) == 1 else "Ye sab bookings"
-    return f"*{what} cancel kar doon?*\n{lines}\n\nReply *haan* ya *nahi*."
+    return f"*{what} cancel kar doon?*\n{lines}\n\nReply *yes* ya *no*."
 
 
 def _do_cancel(state, business, phone, ids: list) -> str:
@@ -653,12 +819,12 @@ def _handle_pending(state, business, services, phone, message) -> str:
         return _begin_reschedule(state, business, services, phone, chosen, p.get("entities") or {})
 
     if p["type"] == "confirm_cancel":
-        if _is_yes(message):
+        if _is_yes(message, also=frozenset({"cancel", "cancell", "kardo", "dono", "sab", "both", "all"})):
             return _do_cancel(state, business, phone, p["ids"])
         if _is_no(message) or _wants_to_stop(message.replace("cancel", "")):
             clear_state(bid, phone)
             return "Theek hai, booking cancel nahi ki — aap ki appointment barqarar hai ✅"
-        return _fail(state, business, phone, message, "Cancel kar doon? Please 'haan' ya 'nahi' likhein.")
+        return _fail(state, business, phone, message, "Cancel kar doon? Please *yes* ya *no* likhein.")
 
     if p["type"] in ("confirm_booking", "change"):
         if _wants_to_stop(message):
@@ -667,18 +833,44 @@ def _handle_pending(state, business, services, phone, message) -> str:
         if _apply_changes(state, message, services):
             state["pending"] = None
             return _next_step(state, business, services, phone, prefix="Theek hai, change kar diya. ")
+        field = _field_to_change(message, need_change_word=p["type"] == "confirm_booking")
+        if field:                                  # "service change karni hai" (no new value given yet)
+            return _ask_new_value(state, business, services, phone, field)
         if p["type"] == "confirm_booking" and _is_yes(message):
             state["pending"] = None
             return _finalize(state, business, services, phone)
-        if _is_no(message):
+        if p["type"] == "change" and _is_yes(message):     # "ok, theek hai" = keep it as it is
+            state["pending"] = {"type": "confirm_booking"}
+            save_state(bid, phone, state)
+            return _summary(state, business, services)
+        what_to_change = "Kya change karna hai? Naya din, waqt ya service batayein — ya 'rehne do' likhein."
+        if _is_no(message) and len(message.split()) <= 2:         # a plain "nahi"
             state["pending"] = {"type": "change"}
             save_state(bid, phone, state)
-            return "Kya change karna hai? Naya din, waqt ya service batayein — ya 'rehne do' likhein."
+            return what_to_change
         if _is_plain_greeting(message):
             save_state(bid, phone, state)
             return "Walaikum Assalam!\n\n" + _summary(state, business, services)
+        # The rules didn't settle it ("ye wala nahi, koi aur dikhao", "chalo set karo"): ask Gemini what it means.
+        meaning = confirmation_meaning(message)
+        if meaning.get("meaning") == "yes" and p["type"] == "confirm_booking":
+            state["pending"] = None
+            return _finalize(state, business, services, phone)
+        if meaning.get("meaning") == "change":
+            return _ask_new_value(state, business, services, phone, meaning.get("change") or "")
+        if meaning.get("meaning") == "question" or (not meaning and QUESTION_RE.search(message)):
+            then = ("Booking confirm karni ho toh *yes* likhein, ya batayein kya change karna hai."
+                    if p["type"] == "confirm_booking" else what_to_change)
+            answered = _answer_aside(state, business, services, phone, message, then)
+            if answered:
+                return answered
+        if meaning.get("meaning") == "no" or _is_no(message):       # (also when Gemini is unavailable)
+            state["pending"] = {"type": "change"}
+            save_state(bid, phone, state)
+            return what_to_change
         return _fail(state, business, phone, message,
-                     "Confirm karne ke liye 'haan' likhein, ya batayein kya change karna hai (din, waqt, service).")
+                     "Maaf kijiye, samajh nahi aaya. Booking confirm karne ke liye *yes* likhein, ya batayein kya "
+                     "change karna hai (service, din ya waqt).")
 
     state["pending"] = None                       # unknown pending type from an older version
     return _respond(business, phone, message)
@@ -688,6 +880,9 @@ def _handle_pending(state, business, services, phone, message) -> str:
 
 def _start_booking(intent, entities, state, business, services, phone, message) -> str:
     bid = business["id"]
+    if not services:                               # nothing to book yet: never ask "kaunsi service?"
+        clear_state(bid, phone)
+        return NO_SERVICES.format(name=business["name"])
     state["intent"] = "book_appointment"
     prefix = ""
     _apply_entities(state, entities, message, services)
@@ -790,12 +985,19 @@ def _continue_flow(state, business, services, phone, message) -> str:
     missing = get_missing_fields(state, business)
     if missing and _is_plain_greeting(message):
         save_state(bid, phone, state)
-        return "Walaikum Assalam!\n\n" + _question(missing[0], business, services)
+        return "Walaikum Assalam!\n\n" + _question(missing[0], business, services, state)
     if missing and _asks_timings(message):
         save_state(bid, phone, state)
-        return f"{timings_line(business)}\n\n" + _question(missing[0], business, services)
+        return f"{timings_line(business)}\n\n" + _question(missing[0], business, services, state)
 
     state, got_it = collect_field(state, message, business, services)
+    if not got_it and (QUESTION_RE.search(message) or SMALL_TALK_RE.search(message)) \
+            and not state.get("question_problem"):
+        missing = get_missing_fields(state, business)
+        answered = _answer_aside(state, business, services, phone, message,
+                                 _question(missing[0], business, services, state))
+        if answered:
+            return answered
     if not got_it:
         missing = get_missing_fields(state, business)
         if missing[0] == "service" and services:
@@ -807,7 +1009,7 @@ def _continue_flow(state, business, services, phone, message) -> str:
         elif state.get("question_problem"):
             reply = state.pop("question_problem")
         else:
-            reply = "Maaf kijiye, samajh nahi aaya.\n\n" + _question(missing[0], business, services)
+            reply = "Maaf kijiye, samajh nahi aaya.\n\n" + _question(missing[0], business, services, state)
         return _fail(state, business, phone, message, reply)
 
     return _next_step(state, business, services, phone)
@@ -824,7 +1026,8 @@ def _next_step(state, business, services, phone, prefix: str = "") -> str:
         day_name = describe(c["date"], "12:00").split(" ")[0]
         c["date"] = None
         save_state(bid, phone, state)
-        return f"{prefix}{day_name} ko hum band hote hain.\n{timings_line(business)}\n\nKis din aana chahenge?"
+        return (f"{prefix}{day_name} ko hum band hote hain.\n{timings_line(business)}\n\n"
+                + _question("date", business, services, state))
 
     if c["date"] and c["time"]:
         checked = f"{c['date']} {c['time']} {_duration(state, services)}"
@@ -840,7 +1043,7 @@ def _next_step(state, business, services, phone, prefix: str = "") -> str:
     missing = get_missing_fields(state, business)
     if missing:
         save_state(bid, phone, state)
-        return prefix + _question(missing[0], business, services)
+        return prefix + _question(missing[0], business, services, state)
 
     if state.get("reschedule_of") and prefix.startswith("Aap ki booking abhi"):
         prefix = ""                     # the summary already shows the old time ("Purani: ...")
@@ -867,7 +1070,7 @@ def _summary(state, business, services) -> str:
                 else "*Booking shift kar doon?*")
     else:
         head = "*Ye booking confirm kar doon?*"
-    return f"{head}\n" + "\n".join(lines) + "\n\nReply *haan* — ya batayein kya change karna hai."
+    return f"{head}\n" + "\n".join(lines) + "\n\nReply *yes* — ya batayein kya change karna hai."
 
 
 def _finalize(state, business, services, phone) -> str:

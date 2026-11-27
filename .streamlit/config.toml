@@ -1,13 +1,15 @@
-# AURA dashboard theme — always light (based on the dense-dashboard template).
+# AURA dashboard theme — always light, with a violet brand accent (inspired by ClickUp's clean look).
 # Only [theme] and [theme.sidebar] are set (no [theme.light]/[theme.dark]), which locks the
-# appearance: the dashboard stays white even when the browser or Windows uses dark mode.
+# appearance: the dashboard stays light even when the browser or Windows uses dark mode.
+# Status colours used everywhere: orange = awaiting reply, green = confirmed / done,
+# red = cancelled / delete, blue = rescheduled / info.
 
 [theme]
 base = "light"
 showWidgetBorder = true
 showSidebarBorder = true
-baseRadius = "6px"
-buttonRadius = "6px"
+baseRadius = "10px"
+buttonRadius = "8px"
 font = "'Inter':https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 headingFont = "'Inter':https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap"
 codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
@@ -16,42 +18,43 @@ baseFontWeight = 400
 codeFontSize = "13px"
 headingFontSizes = ["28px", "22px", "18px", "16px", "14px", "12px"]
 headingFontWeights = [700, 600, 600, 600, 500, 500]
+metricValueFontWeight = 700
 linkUnderline = false
 paddingTop = "0.5rem"
 paddingBottom = "3rem"
 
-primaryColor = "#0F766E"
+primaryColor = "#7B68EE"
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F1F5F9"
-codeBackgroundColor = "#F1F5F9"
-textColor = "#0F172A"
-linkColor = "#0F766E"
-borderColor = "#CBD5E1"
-codeTextColor = "#334155"
+secondaryBackgroundColor = "#F6F5FF"
+codeBackgroundColor = "#F3F2FB"
+textColor = "#1F2433"
+linkColor = "#6A57E3"
+borderColor = "#E3E1F0"
+codeTextColor = "#3B3F52"
 greenColor = "#059669"
 redColor = "#DC2626"
 yellowColor = "#D97706"
 orangeColor = "#EA580C"
-blueColor = "#1D4ED8"
-violetColor = "#7C3AED"
-grayColor = "#64748B"
-chartCategoricalColors = ["#0F766E", "#059669", "#7C3AED", "#DC2626", "#D97706", "#0284C7", "#64748B", "#EA580C"]
-chartSequentialColors = ["#F0F9FF", "#E0F2FE", "#BAE6FD", "#7DD3FC", "#38BDF8",
-                         "#0EA5E9", "#0284C7", "#0369A1", "#075985", "#0C4A6E"]
-dataframeBorderColor = "#CBD5E1"
-dataframeHeaderBackgroundColor = "#E2E8F0"
-dataframeHeaderTextColor = "#0F172A"
+blueColor = "#2563EB"
+violetColor = "#7B68EE"
+grayColor = "#6B7280"
+chartCategoricalColors = ["#7B68EE", "#10B981", "#F59E0B", "#EF4444", "#3B82F6", "#EC4899", "#14B8A6", "#6B7280"]
+chartSequentialColors = ["#F5F3FF", "#EDE9FE", "#DDD6FE", "#C4B5FD", "#A78BFA",
+                         "#8B5CF6", "#7C3AED", "#6D28D9", "#5B21B6", "#4C1D95"]
+dataframeBorderColor = "#E3E1F0"
+dataframeHeaderBackgroundColor = "#F3F1FD"
+dataframeHeaderTextColor = "#1F2433"
 
 [theme.sidebar]
 paddingTop = "0.5rem"
 paddingBottom = "1.5rem"
-backgroundColor = "#F8FAFC"
-secondaryBackgroundColor = "#F1F5F9"
-codeBackgroundColor = "#E2E8F0"
-textColor = "#0F172A"
-borderColor = "#CBD5E1"
-primaryColor = "#0F766E"
-linkColor = "#0F766E"
+backgroundColor = "#F8F7FD"
+secondaryBackgroundColor = "#FFFFFF"
+codeBackgroundColor = "#EEEBFB"
+textColor = "#1F2433"
+borderColor = "#E3E1F0"
+primaryColor = "#7B68EE"
+linkColor = "#6A57E3"
 
 [client]
 toolbarMode = "minimal"

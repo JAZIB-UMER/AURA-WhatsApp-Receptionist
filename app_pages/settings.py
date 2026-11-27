@@ -53,12 +53,14 @@ with st.form(f"settings_{bid}", border=False):
         st.caption("AURA always asks the customer's **name** (required) and takes their **phone number** from "
                    f"WhatsApp automatically. Add up to {validation.MAX_QUESTIONS} more questions below. Tick "
                    "**Required** if the customer must answer; optional ones can be skipped by replying 'skip'. "
-                   "AURA checks Email, Number and Phone number answers and asks again if one is wrong.")
+                   "AURA checks Email, Number and Phone number answers and asks again if one is wrong. "
+                   "Tick **Delete** to remove a question, then save. The answers appear with each booking.")
         saved_questions = business.get("custom_questions") or []
         questions_table = pd.DataFrame({
             "question": pd.Series([q["question"] for q in saved_questions], dtype="string"),
             "type": pd.Series([QUESTION_TYPES[q["type"]] for q in saved_questions], dtype="object"),
             "required": pd.Series([q["required"] for q in saved_questions], dtype="bool"),
+            "remove": pd.Series([False] * len(saved_questions), dtype="bool"),
         })
         questions = st.data_editor(
             questions_table, num_rows="dynamic", hide_index=True, key=k + "questions", height="content",
@@ -70,6 +72,8 @@ with st.form(f"settings_{bid}", border=False):
                 "type": st.column_config.SelectboxColumn("Answer type", options=list(QUESTION_TYPES.values()),
                                                          required=True, default="Text", width="small"),
                 "required": st.column_config.CheckboxColumn("Required", default=True, width="small"),
+                "remove": st.column_config.CheckboxColumn("Delete", default=False, width="small",
+                                                          help="Tick to remove this question when you save."),
             },
         )
 
@@ -115,7 +119,7 @@ if submitted:
         take("name", validation.business_name(name))
         fields["business_type"] = validation.clean_text(business_type)[:40]
     take("greeting", validation.greeting(greeting))
-    take("custom_questions", validation.questions(questions.to_dict("records")))
+    take("custom_questions", validation.questions([q for q in questions.to_dict("records") if not q.get("remove")]))
     take("owner_phone", validation.phone(owner_phone))
     take("owner_email", validation.email(owner_email, required=True))
     open_days = sorted(SHORT_DAYS.index(d) for d in (days or []) if d in SHORT_DAYS)

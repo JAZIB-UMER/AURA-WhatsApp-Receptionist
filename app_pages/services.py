@@ -9,14 +9,15 @@ from app.services.datetime_parser import today_pkt
 business = ui.current_business()
 bid = business["id"]
 
-st.caption("Customers can only book these services. AURA quotes these prices and blocks the "
-           "duration in your calendar. Add a row at the bottom; select rows and press Delete to remove them.")
+st.caption("Customers can only book these services. AURA quotes these prices and blocks the duration in your "
+           "calendar. Add a service in the empty row at the bottom; tick **Delete** to remove one, then save.")
 
 services = db.list_services(bid)
 frame = pd.DataFrame({
     "name": pd.Series([s["name"] for s in services], dtype="string"),
     "price": pd.Series([s["price"] for s in services], dtype="Int64"),
     "duration_min": pd.Series([s["duration_min"] for s in services], dtype="Int64"),
+    "remove": pd.Series([False] * len(services), dtype="bool"),
 })
 
 # A new key after each save resets the editor to what is now in the database.
@@ -35,9 +36,12 @@ with st.container(border=True):
                                                           min_value=validation.DURATION_MIN,
                                                           max_value=validation.DURATION_MAX, step=5,
                                                           default=30),
+            "remove": st.column_config.CheckboxColumn("Delete", default=False, width="small",
+                                                      help="Tick to remove this service when you save."),
         },
     )
-    clean, errors = validation.services(edited.to_dict("records"))
+    kept = [r for r in edited.to_dict("records") if not r.get("remove")]
+    clean, errors = validation.services(kept)
     changed = clean != [{"name": s["name"], "price": s["price"], "duration_min": s["duration_min"]}
                         for s in services]
     with st.container(horizontal=True, vertical_alignment="center"):
@@ -49,7 +53,7 @@ with st.container(border=True):
         st.error(e, icon=":material/error:")
 
     if save:
-        clean, errors = validation.services(edited.to_dict("records"))      # check again before writing
+        clean, errors = validation.services(kept)                            # check again before writing
         if not errors:
             db.replace_services(bid, clean)
             st.session_state.svc_version = version + 1

@@ -88,15 +88,13 @@ def format_price(price) -> str:
 # own line, and the question to the customer on its own line at the end.
 
 def services_text(services: list) -> str:
-    """One service per line:
-    • Haircut — Rs 800
-    • Nail polish — Rs 500"""
-    return "\n".join(f"• {s['name']} — {format_price(s['price'])}" for s in services)
-
-
-def price_list(services: list) -> str:
-    """• Haircut — Rs 800 (30 min)"""
+    """One service per line, with its price and how long it takes:
+    • Haircut — Rs 800 (30 min)
+    • Nail polish — Rs 500 (45 min)"""
     return "\n".join(f"• {s['name']} — {format_price(s['price'])} ({s['duration_min']} min)" for s in services)
+
+
+price_list = services_text      # the rates reply and the "which service?" question show the same list
 
 
 def price_list_message(services: list) -> str:
@@ -178,6 +176,33 @@ def free_slots(business: dict, date_iso: str, duration: int, busy: list, now: "d
             slots.append(t.strftime("%H:%M"))
         t += timedelta(minutes=SLOT_STEP_MIN)
     return slots
+
+
+def free_windows(business: dict, date_iso: str, duration: int, busy: list, now: "datetime | None" = None) -> list:
+    """Free stretches of a day in which an appointment of this length fits:
+    ['1:00 PM – 5:00 PM', '6:00 PM – 8:00 PM']. A stretch starts at its first free start time and ends at
+    closing time or where the next busy period begins."""
+    slots = free_slots(business, date_iso, duration, busy, now)
+    if not slots:
+        return []
+    day = date.fromisoformat(date_iso)
+    close = _at(day, business["close_time"])
+    runs, run = [], [slots[0]]
+    for s in slots[1:]:
+        (h1, m1), (h2, m2) = _hm(run[-1]), _hm(s)
+        if (h2 * 60 + m2) - (h1 * 60 + m1) == SLOT_STEP_MIN:
+            run.append(s)
+        else:
+            runs.append(run)
+            run = [s]
+    runs.append(run)
+    windows = []
+    for run in runs:
+        start = _at(day, run[0])
+        last_end = _at(day, run[-1]) + timedelta(minutes=duration)
+        end = min([b_start for b_start, _ in busy if b_start >= last_end] + [close])
+        windows.append(f"{_fmt_time(start.strftime('%H:%M'))} – {_fmt_time(end.strftime('%H:%M'))}")
+    return windows
 
 
 def nearest(slots: list, wanted_hm: "str | None", limit: int = 3) -> list:

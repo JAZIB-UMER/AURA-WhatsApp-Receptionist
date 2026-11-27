@@ -57,7 +57,7 @@ RESCHEDULE_HINTS = (
 # really contains a greeting word. Covers 83 of 84 greetings in the dataset
 # (the other is the mislabelled "Didn't get it").
 GREETING_RE = re.compile(
-    r"\b(h+i+|h+e+y+|hy|hel+o+|hlo|aoa|adaa?b|greetings|good (morning|afternoon|evening))\b"
+    r"\b(h+i+|h+e+y+|hel+o+|hlo|aoa|adaa?b|greetings|good (morning|afternoon|evening))\b"   # not "hy" (= "hai")
     r"|\b(a?s+ala+m|sla+m|aslam|w[ao]?s+ala+m)\w*|alaik|alaykum",       # \b: "Islamabad" is not a salam
     re.IGNORECASE,
 )
@@ -150,20 +150,25 @@ Rules:
 
 
 def _ask_gemini(text: str) -> dict:
-    client = _gemini()
-    if client is None:
-        return {}
     today = today_pkt()
     prompt = (PROMPT.replace("__TODAY__", today.strftime("%A, %Y-%m-%d"))
                     .replace("__INTENTS__", json.dumps(INTENTS))
                     .replace("__TEXT__", text.replace('"', "'")))
+    return _gemini_json(prompt)
+
+
+def _gemini_json(prompt: str, temperature: float = 0) -> dict:
+    """Ask Gemini for a JSON object. {} when Gemini is not set up, unavailable or answers nonsense."""
+    client = _gemini()
+    if client is None:
+        return {}
     from google.genai import types
     for attempt in range(2):   # one retry: Gemini sometimes returns a brief 503 "high demand"
         try:
             response = client.models.generate_content(
                 model=config.get("gemini_model"),
                 contents=prompt,
-                config=types.GenerateContentConfig(temperature=0, response_mime_type="application/json"),
+                config=types.GenerateContentConfig(temperature=temperature, response_mime_type="application/json"),
             )
             raw = (response.text or "").strip()
             raw = re.sub(r"^```(?:json)?|```$", "", raw).strip()
@@ -177,6 +182,70 @@ def _ask_gemini(text: str) -> dict:
             print(f"[NLU] Gemini unavailable: {str(e)[:120]}")
             return {}
     return {}
+
+
+CONFIRM_PROMPT = """A WhatsApp receptionist in Pakistan showed a customer a booking summary and asked them to
+confirm it. The customer replied (Roman Urdu, English or mixed; spelling varies):
+"__TEXT__"
+
+What does the customer mean? Answer with JSON only:
+{"meaning": "yes" | "no" | "change" | "question" | "unclear",
+ "change": "service" | "date" | "time" | "name" | "email" | null}
+- "yes": they agree or ask to go ahead ("kardein", "theek hai", "ok kar do", "done", "sure", "chalega", "g bilkul")
+- "no": they don't want this booking at all
+- "change": they want something in the booking different; put the part in "change" (null if unclear)
+- "question": they ask something else instead of answering (parking, payment, "kitni der lagegi", ...)
+- "unclear": anything else"""
+
+
+def confirmation_meaning(text: str) -> dict:
+    """Gemini's reading of a reply to "confirm kar doon?": {"meaning", "change"}. {} if Gemini is unavailable."""
+    data = _gemini_json(CONFIRM_PROMPT.replace("__TEXT__", text.replace('"', "'")[:300]))
+    meaning = data.get("meaning")
+    if meaning not in ("yes", "no", "change", "question", "unclear"):
+        return {}
+    change = data.get("change") if data.get("change") in ("service", "date", "time", "name", "email") else None
+    print(f"[NLU] Confirmation reply {text!r} -> {meaning} {change or ''} (Gemini)")
+    return {"meaning": meaning, "change": change}
+
+
+CHAT_PROMPT = """You are AURA, the WhatsApp receptionist of "__NAME__"__TYPE__ in Pakistan.
+Reply to the customer's message like a friendly, polite human receptionist would: in the same language and
+style they used (Roman Urdu, English or mixed), short (1 to 3 sentences), natural, no bullet lists.
+Speak for the business as "hum" (we), never "main" (I), so there are no male/female verb forms.
+
+Facts about the business (never invent anything else: no other prices, services, times, discounts, address,
+staff names, payment methods or policies):
+- Services: __SERVICES__
+- Open: __HOURS__
+
+Rules:
+- If the facts answer the question, answer from them (e.g. "kab khulte / kab aate hain" -> the opening hours).
+- You can book, cancel or move appointments and tell services, rates and timings. When it fits, suggest
+  booking a relevant service from the list and ask which day suits them.
+- If the facts don't answer it, say honestly that you don't have that information and that they can ask the
+  owner directly on this number. Don't say something exists or doesn't exist unless the facts say so
+  (discounts, parking, payment methods, address: "is ki maloomat hamare paas nahi").
+  Never promise to pass a message on, call back or check something.
+
+Customer's message: "__TEXT__"
+
+Answer with JSON only: {"reply": "...", "understood": true | false}
+"understood" is false only if the message is meaningless to you."""
+
+
+def chat_reply(text: str, business_name: str, business_type: str, services: str, hours: str):
+    """A natural answer for a message outside the booking steps (small talk, questions), using only the
+    business's real details. None if Gemini is unavailable or found the message meaningless."""
+    prompt = (CHAT_PROMPT.replace("__NAME__", business_name).replace("__TYPE__", f" ({business_type})" if business_type else "")
+              .replace("__SERVICES__", services or "none listed yet").replace("__HOURS__", hours)
+              .replace("__TEXT__", text.replace('"', "'")[:500]))
+    data = _gemini_json(prompt, temperature=0.2)
+    reply = str(data.get("reply") or "").strip()
+    if not reply or data.get("understood") is False:
+        return None
+    print(f"[NLU] Chat reply for {text!r} (Gemini)")
+    return reply[:700]
 
 
 ROMAN_PROMPT = """Rewrite this WhatsApp voice-note transcript in Roman Urdu, the way Pakistanis type on WhatsApp.

@@ -48,7 +48,7 @@ for case in cases[:MAX_SHOWN]:
             with st.container(horizontal=True):
                 if case["phone"].isdigit():
                     st.link_button("Open in WhatsApp", f"https://wa.me/{case['phone']}", icon=":material/chat:")
-                if st.button("Mark resolved", icon=":material/task_alt:", key=f"esc_resolve_{case['id']}"):
+                if st.button("Mark resolved", icon=":material/task_alt:", key=f"ok_esc_resolve_{case['id']}"):
                     db.resolve_escalation(bid, case["id"])
                     ui.flash("Marked as resolved.")
                     st.rerun()

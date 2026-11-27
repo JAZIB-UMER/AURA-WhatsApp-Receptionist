@@ -33,7 +33,8 @@ if not wanted:
     st.stop()
 
 bookings = db.list_bookings(bid, from_date=start.isoformat(), to_date=end.isoformat(), statuses=wanted)
-df = ui.bookings_frame(bookings, ui.price_lookup(bid))
+question_texts = [q["question"] for q in business.get("custom_questions") or []]
+df = ui.bookings_frame(bookings, ui.price_lookup(bid), questions=question_texts)
 term = (search or "").strip().lower()
 if term:
     mask = (df["customer"].str.lower().str.contains(term, regex=False)
@@ -54,8 +55,8 @@ if df.empty:
     st.stop()
 
 columns = ["when", "customer", "phone", "service", "price", "status"]
-if df["details"].fillna("").str.len().gt(0).any():         # only when the business asks extra questions
-    columns.append("details")
+answer_columns = {f"ans_{i}": q for i, q in enumerate(question_texts)}
+columns += [c for c in [*answer_columns, "email"] if df[c].fillna("").str.len().gt(0).any()]   # only when used
 event = st.dataframe(
     df, hide_index=True, key="bk_table", on_select="rerun", selection_mode="single-row",
     height="content",                                       # all rows shown: the page scrolls, not the table
@@ -68,11 +69,13 @@ event = st.dataframe(
         "service": st.column_config.TextColumn("Service", width=110),
         "price": st.column_config.NumberColumn("Rs", format="localized", width=60),
         "status": ui.status_column(),
-        "details": st.column_config.TextColumn("Answers", width=160, help="Answers to your extra questions"),
+        "email": st.column_config.TextColumn("Email", width=150),
+        **{c: st.column_config.TextColumn(q[:24] + ("…" if len(q) > 24 else ""), width=130, help=q)
+           for c, q in answer_columns.items()},
     },
 )
 
-export = df.drop(columns=["status", "date"]).rename(columns={"status_key": "status"})
+export = (df.drop(columns=["status", "date", "details"]).rename(columns={"status_key": "status", **answer_columns}))
 st.download_button("Download CSV", export.to_csv(index=False).encode("utf-8-sig"),
                    file_name=f"aura_bookings_{start}_{end}.csv", mime="text/csv",
                    icon=":material/download:", on_click="ignore")
@@ -87,14 +90,21 @@ def cancel_dialog(booking: dict):
     st.markdown(f"**{booking['customer_name']}** — {booking['service']}, {describe(booking['date'], booking['time'])}")
     st.caption("The appointment is removed from Google Calendar and no reminders will be sent.")
     notify = st.checkbox("Send the customer a WhatsApp message about it", value=True, key="bk_notify")
+    message = ""
+    if notify:
+        message = st.text_area("Message to the customer", manage.cancel_message(business, booking), max_chars=1000,
+                               height=120, key=f"bk_cancel_msg_{booking['id']}",
+                               help="Edit it if you like, e.g. to give the reason or offer another time.")
     with st.container(horizontal=True):
-        confirm = st.button("Yes, cancel it", type="primary", icon=":material/delete:", key="bk_cancel_yes")
+        confirm = st.button("Yes, cancel it", type="primary", icon=":material/delete:", key="danger_bk_cancel_yes")
         keep = st.button("Keep booking", key="bk_cancel_no")
     if keep:
         close_cancel_dialog()
         st.rerun()
-    if confirm:
-        result = manage.cancel_booking(business, booking["id"], notify)
+    if confirm and notify and not message.strip():
+        st.error("Write the message, or untick 'Send the customer a WhatsApp message'.", icon=":material/error:")
+    elif confirm:
+        result = manage.cancel_booking(business, booking["id"], notify, message=message)
         if result["error"]:
             st.error(result["error"])
             return
@@ -117,6 +127,12 @@ if rows and rows[0] < len(df):
         with st.container(border=True):
             st.markdown(f"**{booking['customer_name']}** · {booking['service']} · "
                         f"{describe(booking['date'], booking['time'])} · {selected['phone']}")
+            details = [(q, a) for q, a in (booking.get("answers") or {}).items() if a]
+            if booking.get("customer_email"):
+                details.append(("Email", booking["customer_email"]))
+            if details:
+                st.table({"Question": [q for q, _ in details], "Answer": [a for _, a in details]},
+                         alt="The customer's answers to the extra questions")
             is_future = selected["when"] >= now
             can_change = booking["status"] in ("booked", "confirmed") and is_future
             with st.container(horizontal=True):
@@ -124,14 +140,14 @@ if rows and rows[0] < len(df):
                              help="The WhatsApp chat in which this booking was made, plus its reminders."):
                     st.session_state.pop("bk_cancel_id", None)
                     st.session_state.bk_chat_id = booking["id"]
-                if st.button("Mark as confirmed", icon=":material/check_circle:", key="bk_confirm",
+                if st.button("Mark as confirmed", icon=":material/check_circle:", key="ok_bk_confirm",
                              disabled=not (can_change and booking["status"] == "booked"),
                              help="Use this when the customer confirmed by phone or in person."):
                     error = manage.confirm_booking(business, booking["id"])
                     ui.flash(error or "Booking marked as confirmed.",
                              ":material/error:" if error else ":material/check_circle:")
                     st.rerun()
-                if st.button("Cancel booking", icon=":material/event_busy:", key="bk_cancel",
+                if st.button("Cancel booking", icon=":material/event_busy:", key="danger_bk_cancel",
                              disabled=not can_change):
                     st.session_state.pop("bk_chat_id", None)
                     st.session_state.bk_cancel_id = booking["id"]

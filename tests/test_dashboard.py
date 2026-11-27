@@ -29,9 +29,13 @@ def check(name, condition, detail=""):
 
 
 # ------------------------------------------------------------------ fake external calls
-def fake_cancel(business, booking_id, notify):
+CANCEL_TEXTS = []
+
+
+def fake_cancel(business, booking_id, notify, message=None):
     db.set_booking_status(booking_id, "cancelled")
     SENT.append((booking_id, notify))
+    CANCEL_TEXTS.append(message)
     return {"error": None, "calendar": True, "notified": True if notify else None}
 
 
@@ -178,8 +182,17 @@ select_booking(b2)
 by_label(at.button, "Cancel booking").click().run()
 check("cancel dialog asks about notifying the customer",
       any(c.label.startswith("Send the customer") and c.value for c in at.checkbox))
+box = by_label(at.text_area, "Message to the customer")
+check("the WhatsApp message is shown and can be edited", "cancel kar di gayi hai" in box.value and "Sara" in box.value)
+box.set_value("")
 by_label(at.button, "Yes, cancel it").click().run()
-check("cancel booking from the dialog", db.get_booking(b2)["status"] == "cancelled" and SENT == [(b2, True)], SENT)
+check("an emptied message is refused (nothing cancelled)", any("Write the message" in e.value for e in at.error)
+      and db.get_booking(b2)["status"] == "confirmed")
+by_label(at.text_area, "Message to the customer").set_value("Sorry Sara, doctor aaj nahi hain. Kal ka time de dein?")
+by_label(at.button, "Yes, cancel it").click().run()
+check("cancel booking from the dialog with the owner's own message",
+      db.get_booking(b2)["status"] == "cancelled" and SENT == [(b2, True)]
+      and CANCEL_TEXTS[-1] == "Sorry Sara, doctor aaj nahi hain. Kal ka time de dein?", (SENT, CANCEL_TEXTS))
 # ------------------------------------------------------------------ conversation backup + escalations
 db.log_message(bid, "923003334444", "in", "kal 11 baje beard book kar do")
 db.log_message(bid, "923003334444", "out", "Apna naam batayein please?")
@@ -629,6 +642,51 @@ by_label(at.text_input, "Business email").set_value("")
 submit(at, "mail_")
 check("emptying the address turns booking emails off and forgets the password",
       db.mail_account(fixit["id"]) is None and any("Not set up" in m.value for m in at.markdown) and not at.exception)
+
+# ------------------------------------------------------------------ delete ticks, answers per question, counts, badges
+at = login(app().run(), "noon", "newpass123")
+counts = ui.section_counts(bid)
+check("counts for the menu and badges come from the database",
+      counts["open_cases"] == len(db.list_escalations(bid, status="open")) and counts["awaiting"] >= 0)
+check("section title is clean and coloured badges sit under it",
+      at.title and at.title[0].value == "Overview"
+      and any(m.value.startswith(":orange-badge[") and "awaiting reply" in m.value for m in at.markdown)
+      and any(m.value.startswith(":violet-badge[") and "today" in m.value for m in at.markdown),
+      [t.value for t in at.title] + [m.value for m in at.markdown][:6])
+at.switch_page("app_pages/bookings.py").run()
+check("Bookings title without the menu count, with its status badges",
+      at.title[0].value == "Bookings" and any(":green-badge[" in m.value and "confirmed" in m.value
+                                               for m in at.markdown), [t.value for t in at.title])
+at.switch_page("app_pages/services.py").run()
+editor = at.get("arrow_data_frame")
+services_before = [s["name"] for s in db.list_services(bid)]
+at.session_state[[k for k in at.session_state if str(k).startswith("svc_editor_")][0]] = {
+    "edited_rows": {"1": {"remove": True}}, "added_rows": [], "deleted_rows": []}
+at.run()
+by_label(at.button, "Save services").click().run()
+check("ticking Delete removes that service on save", [s["name"] for s in db.list_services(bid)]
+      == [n for i, n in enumerate(services_before) if i != 1] and not at.exception, db.list_services(bid))
+
+at.switch_page("app_pages/settings.py").run()
+questions_before = db.get_business(bid)["custom_questions"]
+at.session_state[f"set_{bid}_questions"] = {"edited_rows": {"0": {"remove": True}}, "added_rows": [], "deleted_rows": []}
+at.run()
+at.form_submit_button[0].click().run()
+check("ticking Delete removes that question on save",
+      db.get_business(bid)["custom_questions"] == questions_before[1:], db.get_business(bid)["custom_questions"])
+db.update_business(bid, custom_questions=questions_before)
+
+answered = db.create_booking(bid, "923001231234", "Hina", "Haircut", (now + timedelta(days=2)).strftime("%Y-%m-%d"),
+                             "12:00", 30, "EV20", {"Aap ki age kya hai?": "29", "Aap ki email?": ""},
+                             customer_email="hina@gmail.com")
+at.switch_page("app_pages/bookings.py").run()
+table = at.dataframe[0].value
+check("each extra question has its own column; email too", "ans_0" in table.columns and "email" in table.columns
+      and "29" in list(table["ans_0"]) and "hina@gmail.com" in list(table["email"]), list(table.columns))
+select_booking(answered)
+check("selected booking lists the answers (question and answer)",
+      any("Aap ki age kya hai?" in str(t.value) and "29" in str(t.value) for t in at.table)
+      and not at.exception, [str(t.value)[:200] for t in at.table])
 
 failed = [n for n, ok in CHECKS if not ok]
 print(f"\n{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")

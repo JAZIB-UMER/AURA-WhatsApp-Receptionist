@@ -81,7 +81,7 @@ def send_reminder(booking_id: int):
     _send(business, booking, (
         f"⏰ *Reminder:* {business['name']} mein aap ki appointment hai.\n"
         f"• {booking_line(booking)}\n\n"
-        f"Aa rahe hain? Reply *haan* ya *cancel*."
+        f"Aa rahe hain? Reply *yes* ya *cancel*."
     ), "reminder")
     customer_mail.reminder(business, booking)
     r.setex(f"reminder_sent:{booking_id}", 86400 * 2, "1")   # "haan"/"cancel" now count as an answer
@@ -95,7 +95,7 @@ def send_followup(booking_id: int):
         return
     _send(business, booking, (
         f"*Aap ne abhi tak confirm nahi kiya:*\n• {booking_line(booking)}\n\n"
-        f"Appointment rakhni hai? Reply *haan* ya *cancel*."
+        f"Appointment rakhni hai? Reply *yes* ya *cancel*."
     ), "followup")
     r.setex(f"reminder_sent:{booking_id}", 86400 * 2, "1")
     print(f"[Followup] Sent for booking {booking_id}")

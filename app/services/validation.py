@@ -164,7 +164,7 @@ def services(rows):
     """Rows from the services editor -> (clean list, errors). Blank rows are ignored."""
     clean, errors, seen = [], [], {}
     for n, row in enumerate(rows, 1):
-        name = clean_text(row.get("name"))
+        name = clean_text(row.get("name")).rstrip(" :;,.-–—")
         price, duration = row.get("price"), row.get("duration_min")
         if not name and _missing(price) and _missing(duration):
             continue                                    # empty row left by the editor

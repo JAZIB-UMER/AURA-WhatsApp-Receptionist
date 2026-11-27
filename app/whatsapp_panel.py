@@ -33,7 +33,7 @@ def _disconnect_dialog(business: dict):
     st.markdown(f"AURA will **stop answering** {business['name']}'s WhatsApp customers until the number is "
                 "connected again. Chats, bookings and reminders already saved are kept.")
     with st.container(horizontal=True):
-        confirm = st.button("Yes, disconnect", type="primary", icon=":material/link_off:", key="wa_disconnect_yes")
+        confirm = st.button("Yes, disconnect", type="primary", icon=":material/link_off:", key="danger_wa_disconnect_yes")
         keep = st.button("Keep it connected", key="wa_disconnect_no")
     if keep:
         _close_dialog()
@@ -93,7 +93,7 @@ def show(business: dict):
                        "linked devices. Show a new QR code and scan it again.", icon=":material/warning:")
             if st.button("Show a new QR code", type="primary", icon=":material/qr_code_2:", key=key + "reconnect"):
                 _connect(business)
-        if st.button("Disconnect", icon=":material/link_off:", key=key + "disconnect"):
+        if st.button("Disconnect", icon=":material/link_off:", key="danger_" + key + "disconnect"):
             st.session_state.wa_disconnect = business["id"]
 
     # The confirmation stays open across reruns until the user confirms, keeps it, or closes it.

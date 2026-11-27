@@ -120,6 +120,7 @@ check("services clean", clean == [{"name": "Haircut", "price": 500, "duration_mi
 check("services duplicate", v.services([{"name": "Haircut", "price": 1, "duration_min": 30},
                                         {"name": "haircut", "price": 2, "duration_min": 30}])[1])
 check("services missing price", v.services([{"name": "Facial", "price": nan, "duration_min": 30}])[1])
+check("service name: trailing colon / dash removed", v.services([{"name": "Follow-up Visit:", "price": 1000, "duration_min": 20}])[0][0]["name"] == "Follow-up Visit")
 check("services negative price", v.services([{"name": "Facial", "price": -5, "duration_min": 30}])[1])
 check("services long duration", v.services([{"name": "Facial", "price": 5, "duration_min": 600}])[1])
 check("services number name", v.services([{"name": "12", "price": 5, "duration_min": 30}])[1])
